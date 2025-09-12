@@ -48,7 +48,9 @@ export function useLocalStorage<T>(
       return lazyInitial;
     }
   });
-  const [isHydrated, setHydrated] = useState(!isServer);
+  // Start false on both server AND first client render to avoid hydration mismatches.
+  // Flip to true in a useEffect after mount.
+  const [isHydrated, setHydrated] = useState(false);
 
   // Keep a ref of the current key to detect changes
   const keyRef = useRef(key);

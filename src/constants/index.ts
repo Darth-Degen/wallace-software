@@ -1,2 +1,2 @@
-export * from "./framerMotion"
+export * from "./animations"
 export * from "./pages"
