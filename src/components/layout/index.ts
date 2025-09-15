@@ -1,3 +1,7 @@
 export { default as SeoHead } from './SeoHead';  
 export { default as PageShell } from './PageShell';
 export { default as withPageShell } from './withPageShell';
+export { default as SplashScreen } from './SplashScreen';
+export { default as Logo } from './Logo';
+export { default as ImageModal } from './ImageModal';
+export { default as ModalWrapper } from './ModalWrapper';

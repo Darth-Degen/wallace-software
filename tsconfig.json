@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@widgets": ["src/components/ui/widgets"],
+      "@widgets": ["src/components/widgets"],
       "@components": ["src/components/"],
       "@ui/*": ["src/components/ui/*"],
       "@animations": ["src/components/ui/animations"],
@@ -12,8 +12,7 @@
       "@hooks": ["src/hooks/"],
       "@utils": ["src/utils"],
       "@stores": ["src/stores"],
-      "@lib": ["src/lib"],
-      "@domains-solana": ["domains/solana"],
+      "@lib": ["src/lib"], 
     },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],

@@ -1,7 +1,6 @@
 "use client";
 
 import { SimpleReveal } from "@ui/animations";
-import { CardWidget } from "@widgets";
 import { FC } from "react";
 
 interface Props {}
@@ -20,14 +19,6 @@ const LandingView: FC<Props> = (props: Props) => {
               Action
             </button>
           </SimpleReveal>
-        </div>
-      </SimpleReveal>
-
-      <SimpleReveal delay={0.25} as="section">
-        <div className="p-8">
-          <CardWidget title="Sandbox Card">
-            <p>This is inside the body of the card.</p>
-          </CardWidget>
         </div>
       </SimpleReveal>
     </div>

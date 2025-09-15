@@ -1,48 +1,39 @@
 /** @type {import('tailwindcss').Config} */
-
 module.exports = {
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx}",
-    "./src/**/*.{js,ts,jsx,tsx}",
-    "./domains/**/*.{js,ts,jsx,tsx}",
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
+    "./domains/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   darkMode: "class",
   theme: {
     extend: {
-      backgroundImage: {
-        "white-gradient": `linear-gradient(360.58deg, #FFFFFF 43.76%, rgba(255, 255, 255, 0) 106.82%)`,
-      },
       fontFamily: {
-        primary: "Manrope",
+        primary: ["Manrope", "ui-sans-serif", "system-ui", "sans-serif"],
       },
-      fontWeight: {
-        light: 300,
-        normal: 400,
-        medium: 500,
-        semibold: 600,
-        bold: 700,
-        extrabold: 800,
-        black: 900,
-      },
-      fontStyle: {
-        italic: "italic", // Add "italic" style to the font family
-      },
-      // ✅ semantic colors backed by CSS vars
       colors: {
-        bg: "rgb(var(--bg) / <alpha-value>)",
-        fg: "rgb(var(--fg) / <alpha-value>)",
-        card: "rgb(var(--card) / <alpha-value>)",
-        page: "rgb(var(--page) / <alpha-value>)",
-        muted: "rgb(var(--muted) / <alpha-value>)",
-        border: "rgb(var(--border) / <alpha-value>)",
-        accent: "rgb(var(--accent) / <alpha-value>)",
-        "accent-foreground": "rgb(var(--accent-foreground) / <alpha-value>)",
-        success: "rgb(var(--success) / <alpha-value>)",
-        warning: "rgb(var(--warning) / <alpha-value>)",
-        danger: "rgb(var(--danger) / <alpha-value>)",
-        link: "rgb(var(--link) / <alpha-value>)",
+        // shadcn tokens — use HSL variables
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        card: "hsl(var(--card))",
+        "card-foreground": "hsl(var(--card-foreground))",
+        popover: "hsl(var(--popover))",
+        "popover-foreground": "hsl(var(--popover-foreground))",
+        primary: "hsl(var(--primary))",
+        "primary-foreground": "hsl(var(--primary-foreground))",
+        secondary: "hsl(var(--secondary))",
+        "secondary-foreground": "hsl(var(--secondary-foreground))",
+        muted: "hsl(var(--muted))",
+        "muted-foreground": "hsl(var(--muted-foreground))",
+        accent: "hsl(var(--accent))",
+        "accent-foreground": "hsl(var(--accent-foreground))",
+        destructive: "hsl(var(--destructive))",
+        "destructive-foreground": "hsl(var(--destructive-foreground))",
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
 
-        // your existing brand tokens (unchanged)
+        // your brand extras
         gray: {
           600: "#2C2C2C",
           700: "#242424",
@@ -59,16 +50,11 @@ module.exports = {
         },
         "template-black": "#121212",
         "template-white": "#F3F1EA",
-        "template-yellow": "#FFBA21",
-        "template-green": "#56BC78",
-        "template-orange": "#FF5722",
-        "template-red": "#DF1D00",
       },
-      screens: {
-        "2xs": "360px",
-        xs: "420px",
-        "3xl": "2160px",
-        "4xl": "3000px",
+      borderRadius: {
+        lg: "0.5rem",
+        xl: "0.75rem",
+        "2xl": "1rem",
       },
     },
   },
