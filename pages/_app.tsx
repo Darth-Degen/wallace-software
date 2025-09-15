@@ -13,12 +13,11 @@ const queryClient = new QueryClient();
 
 export default function App({ Component, pageProps }: AppPropsWithOptions) {
   const router = useRouter();
-  const headerVariant = Component.header; // default
 
   return (
     <QueryClientProvider client={queryClient}>
       <>
-        <Header header={headerVariant} />
+        <Header />
         <Component key={router.asPath} {...pageProps} />
       </>
       <Toaster

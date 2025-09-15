@@ -1,5 +1,4 @@
 import { PAGES } from "@constants";
-import { DiscordIcon, TwitterIcon } from "@ui/icons";
 import Link from "next/link";
 import { FC } from "react";
 
@@ -24,10 +23,7 @@ const Footer: FC = () => {
         </nav>
 
         {/* Right side: social icons */}
-        <div className="flex items-center gap-3">
-          <DiscordIcon />
-          <TwitterIcon />
-        </div>
+        <div className="flex items-center gap-3"></div>
       </div>
     </footer>
   );

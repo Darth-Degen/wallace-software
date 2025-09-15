@@ -1,0 +1,37 @@
+// src/components/LinkedinLink.tsx
+"use client";
+
+import * as React from "react";
+import { IconLink } from "@components";
+
+type LinkedinLinkProps = {
+  href?: string;
+  label?: string;
+  variant?: React.ComponentProps<typeof IconLink>["variant"];
+  size?: React.ComponentProps<typeof IconLink>["size"];
+  className?: string;
+  iconClassName?: string;
+};
+
+export const LinkedinLink: React.FC<LinkedinLinkProps> = ({
+  href = "https://www.linkedin.com/in/yourhandle",
+  label = "LinkedIn",
+  variant = "ghost",
+  size = "icon",
+  className,
+  iconClassName,
+}) => (
+  <IconLink
+    href={href}
+    label={label}
+    variant={variant}
+    size={size}
+    className={className}
+    iconClassName={iconClassName}
+  >
+    {/* Your LinkedIn SVG (fill made theme-aware) */}
+    <svg viewBox="0 0 24 24" role="img" aria-hidden="true" fill="currentColor">
+      <path d="M12 0C18.6274 0 24 5.37258 24 12C24 18.6274 18.6274 24 12 24C5.37258 24 0 18.6274 0 12C0 5.37258 5.37258 0 12 0ZM15.1562 9.74707C13.7126 9.74719 13.066 10.5404 12.7051 11.0967V9.93945H9.98535C10.0212 10.7078 9.98535 18.1104 9.98535 18.1104H12.7051V13.5469C12.7051 13.3027 12.723 13.0586 12.7949 12.8838C12.9915 12.396 13.4393 11.8916 14.1904 11.8916C15.1747 11.8917 15.5683 12.6404 15.5684 13.7383V18.1094H18.2871L18.2881 13.4248C18.2881 10.9151 16.9458 9.74707 15.1562 9.74707ZM5.76074 18.1094H8.48047V9.93848H5.76074V18.1094ZM7.13867 6C6.20844 6 5.59972 6.61009 5.59961 7.41113C5.59961 8.19569 6.19053 8.82324 7.10352 8.82324H7.12012C8.06835 8.82324 8.65918 8.19569 8.65918 7.41113C8.64143 6.61014 8.06881 6.00007 7.13867 6Z" />
+    </svg>
+  </IconLink>
+);

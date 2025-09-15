@@ -1,4 +1,34 @@
-import { Variants, easeInOut } from "framer-motion"; 
+import { Variants, Transition, easeInOut } from "framer-motion"; 
+ 
+//carousel animations
+
+export const transition: Transition = { type: "spring", stiffness: 420, damping: 36, mass: 0.9 };
+
+const fromDir = (dir: 1 | -1) => (dir > 0 ? 80 : -80);
+
+export const categoryVariants = {
+  intro: (dir: 1 | -1): Variants => ({
+    enter:  { x: fromDir(dir), opacity: 0, skewY: 3 },
+    center: { x: 0,           opacity: 1, skewY: 0, transition },
+    exit:   { x: -fromDir(dir), opacity: 0, skewY: -3, transition },
+  }),
+  experience: (dir: 1 | -1): Variants => ({
+    enter:  { y: 40, opacity: 0, scale: 0.98 },
+    center: { y: 0,  opacity: 1, scale: 1, transition },
+    exit:   { y: -40, opacity: 0, scale: 0.98, transition },
+  }),
+  skills: (dir: 1 | -1): Variants => ({
+    enter:  { opacity: 0 },
+    center: { opacity: 1, transition: { ...transition, when: "beforeChildren", staggerChildren: 0.04 } },
+    exit:   { opacity: 0, transition },
+  }),
+  project: (dir: 1 | -1): Variants => ({
+    enter:  { x: fromDir(dir) * 1.25, opacity: 0, rotate: dir * 2 },
+    center: { x: 0, opacity: 1, rotate: 0, transition },
+    exit:   { x: -fromDir(dir) * 1.25, opacity: 0, rotate: -dir * 2, transition },
+  }),
+} as const;
+
 
 //template animations 
 export const pageVariants = (prefersReducedMotion: boolean | null): Variants => ({
