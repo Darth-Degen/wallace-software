@@ -10,6 +10,7 @@ module.exports = {
     extend: {
       fontFamily: {
         primary: ["Manrope", "ui-sans-serif", "system-ui", "sans-serif"],
+        calistoga: ["Calistoga", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       colors: {
         // shadcn tokens — use HSL variables

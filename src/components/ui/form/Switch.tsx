@@ -84,8 +84,8 @@ const Switch = forwardRef<HTMLButtonElement, SwitchProps>(function Switch(
             "relative inline-flex h-6 w-10 transition-colors focus:outline-none focus:ring-offset-0 rounded-full",
             isOn
               ? isDark
-                ? "bg-template-yellow"
-                : "bg-template-yellow"
+                ? "bg-gray-700"
+                : "bg-black/10"
               : isDark
               ? "bg-white/20"
               : "bg-black/10",

@@ -5,3 +5,4 @@ export { default as SplashScreen } from './SplashScreen';
 export { default as Logo } from './Logo';
 export { default as ImageModal } from './ImageModal';
 export { default as ModalWrapper } from './ModalWrapper';
+export { default as ThemeSwitch } from './ThemeSwitch';
