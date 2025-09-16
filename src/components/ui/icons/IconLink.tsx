@@ -23,7 +23,7 @@ const IconLink: React.FC<IconLinkProps> = ({
   label,
   children,
   newTab,
-  variant = "ghost",
+  variant = "icon",
   size = "icon",
   rounded = true,
   className,
@@ -51,9 +51,7 @@ const IconLink: React.FC<IconLinkProps> = ({
         aria-label={label}
       >
         <span className="sr-only">{label}</span>
-        <span className={cn("[&_svg]:size-5 [&_svg]:shrink-0", iconClassName)}>
-          {children}
-        </span>
+        <span className={cn("[&_svg]:size-6", iconClassName)}>{children}</span>
       </Link>
     </Button>
   );

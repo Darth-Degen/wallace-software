@@ -9,7 +9,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        primary: ["Manrope", "ui-sans-serif", "system-ui", "sans-serif"],
+        primary: ["Atkinson", "ui-sans-serif", "system-ui", "sans-serif"],
         calistoga: ["Calistoga", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       colors: {
@@ -56,6 +56,9 @@ module.exports = {
         lg: "0.5rem",
         xl: "0.75rem",
         "2xl": "1rem",
+      },
+      screens: {
+        1512: "1512px",
       },
     },
   },

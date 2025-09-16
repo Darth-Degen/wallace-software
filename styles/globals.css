@@ -12,6 +12,11 @@
 
 @font-face { font-family: 'Calistoga'; src: url('../public/fonts/calistoga/Calistoga-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
 
+@font-face { font-family: 'Atkinson'; src: url('../public/fonts/atkinson/AtkinsonHyperlegible-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Atkinson'; src: url('../public/fonts/atkinson/AtkinsonHyperlegible-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; font-display: swap; }
+
+
+
 * { box-sizing: border-box; }
 a { color: inherit; text-decoration: none; }
 
@@ -154,6 +159,9 @@ a { color: inherit; text-decoration: none; }
 .transition-300  { @apply transition-all duration-300; }
 .transition-200  { @apply transition-all duration-200; }
 .transition-100  { @apply transition-all duration-100; }
+
+.hover-foreground-accent { @apply transition-300 hover:bg-accent hover:text-accent-foreground}
+.hover-text-accent { @apply transition-300 hover:text-accent}
 
 /* Autofill helper (kept) */
 @layer utilities {

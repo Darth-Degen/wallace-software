@@ -1,22 +1,42 @@
 "use client";
 import { FC } from "react";
-import Link from "next/link";
 import { GithubLink, LinkedinLink, Logo, MailLink } from "@components";
-import { PAGES } from "@constants";
+import toast from "react-hot-toast";
 
 const Header: FC = ({}) => {
-  const nav = PAGES.filter((p) => p.showInHeader);
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText("info@wallace.software");
+      toast.success("Email copied to clipboard!");
+    } catch (err) {
+      // Fallback for older browsers
+      const textArea = document.createElement("textarea");
+      textArea.value = "info@wallace.software";
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textArea);
+      toast.success("Email copied to clipboard!");
+    }
+  };
+
   return (
     <header className="fixed top-0 inset-x-0 z-50 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="mx-auto max-w-6xl px-4 md:px-8 h-16 md:h-20 flex items-center justify-between gap-4">
+      <div className="mx-auto max-w-[1512px] px-4 md:px-8 h-16 md:h-20 flex items-center justify-between gap-4">
         {/* Logo */}
         <Logo />
 
         {/* Right controls */}
-        <div className="ml-auto md:ml-2 flex items-center gap-0">
+        <div className="ml-auto md:ml-2 flex items-center gap-2">
           <GithubLink />
           <LinkedinLink />
           <MailLink />
+          <p
+            className="lg:block hidden cursor-pointer ml-2 hover-text-accent"
+            onClick={handleCopyEmail}
+          >
+            info@wallace.software
+          </p>
         </div>
       </div>
     </header>
