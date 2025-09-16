@@ -17,7 +17,10 @@ export type AccentColor = keyof typeof accentColors;
 
 interface ColorThemeState {
   currentAccent: AccentColor;
+  activeSection: string;
   setAccentColor: (color: AccentColor) => void;
+  setActiveSection: (section: string) => void;
+  setAccentColorAndSection: (color: AccentColor, section: string) => void;
   cycleAccentColor: () => void;
   applyAccentToDOM: (color: AccentColor) => void;
 }
@@ -41,10 +44,20 @@ export const useColorTheme = create<ColorThemeState>()(
   persist(
     (set, get) => ({
       currentAccent: 'orange', // default color
+      activeSection: '/', // default section
       
       setAccentColor: (color: AccentColor) => {
         applyAccentToDOM(color);
         set({ currentAccent: color });
+      },
+
+      setActiveSection: (section: string) => {
+        set({ activeSection: section });
+      },
+
+      setAccentColorAndSection: (color: AccentColor, section: string) => {
+        applyAccentToDOM(color);
+        set({ currentAccent: color, activeSection: section });
       },
       
       cycleAccentColor: () => {
@@ -58,8 +71,11 @@ export const useColorTheme = create<ColorThemeState>()(
     }),
     {
       name: 'color-theme-storage', // localStorage key
-      // Only persist the currentAccent, not the functions
-      partialize: (state) => ({ currentAccent: state.currentAccent }),
+      // Only persist the currentAccent and activeSection, not the functions
+      partialize: (state) => ({ 
+        currentAccent: state.currentAccent,
+        activeSection: state.activeSection 
+      }),
       // Rehydrate: apply the persisted color to DOM when store loads
       onRehydrateStorage: () => (state) => {
         if (state?.currentAccent) {

@@ -44,6 +44,7 @@ export type NavPage = {
   path: string;
   showInHeader?: boolean;
   showInFooter?: boolean;
+  accentColor?: string; // Optional accent color for this navigation item
 };
 
 // --------------------------------------------------

@@ -6,6 +6,7 @@ import { Header } from "@components";
 import { NextPageWithOptions } from "@types";
 import { useRouter } from "next/router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useRouteActiveSection } from "@hooks";
 
 type AppPropsWithOptions = AppProps & { Component: NextPageWithOptions };
 
@@ -13,6 +14,9 @@ const queryClient = new QueryClient();
 
 export default function App({ Component, pageProps }: AppPropsWithOptions) {
   const router = useRouter();
+
+  // Track active section based on route changes only
+  useRouteActiveSection();
 
   return (
     <QueryClientProvider client={queryClient}>
