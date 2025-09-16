@@ -24,16 +24,12 @@ export default function App({ Component, pageProps }: AppPropsWithOptions) {
         position="bottom-right"
         toastOptions={{
           style: {
-            border: "1px solid hsl(var(--accent))",
-            padding: "10px",
-            color: "hsl(var(--foreground))",
-            backgroundColor: "hsl(var(--background))",
-            fontSize: "14px",
+            border: "2px solid #0D864C",
+            padding: "16px",
+            color: "#fff",
+            backgroundColor: "#020202",
           },
-          iconTheme: {
-            primary: "hsl(var(--accent))",
-            secondary: "hsl(var(--background))",
-          },
+          iconTheme: { primary: "#0D864C", secondary: "#454545" },
         }}
       />
     </QueryClientProvider>
