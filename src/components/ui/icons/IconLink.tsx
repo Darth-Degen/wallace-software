@@ -4,7 +4,6 @@
 import Link from "next/link";
 import { Button, cn } from "@widgets";
 import * as React from "react";
-import { de } from "zod/v4/locales/index.cjs";
 
 type IconLinkProps = {
   href: string; // url, mailto:, tel:, hash, etc.
