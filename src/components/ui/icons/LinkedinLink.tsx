@@ -13,7 +13,7 @@ type LinkedinLinkProps = {
   iconClassName?: string;
 };
 
-export const LinkedinLink: React.FC<LinkedinLinkProps> = ({
+const LinkedinLink: React.FC<LinkedinLinkProps> = ({
   href = "https://www.linkedin.com/in/wallace-palmer-4b93473a",
   label = "LinkedIn",
   variant = "icon",
@@ -35,3 +35,4 @@ export const LinkedinLink: React.FC<LinkedinLinkProps> = ({
     </svg>
   </IconLink>
 );
+export default LinkedinLink;

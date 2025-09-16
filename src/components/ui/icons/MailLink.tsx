@@ -13,7 +13,7 @@ type MailLinkProps = {
   iconClassName?: string;
 };
 
-export const MailLink: React.FC<MailLinkProps> = ({
+const MailLink: React.FC<MailLinkProps> = ({
   href = "mailto:info@wallacesoftware.com",
   label = "Email",
   variant = "icon",
@@ -35,3 +35,5 @@ export const MailLink: React.FC<MailLinkProps> = ({
     </svg>
   </IconLink>
 );
+
+export default MailLink;

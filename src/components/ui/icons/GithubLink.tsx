@@ -13,7 +13,7 @@ type GithubLinkProps = {
   iconClassName?: string; // e.g., "text-primary" to tint the icon
 };
 
-export const GithubLink: React.FC<GithubLinkProps> = ({
+const GithubLink: React.FC<GithubLinkProps> = ({
   href = "https://github.com/Darth-Degen",
   label = "GitHub",
   variant = "icon",
@@ -49,3 +49,5 @@ export const GithubLink: React.FC<GithubLinkProps> = ({
     </svg>
   </IconLink>
 );
+
+export default GithubLink;

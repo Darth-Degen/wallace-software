@@ -1,4 +1,3 @@
-import { GithubLink, LinkedinLink, MailLink } from "@components";
 import { PAGES } from "@constants";
 import { useColorTheme, AccentColor } from "@stores";
 import { cn } from "@utils";

@@ -1,3 +1,2 @@
 export * from "./animations"
-export * from "./pages"
-export * from "./slides"
+export * from "./pages" 
