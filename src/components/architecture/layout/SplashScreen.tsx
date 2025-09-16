@@ -42,19 +42,8 @@ const SplashScreen: FC<Props> = (props: Props) => {
 
   //stop page scroll (when modal or menu open)
   useEffect(() => {
-    if (showAnimation) {
-      // Prevent scrolling without changing overflow to avoid scrollbar flash
-      document.body.style.position = "fixed";
-      document.body.style.top = "0";
-      document.body.style.left = "0";
-      document.body.style.width = "100%";
-    } else {
-      // Restore normal scrolling
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.left = "";
-      document.body.style.width = "";
-    }
+    if (showAnimation) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "auto";
   }, [showAnimation]);
 
   return (

@@ -9,13 +9,6 @@ import { useRouter } from "next/router";
 const cx = (...xs: Array<string | false | null | undefined>) =>
   xs.filter(Boolean).join(" ");
 
-// Small helper: observe an element and call onSize() on changes
-function observeSize(el: Element, onSize: () => void) {
-  const ro = new ResizeObserver(() => onSize());
-  ro.observe(el);
-  return () => ro.disconnect();
-}
-
 type VarStyle = CSSProperties & {
   ["--header-h"]?: string;
   ["--footer-h"]?: string;
@@ -35,7 +28,7 @@ const PageShell: FC<PageShellProps> = ({
   const prefersReducedMotion = useReducedMotion();
   const router = useRouter();
 
-  // Measure #site-header + footer wrapper and set CSS vars on the shell
+  // Simplified layout effect - only measure once after initial render
   useLayoutEffect(() => {
     const shell = shellRef.current;
     if (!shell) return;
@@ -43,7 +36,8 @@ const PageShell: FC<PageShellProps> = ({
     const header = document.getElementById("site-header");
     const footerBox = footerBoxRef.current;
 
-    const apply = () => {
+    // Single measurement after initial render, avoiding multiple recalculations
+    const measureAndApply = () => {
       const headerH = header?.getBoundingClientRect().height ?? 0;
       const footerH = footerBox?.getBoundingClientRect().height ?? 0;
 
@@ -55,27 +49,11 @@ const PageShell: FC<PageShellProps> = ({
       );
     };
 
-    // initial
-    apply();
-
-    // watch size changes
-    const cleanups: Array<() => void> = [];
-    if (header) cleanups.push(observeSize(header, apply));
-    if (footerBox) cleanups.push(observeSize(footerBox, apply));
-
-    // also react to window resizes
-    const onResize = () => apply();
-    window.addEventListener("resize", onResize);
-
-    // fonts/images can shift layout a bit after mount
-    const t1 = setTimeout(apply, 0);
-    const t2 = setTimeout(apply, 250);
+    // Delay measurement to after fonts/images load, but only once
+    const timer = setTimeout(measureAndApply, 100);
 
     return () => {
-      cleanups.forEach((fn) => fn());
-      window.removeEventListener("resize", onResize);
-      clearTimeout(t1);
-      clearTimeout(t2);
+      clearTimeout(timer);
     };
   }, [padForHeader, footer]);
 
@@ -87,22 +65,21 @@ const PageShell: FC<PageShellProps> = ({
         ref={shellRef}
         style={
           {
-            // safe defaults to avoid flash on first paint
-            "--header-h": "0px",
-            "--footer-h": "0px",
+            // stable defaults to prevent layout shifts
+            "--header-h": "60px",
+            "--footer-h": "120px",
             "--header-pad": "0px",
           } as VarStyle
         }
-        className="w-full"
+        className="w-full min-h-screen flex flex-col"
       >
         <main
           id="page-main"
           className={cx(
-            // key part: fill viewport minus header & footer; can shrink after tall pages
-            "flex w-full flex-1 min-h-0 flex-col overflow-x-clip bg-page",
-            "min-h-[calc(100dvh-var(--header-h)-var(--footer-h))]",
+            // Simplified: use standard flexbox layout without dynamic calculations
+            "flex w-full flex-1 flex-col overflow-x-clip bg-page",
             // if header overlays content (absolute / animate), push content down
-            "pt-[var(--header-pad)]",
+            padForHeader && "pt-[var(--header-pad)]",
             className,
             mainClassName
           )}

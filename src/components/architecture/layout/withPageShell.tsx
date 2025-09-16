@@ -2,6 +2,7 @@
 import type { NextPageWithOptions, PageOptions } from "@types";
 import { PageShell } from "@components";
 import type { PageShellProps } from "@types";
+
 const withPageShell = <P extends Record<string, unknown>>(
   View: NextPageWithOptions<P>,
   shellProps: Partial<PageShellProps> = {},
