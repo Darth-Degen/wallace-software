@@ -88,9 +88,7 @@ a { color: inherit; text-decoration: none; }
   html, body { overflow-x: clip; }
   html { 
     color-scheme: light dark; 
-    @apply scroll-smooth bg-fixed font-primary;
-    /* Prevent scrollbar flash */
-    scrollbar-gutter: stable;
+    @apply scroll-smooth bg-fixed font-primary; 
   }
   body { 
     @apply bg-background text-foreground transition-colors duration-150;
@@ -105,7 +103,16 @@ a { color: inherit; text-decoration: none; }
   h4 { @apply uppercase text-2xl md:text-3xl; }
 }
 
-/* Zustand now handles accent color changes dynamically */
+/* Page specifics */
+.page-padding {
+  @apply px-4 md:px-8 2xl:px-20 3xl:px-56; 
+}
+.absolute-left {
+  @apply absolute left-4 md:left-8 2xl:left-20 3xl:left-56 top-1/2 transform -translate-y-1/2;
+}
+.absolute-right {
+  @apply absolute right-4 md:right-8 2xl:right-20 3xl:right-56 top-1/2 transform -translate-y-1/2;
+}
 
 /* Extras you already had */
 .accent-surface { background-color: color-mix(in oklab, hsl(var(--primary)) 12%, transparent); }
@@ -160,16 +167,4 @@ a { color: inherit; text-decoration: none; }
     @apply bg-background text-foreground;
   }
 }
-
-/* Prevent scrollbar flash across browsers */
-/* @supports (scrollbar-gutter: stable) {
-  html {
-    scrollbar-gutter: stable;
-  }
-}
-
-@supports not (scrollbar-gutter: stable) {
-  html {
-    overflow-y: scroll;
-  }
-} */
+ 

@@ -4,7 +4,7 @@ import { HomeView, withPageShell } from "@components";
 export default withPageShell(
   HomeView,
   /* shellProps */ {
-    /* mainClassName?: "..." */
+    padForHeader: true,
   },
   /* pageOptions */ {
     header: "sticky",

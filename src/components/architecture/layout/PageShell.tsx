@@ -19,7 +19,7 @@ const PageShell: FC<PageShellProps> = ({
   children,
   footer = true,
   seo,
-  padForHeader,
+  padForHeader = true,
   mainClassName,
   className,
 }) => {
@@ -65,10 +65,10 @@ const PageShell: FC<PageShellProps> = ({
         ref={shellRef}
         style={
           {
-            // stable defaults to prevent layout shifts
-            "--header-h": "60px",
+            // stable defaults to prevent layout shifts - match header h-16 md:h-20
+            "--header-h": "64px",
             "--footer-h": "120px",
-            "--header-pad": "0px",
+            "--header-pad": "64px",
           } as VarStyle
         }
         className="w-full min-h-screen flex flex-col"
@@ -79,12 +79,14 @@ const PageShell: FC<PageShellProps> = ({
             // Simplified: use standard flexbox layout without dynamic calculations
             "flex w-full flex-1 flex-col overflow-x-clip bg-page",
             // if header overlays content (absolute / animate), push content down
-            padForHeader && "pt-[var(--header-pad)]",
+            // Use responsive padding to match header h-16 md:h-20
+            padForHeader && "pt-16 md:pt-20",
             className,
             mainClassName
           )}
         >
-          <AnimatePresence mode="wait">
+          {children}
+          {/* <AnimatePresence mode="wait">
             <motion.div
               key={router.asPath}
               variants={pageVariants(prefersReducedMotion)}
@@ -94,7 +96,7 @@ const PageShell: FC<PageShellProps> = ({
             >
               {children}
             </motion.div>
-          </AnimatePresence>
+          </AnimatePresence> */}
         </main>
 
         {/* Wrap footer so we can measure its box without modifying the Footer component */}

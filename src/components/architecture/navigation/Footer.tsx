@@ -1,22 +1,24 @@
 import { PAGES } from "@constants";
-import { useColorTheme, AccentColor } from "@stores";
+import { useColorTheme, useCarousel, AccentColor } from "@stores";
 import { cn } from "@utils";
-import Link from "next/link";
 import { FC } from "react";
 
 const Footer: FC = () => {
-  const { activeSection, setAccentColorAndSection } = useColorTheme();
+  const { setAccentColorAndSection } = useColorTheme();
+  const { currentSlide, setSlide } = useCarousel();
 
-  const handleNavClick = (page: (typeof PAGES)[0]) => {
+  const handleNavClick = (page: (typeof PAGES)[0], index: number) => {
     // Set both the accent color and active section for this page when clicked
     if (page.accentColor) {
       setAccentColorAndSection(page.accentColor as AccentColor, page.path);
     }
+    // Update carousel slide
+    setSlide(index);
   };
 
   return (
-    <footer className="max-w-[1512px] px-4 md:px-8 py-12 lg:py-6">
-      <div className="max-w-7xl mx-auto flex flex-col-reverse items-center justify-center gap-4 lg:gap-6">
+    <footer className="px-4 md:px-8 py-12 lg:py-6">
+      <div className="max-w-[1512px] mx-auto flex flex-col-reverse items-center justify-center gap-4 lg:gap-6">
         {/* Left side */}
         <div className="flex items-center gap-2">
           <span className="text-sm">
@@ -26,13 +28,12 @@ const Footer: FC = () => {
 
         {/* Middle: navigation links from config */}
         <nav className="flex flex-wrap justify-center gap-4 lg:gap-6 text-sm lg:text-sm">
-          {PAGES.filter((p) => p.showInFooter).map((page) => {
-            const isActive = activeSection === page.path;
+          {PAGES.filter((p) => p.showInFooter).map((page, index) => {
+            const isActive = currentSlide === index;
             return (
-              <Link
+              <button
                 key={page.path}
-                href={page.path}
-                onClick={() => handleNavClick(page)}
+                onClick={() => handleNavClick(page, index)}
                 className={cn(
                   "transition-300 hover:text-accent",
                   isActive
@@ -41,7 +42,7 @@ const Footer: FC = () => {
                 )}
               >
                 {page.name}
-              </Link>
+              </button>
             );
           })}
         </nav>

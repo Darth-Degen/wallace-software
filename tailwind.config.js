@@ -59,6 +59,8 @@ module.exports = {
       },
       screens: {
         1512: "1512px",
+        "3xl": "2560px",
+        "4xl": "3840px",
       },
     },
   },
