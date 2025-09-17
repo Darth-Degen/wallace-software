@@ -162,7 +162,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* Prevent scrollbar flash across browsers */
-@supports (scrollbar-gutter: stable) {
+/* @supports (scrollbar-gutter: stable) {
   html {
     scrollbar-gutter: stable;
   }
@@ -172,4 +172,4 @@ a { color: inherit; text-decoration: none; }
   html {
     overflow-y: scroll;
   }
-}
+} */
