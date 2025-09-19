@@ -9,7 +9,7 @@ const Logo: FC = () => {
         href="/"
         className="hover-text-accent font-calistoga text-2xl md:text-3xl"
       >
-        W {/* <span className="hidden lg:inline">allace</span> */}
+        W<span className="hidden 2xl:inline">allace</span>
       </Link>
     </div>
   );

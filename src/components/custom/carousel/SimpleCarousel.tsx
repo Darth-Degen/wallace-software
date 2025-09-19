@@ -2,6 +2,13 @@ import { FC, useEffect } from "react";
 import { useCarousel, useColorTheme, AccentColor } from "@stores";
 import { cn } from "@utils";
 import CarouselNavigationButton from "./CarouselNavigationButton";
+import {
+  HomeSlide,
+  AboutSlide,
+  ExperienceSlide,
+  SkillsSlide,
+  PortfolioSlide,
+} from "../slides";
 
 interface SimpleCarouselProps {
   className?: string;
@@ -18,6 +25,20 @@ const SimpleCarousel: FC<SimpleCarouselProps> = ({ className = "" }) => {
   const { setAccentColorAndSection } = useColorTheme();
 
   const currentPageData = getCurrentPageData();
+
+  // Map page names to their corresponding slide components
+  const slideComponents = {
+    Home: HomeSlide,
+    About: AboutSlide,
+    Experience: ExperienceSlide,
+    Skills: SkillsSlide,
+    Portfolio: PortfolioSlide,
+  };
+
+  // Get the current slide component
+  const CurrentSlideComponent = currentPageData
+    ? slideComponents[currentPageData.name as keyof typeof slideComponents]
+    : HomeSlide;
 
   // Sync with URL on mount and listen for hash changes
   useEffect(() => {
@@ -54,28 +75,21 @@ const SimpleCarousel: FC<SimpleCarouselProps> = ({ className = "" }) => {
   return (
     <div className={cn("w-full h-full flex flex-col", className)}>
       {/* Main content */}
-      <div className="flex-1 min-h-0 flex items-center justify-center p-8">
-        <div className="text-center">
-          <h2 className="text-3xl font-bold mb-4">
-            {currentPageData?.name || "Loading..."}
-          </h2>
-          <p className="text-lg text-muted-foreground">
-            Welcome to {currentPageData?.name.toLowerCase()} section
-          </p>
-        </div>
+      <div className="flex-1 min-h-0 overflow-hidden">
+        <CurrentSlideComponent className="w-full h-full" />
       </div>
 
       {/* Navigation */}
       <CarouselNavigationButton
         direction="left"
         onClick={handlePrevSlide}
-        className="absolute-left"
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-10"
       />
 
       <CarouselNavigationButton
         direction="right"
         onClick={handleNextSlide}
-        className="absolute-right"
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-10"
       />
     </div>
   );

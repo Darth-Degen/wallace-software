@@ -80,7 +80,7 @@ const PageShell: FC<PageShellProps> = ({
             "flex w-full flex-1 flex-col overflow-x-clip bg-page",
             // if header overlays content (absolute / animate), push content down
             // Use responsive padding to match header h-16 md:h-20
-            padForHeader && "pt-16 md:pt-20",
+            padForHeader && "pt-28 md:pt-32",
             className,
             mainClassName
           )}
