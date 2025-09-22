@@ -1,10 +1,10 @@
 "use client";
 
 import { FC } from "react";
-import { SimpleCarousel } from "@components";
+import { SlideCarousel } from "@components";
 
 const HomeView: FC = () => {
-  return <SimpleCarousel className="h-full" />;
+  return <SlideCarousel />;
 };
 
 export default HomeView;

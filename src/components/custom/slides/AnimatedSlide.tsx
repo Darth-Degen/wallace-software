@@ -1,47 +1,56 @@
 import { FC, ReactNode } from "react";
 import { motion } from "framer-motion";
-import { SlideType, SlideData } from "@types";
-import { getSlideAnimations } from "@constants";
 import { cn } from "@utils";
 
 interface AnimatedSlideProps {
-  className?: string;
-  slideType: SlideType;
-  slideData: SlideData;
   animationTrigger: "pageLoad" | "slideTransition";
-  children?: ReactNode;
-  titleClassName?: string;
-  descriptionClassName?: string;
+  direction?: 1 | -1; // 1 for right/next, -1 for left/previous
+  className?: string;
+  children: ReactNode;
 }
 
 const AnimatedSlide: FC<AnimatedSlideProps> = ({
-  slideType,
   animationTrigger,
+  direction = 1,
   className = "",
   children,
 }) => {
-  const animations = getSlideAnimations(slideType);
+  // Simple page load animation - fade in
+  const pageLoadVariants = {
+    initial: { opacity: 0 },
+    animate: {
+      opacity: 1,
+      transition: { duration: 0.5, staggerChildren: 0.1, delayChildren: 0.2 },
+    },
+    exit: {
+      opacity: 0,
+      transition: { duration: 0.3 },
+    },
+  };
 
-  // Choose the appropriate animation set based on trigger
-  const containerVariants =
-    animationTrigger === "pageLoad"
-      ? animations.pageLoad.container
-      : animations.slideTransition.enter;
+  // Simple slide transition - slide left/right
+  const slideTransitionVariants = {
+    initial: {
+      opacity: 0,
+      x: direction > 0 ? 100 : -100, // Enter from right if going forward, left if going back
+    },
+    animate: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.4, staggerChildren: 0.05, delayChildren: 0.1 },
+    },
+    exit: {
+      opacity: 0,
+      x: direction > 0 ? -100 : 100, // Exit to left if going forward, right if going back
+      transition: { duration: 0.3, staggerChildren: 0.05 },
+    },
+  };
 
-  const titleVariants =
+  console.log("Animation Trigger:", animationTrigger);
+  const variants =
     animationTrigger === "pageLoad"
-      ? animations.pageLoad.title
-      : animations.slideTransition.enter;
-
-  const descriptionVariants =
-    animationTrigger === "pageLoad"
-      ? animations.pageLoad.description
-      : animations.slideTransition.enter;
-
-  const childrenVariants =
-    animationTrigger === "pageLoad"
-      ? animations.pageLoad.children
-      : animations.slideTransition.enter;
+      ? pageLoadVariants
+      : slideTransitionVariants;
 
   return (
     <motion.div
@@ -49,12 +58,12 @@ const AnimatedSlide: FC<AnimatedSlideProps> = ({
         "w-full h-full flex flex-col items-center justify-center text-center px-6",
         className
       )}
-      variants={containerVariants}
+      variants={variants}
       initial="initial"
       animate="animate"
       exit="exit"
     >
-      {children && children}
+      {children}
     </motion.div>
   );
 };

@@ -11,13 +11,17 @@ export interface SlideData {
 export interface SlideAnimationConfig {
   pageLoad: {
     container: Variants;
-    title: Variants;
-    description: Variants;
     children: Variants;
   };
   slideTransition: {
-    enter: Variants;
-    exit: Variants;
+    container: {
+      enter: Variants;
+      exit: Variants;
+    };
+    children: {
+      enter: Variants;
+      exit: Variants;
+    };
   };
 }
 

@@ -1,6 +1,5 @@
 import { FC } from "react";
 import { motion } from "framer-motion";
-import { slideData } from "@constants";
 import AnimatedSlide from "./AnimatedSlide";
 import AnimatedChild from "./AnimatedChild";
 
@@ -12,12 +11,7 @@ const ExampleSlideUsage: FC<ExampleSlideUsageProps> = ({
   animationTrigger = "pageLoad",
 }) => {
   return (
-    <AnimatedSlide
-      slideType="home"
-      slideData={slideData.home}
-      animationTrigger={animationTrigger}
-      titleClassName="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
-    >
+    <AnimatedSlide  animationTrigger={animationTrigger}>
       {/* Children will automatically be part of the animation sequence */}
 
       {/* Method 1: Simple div - will use the children animation variants */}
@@ -32,7 +26,7 @@ const ExampleSlideUsage: FC<ExampleSlideUsageProps> = ({
 
       {/* Method 2: Using AnimatedChild for more control */}
       <div className="mt-8 space-y-4">
-        <AnimatedChild direction="up" delay={0.1}>
+        <AnimatedChild delay={0.1}>
           <div className="flex gap-4 justify-center">
             <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
               Learn More
@@ -43,7 +37,7 @@ const ExampleSlideUsage: FC<ExampleSlideUsageProps> = ({
           </div>
         </AnimatedChild>
 
-        <AnimatedChild direction="scale" delay={0.2}>
+        <AnimatedChild delay={0.2}>
           <div className="grid grid-cols-3 gap-4 mt-6 max-w-md">
             <div className="p-4 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20">
               <div className="w-8 h-8 bg-blue-500 rounded mb-2"></div>
@@ -60,7 +54,7 @@ const ExampleSlideUsage: FC<ExampleSlideUsageProps> = ({
           </div>
         </AnimatedChild>
 
-        <AnimatedChild direction="fade" delay={0.3}>
+        <AnimatedChild delay={0.3}>
           <motion.p
             className="text-xs text-muted-foreground mt-4"
             initial={{ opacity: 0 }}

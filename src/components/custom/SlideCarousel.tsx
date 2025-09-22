@@ -8,7 +8,7 @@ import {
   ExperienceSlide,
   SkillsSlide,
   PortfolioSlide,
-} from "../slides";
+} from "./slides";
 import { useSlideAnimations } from "@hooks";
 
 const slideComponents = {
@@ -30,6 +30,7 @@ const slideOrder: SlideType[] = [
 const SlideCarousel: FC = () => {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [previousSlide, setPreviousSlide] = useState<SlideType | undefined>();
+  const [navigationDirection, setNavigationDirection] = useState<1 | -1>(1);
 
   const currentSlide = slideOrder[currentSlideIndex];
   const { animationTrigger } = useSlideAnimations({
@@ -37,23 +38,46 @@ const SlideCarousel: FC = () => {
     previousSlide,
   });
 
-  const goToSlide = (index: number) => {
+  // Debug logging
+  console.log(
+    "SlideCarousel - currentSlide:",
+    currentSlide,
+    "previousSlide:",
+    previousSlide,
+    "animationTrigger:",
+    animationTrigger
+  );
+
+  const goToSlide = (index: number, direction?: 1 | -1) => {
     if (
       index >= 0 &&
       index < slideOrder.length &&
       index !== currentSlideIndex
     ) {
       setPreviousSlide(slideOrder[currentSlideIndex]);
+
+      // Determine direction if not provided
+      if (direction !== undefined) {
+        setNavigationDirection(direction);
+      } else {
+        // Auto-determine direction based on index difference
+        const diff = index - currentSlideIndex;
+        setNavigationDirection(diff > 0 ? 1 : -1);
+      }
+
       setCurrentSlideIndex(index);
     }
   };
 
   const nextSlide = () => {
-    goToSlide((currentSlideIndex + 1) % slideOrder.length);
+    const nextIndex = (currentSlideIndex + 1) % slideOrder.length;
+    goToSlide(nextIndex, 1); // Moving right/forward
   };
 
   const prevSlide = () => {
-    goToSlide((currentSlideIndex - 1 + slideOrder.length) % slideOrder.length);
+    const prevIndex =
+      (currentSlideIndex - 1 + slideOrder.length) % slideOrder.length;
+    goToSlide(prevIndex, -1); // Moving left/backward
   };
 
   const CurrentSlideComponent = slideComponents[currentSlide];
@@ -104,19 +128,12 @@ const SlideCarousel: FC = () => {
 
       {/* Slide Content */}
       <AnimatePresence mode="wait">
-        <motion.div
+        <CurrentSlideComponent
           key={currentSlide}
-          className="w-full h-full"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          <CurrentSlideComponent
-            animationTrigger={animationTrigger}
-            className="relative z-0"
-          />
-        </motion.div>
+          animationTrigger={animationTrigger}
+          direction={navigationDirection}
+          className="relative z-0"
+        />
       </AnimatePresence>
 
       {/* Slide Title Overlay */}
