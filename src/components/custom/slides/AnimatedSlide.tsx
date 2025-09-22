@@ -5,10 +5,10 @@ import { getSlideAnimations } from "@constants";
 import { cn } from "@utils";
 
 interface AnimatedSlideProps {
+  className?: string;
   slideType: SlideType;
   slideData: SlideData;
   animationTrigger: "pageLoad" | "slideTransition";
-  className?: string;
   children?: ReactNode;
   titleClassName?: string;
   descriptionClassName?: string;
@@ -16,12 +16,9 @@ interface AnimatedSlideProps {
 
 const AnimatedSlide: FC<AnimatedSlideProps> = ({
   slideType,
-  slideData,
   animationTrigger,
   className = "",
   children,
-  titleClassName = "",
-  descriptionClassName = "",
 }) => {
   const animations = getSlideAnimations(slideType);
 
@@ -41,6 +38,11 @@ const AnimatedSlide: FC<AnimatedSlideProps> = ({
       ? animations.pageLoad.description
       : animations.slideTransition.enter;
 
+  const childrenVariants =
+    animationTrigger === "pageLoad"
+      ? animations.pageLoad.children
+      : animations.slideTransition.enter;
+
   return (
     <motion.div
       className={cn(
@@ -52,31 +54,7 @@ const AnimatedSlide: FC<AnimatedSlideProps> = ({
       animate="animate"
       exit="exit"
     >
-      <motion.h1
-        className={cn(
-          "text-4xl md:text-6xl font-bold mb-6 text-foreground",
-          titleClassName
-        )}
-        variants={titleVariants}
-      >
-        {slideData.title}
-      </motion.h1>
-
-      <motion.p
-        className={cn(
-          "text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed",
-          descriptionClassName
-        )}
-        variants={descriptionVariants}
-      >
-        {slideData.description}
-      </motion.p>
-
-      {children && (
-        <motion.div className="mt-8" variants={descriptionVariants}>
-          {children}
-        </motion.div>
-      )}
+      {children && children}
     </motion.div>
   );
 };

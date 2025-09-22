@@ -13,6 +13,7 @@ export interface SlideAnimationConfig {
     container: Variants;
     title: Variants;
     description: Variants;
+    children: Variants;
   };
   slideTransition: {
     enter: Variants;

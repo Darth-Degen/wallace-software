@@ -1,0 +1,83 @@
+import { FC, ReactNode } from "react";
+import { motion, Variants } from "framer-motion";
+import { cn } from "@utils";
+
+interface AnimatedChildProps {
+  children: ReactNode;
+  className?: string;
+  delay?: number;
+  direction?: "up" | "down" | "left" | "right" | "scale" | "fade";
+}
+
+const childAnimationVariants = {
+  up: {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: -10 },
+  },
+  down: {
+    initial: { opacity: 0, y: -20 },
+    animate: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: 10 },
+  },
+  left: {
+    initial: { opacity: 0, x: 20 },
+    animate: { opacity: 1, x: 0 },
+    exit: { opacity: 0, x: -10 },
+  },
+  right: {
+    initial: { opacity: 0, x: -20 },
+    animate: { opacity: 1, x: 0 },
+    exit: { opacity: 0, x: 10 },
+  },
+  scale: {
+    initial: { opacity: 0, scale: 0.9 },
+    animate: { opacity: 1, scale: 1 },
+    exit: { opacity: 0, scale: 0.95 },
+  },
+  fade: {
+    initial: { opacity: 0 },
+    animate: { opacity: 1 },
+    exit: { opacity: 0 },
+  },
+} as const;
+
+const AnimatedChild: FC<AnimatedChildProps> = ({
+  children,
+  className = "",
+  delay = 0,
+  direction = "up",
+}) => {
+  const variants: Variants = {
+    initial: childAnimationVariants[direction].initial,
+    animate: {
+      ...childAnimationVariants[direction].animate,
+      transition: {
+        duration: 0.4,
+        delay,
+        ease: [0.25, 0.1, 0.25, 1],
+      },
+    },
+    exit: {
+      ...childAnimationVariants[direction].exit,
+      transition: {
+        duration: 0.2,
+        ease: [0.25, 0.1, 0.25, 1],
+      },
+    },
+  };
+
+  return (
+    <motion.div
+      className={cn(className)}
+      variants={variants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+    >
+      {children}
+    </motion.div>
+  );
+};
+
+export default AnimatedChild;

@@ -6,7 +6,7 @@ const timing = {
   fast: 0.3,
   medium: 0.5,
   slow: 0.8,
-  stagger: 0.1
+  stagger: 1
 };
 
 const easing = {
@@ -18,7 +18,8 @@ const easing = {
 // Page load animations - triggered when user lands directly on a slide
 const createPageLoadAnimations = (
   titleDelay = 0.2,
-  descriptionDelay = 0.4
+  descriptionDelay = 0.4,
+  childrenDelay = 0.6
 ): SlideAnimationConfig["pageLoad"] => ({
   container: {
     initial: { opacity: 0 },
@@ -67,6 +68,27 @@ const createPageLoadAnimations = (
     exit: { 
       opacity: 0, 
       y: -10,
+      transition: { duration: timing.fast }
+    }
+  },
+  children: {
+    initial: { opacity: 0, y: 15, scale: 0.98 },
+    animate: { 
+      opacity: 1, 
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: timing.medium,
+        delay: childrenDelay,
+        ease: easing.smooth,
+        when: "beforeChildren",
+        staggerChildren: 0.05
+      }
+    },
+    exit: { 
+      opacity: 0, 
+      y: -5,
+      scale: 0.98,
       transition: { duration: timing.fast }
     }
   }
@@ -141,23 +163,23 @@ const createSlideTransitionAnimations = (
 // Slide-specific animation configurations
 export const slideAnimations: Record<SlideType, SlideAnimationConfig> = {
   home: {
-    pageLoad: createPageLoadAnimations(0.3, 0.6),
+    pageLoad: createPageLoadAnimations(0.3, 0.6, 0.8),
     slideTransition: createSlideTransitionAnimations("scale", "scale")
   },
   about: {
-    pageLoad: createPageLoadAnimations(0.2, 0.4),
+    pageLoad: createPageLoadAnimations(0.2, 0.4, 0.6),
     slideTransition: createSlideTransitionAnimations("right", "left")
   },
   experience: {
-    pageLoad: createPageLoadAnimations(0.1, 0.3),
+    pageLoad: createPageLoadAnimations(0.1, 0.3, 0.5),
     slideTransition: createSlideTransitionAnimations("up", "down")
   },
   skills: {
-    pageLoad: createPageLoadAnimations(0.2, 0.5),
+    pageLoad: createPageLoadAnimations(0.2, 0.5, 0.7),
     slideTransition: createSlideTransitionAnimations("down", "up")
   },
   portfolio: {
-    pageLoad: createPageLoadAnimations(0.3, 0.5),
+    pageLoad: createPageLoadAnimations(0.3, 0.5, 0.7),
     slideTransition: createSlideTransitionAnimations("left", "right")
   }
 };
