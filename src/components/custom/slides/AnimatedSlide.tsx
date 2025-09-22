@@ -46,7 +46,6 @@ const AnimatedSlide: FC<AnimatedSlideProps> = ({
     },
   };
 
-  console.log("Animation Trigger:", animationTrigger);
   const variants =
     animationTrigger === "pageLoad"
       ? pageLoadVariants

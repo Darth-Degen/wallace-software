@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { SlideType } from "@types";
@@ -10,6 +10,7 @@ import {
   PortfolioSlide,
 } from "./slides";
 import { useSlideAnimations } from "@hooks";
+import { useCarousel, useColorTheme, AccentColor } from "@stores";
 import { CarouselNavigationButton } from "@components";
 
 const slideComponents = {
@@ -29,15 +30,45 @@ const slideOrder: SlideType[] = [
 ];
 
 const SlideCarousel: FC = () => {
-  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+  // Use carousel store for state management
+  const {
+    currentSlide: currentSlideIndex,
+    nextSlide: carouselNextSlide,
+    prevSlide: carouselPrevSlide,
+    setSlide,
+    getCurrentPageData,
+    syncWithUrl,
+  } = useCarousel();
+  const { setAccentColorAndSection } = useColorTheme();
+
   const [previousSlide, setPreviousSlide] = useState<SlideType | undefined>();
   const [navigationDirection, setNavigationDirection] = useState<1 | -1>(1);
 
   const currentSlide = slideOrder[currentSlideIndex];
+  const currentPageData = getCurrentPageData();
+
   const { animationTrigger } = useSlideAnimations({
     currentSlide,
     previousSlide,
   });
+
+  // Sync with URL on mount and listen for hash changes
+  useEffect(() => {
+    syncWithUrl();
+    const handleHashChange = () => syncWithUrl();
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, [syncWithUrl]);
+
+  // Sync color theme when slide changes
+  useEffect(() => {
+    if (currentPageData) {
+      setAccentColorAndSection(
+        currentPageData.accentColor as AccentColor,
+        currentPageData.path
+      );
+    }
+  }, [currentSlideIndex, currentPageData, setAccentColorAndSection]);
 
   const goToSlide = (index: number, direction?: 1 | -1) => {
     if (
@@ -56,19 +87,20 @@ const SlideCarousel: FC = () => {
         setNavigationDirection(diff > 0 ? 1 : -1);
       }
 
-      setCurrentSlideIndex(index);
+      setSlide(index, true); // Use carousel store setSlide
     }
   };
 
   const nextSlide = () => {
-    const nextIndex = (currentSlideIndex + 1) % slideOrder.length;
-    goToSlide(nextIndex, 1); // Moving right/forward
+    setPreviousSlide(slideOrder[currentSlideIndex]);
+    setNavigationDirection(1);
+    carouselNextSlide(); // Use carousel store nextSlide
   };
 
   const prevSlide = () => {
-    const prevIndex =
-      (currentSlideIndex - 1 + slideOrder.length) % slideOrder.length;
-    goToSlide(prevIndex, -1); // Moving left/backward
+    setPreviousSlide(slideOrder[currentSlideIndex]);
+    setNavigationDirection(-1);
+    carouselPrevSlide(); // Use carousel store prevSlide
   };
 
   const CurrentSlideComponent = slideComponents[currentSlide];
