@@ -15,15 +15,12 @@ interface UseSlideAnimationsReturn {
 export const useSlideAnimations = ({
   currentSlide,
   previousSlide
-}: UseSlideAnimationsOptions): UseSlideAnimationsReturn => {
-
-  console.log("start useSlideAnimations");
+}: UseSlideAnimationsOptions): UseSlideAnimationsReturn => { 
 
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [animationTrigger, setAnimationTrigger] = useState<"pageLoad" | "slideTransition">("pageLoad");
   // Simple logic: if we have a previousSlide, it's a transition, otherwise it's a page load
-  useEffect(() => {
-  console.log("useSlideAnimations - currentSlide:", currentSlide, "previousSlide:", previousSlide, "animationTrigger:", animationTrigger); 
+  useEffect(() => { 
 
     if (previousSlide && previousSlide !== currentSlide) {
       // This is a slide transition

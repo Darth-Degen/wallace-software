@@ -77,7 +77,7 @@ const PageShell: FC<PageShellProps> = ({
           id="page-main"
           className={cx(
             // Simplified: use standard flexbox layout without dynamic calculations
-            "flex w-full flex-1 flex-col overflow-x-clip bg-page",
+            "flex w-full h-full flex-1 flex-col overflow-x-clip bg-page",
             // if header overlays content (absolute / animate), push content down
             // Use responsive padding to match header h-16 md:h-20
             padForHeader && "pt-28 md:pt-32",
