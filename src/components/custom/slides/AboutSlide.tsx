@@ -66,7 +66,7 @@ const AboutSlide: FC<AboutSlideProps> = ({
         {/* CTA */}
         <AnimatedChild delay={0.3}>
           <button className="px-8 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
-            Let's Work Together
+            Let&apos;s Work Together
           </button>
         </AnimatedChild>
       </div>

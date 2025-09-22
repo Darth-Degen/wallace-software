@@ -1,6 +1,5 @@
 import { FC, useState, useEffect } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { AnimatePresence } from "framer-motion";
 import { SlideType } from "@types";
 import {
   HomeSlide,
@@ -8,7 +7,7 @@ import {
   ExperienceSlide,
   SkillsSlide,
   PortfolioSlide,
-} from "./slides";
+} from "../slides";
 import { useSlideAnimations } from "@hooks";
 import { useCarousel, useColorTheme, AccentColor } from "@stores";
 import { CarouselNavigationButton } from "@components";
