@@ -5,7 +5,7 @@ import { cn } from "@utils";
 interface AnimatedChildProps {
   children: ReactNode;
   className?: string;
-  delay?: number;
+  delay?: number; // kept for backward compatibility; parent stagger controls timing
   animation?: "up" | "down" | "left" | "right" | "scale" | "fade";
 }
 
@@ -31,9 +31,9 @@ const childAnimationVariants = {
     exit: { opacity: 0, x: 10 },
   },
   scale: {
-    initial: { opacity: 0, scale: 0.9 },
+    initial: { opacity: 0, scale: 0.95 },
     animate: { opacity: 1, scale: 1 },
-    exit: { opacity: 0, scale: 0.95 },
+    exit: { opacity: 0, scale: 0.98 },
   },
   fade: {
     initial: { opacity: 0 },
@@ -45,36 +45,30 @@ const childAnimationVariants = {
 const AnimatedChild: FC<AnimatedChildProps> = ({
   children,
   className = "",
-  delay = 0,
-  animation = "up",
+  // delay intentionally unused so parent can control staggering
+  delay,
+  animation = "scale",
 }) => {
   const variants: Variants = {
     initial: childAnimationVariants[animation].initial,
     animate: {
       ...childAnimationVariants[animation].animate,
       transition: {
-        duration: 0.4,
-        delay,
+        duration: 0.6,
         ease: [0.25, 0.1, 0.25, 1],
       },
     },
     exit: {
       ...childAnimationVariants[animation].exit,
       transition: {
-        duration: 0.2,
+        duration: 0.3,
         ease: [0.25, 0.1, 0.25, 1],
       },
     },
   };
 
   return (
-    <motion.div
-      className={cn(className)}
-      variants={variants}
-      initial="initial"
-      animate="animate"
-      exit="exit"
-    >
+    <motion.div className={cn(className)} variants={variants}>
       {children}
     </motion.div>
   );

@@ -70,27 +70,6 @@ const SlideCarousel: FC = () => {
     }
   }, [currentSlideIndex, currentPageData, setAccentColorAndSection]);
 
-  const goToSlide = (index: number, direction?: 1 | -1) => {
-    if (
-      index >= 0 &&
-      index < slideOrder.length &&
-      index !== currentSlideIndex
-    ) {
-      setPreviousSlide(slideOrder[currentSlideIndex]);
-
-      // Determine direction if not provided
-      if (direction !== undefined) {
-        setNavigationDirection(direction);
-      } else {
-        // Auto-determine direction based on index difference
-        const diff = index - currentSlideIndex;
-        setNavigationDirection(diff > 0 ? 1 : -1);
-      }
-
-      setSlide(index, true); // Use carousel store setSlide
-    }
-  };
-
   const nextSlide = () => {
     setPreviousSlide(slideOrder[currentSlideIndex]);
     setNavigationDirection(1);
