@@ -1,18 +1,24 @@
 import { FC } from "react";
-import { cn } from "@utils";
+import { slideData } from "@constants";
+import AnimatedSlide from "./AnimatedSlide";
 
 interface PortfolioSlideProps {
   className?: string;
+  animationTrigger?: "pageLoad" | "slideTransition";
 }
 
-const PortfolioSlide: FC<PortfolioSlideProps> = ({ className = "" }) => {
+const PortfolioSlide: FC<PortfolioSlideProps> = ({
+  className = "",
+  animationTrigger = "pageLoad",
+}) => {
   return (
-    <div
-      className={cn(
-        "w-full h-full flex items-center justify-center",
-        className
-      )}
-    ></div>
+    <AnimatedSlide
+      slideType="portfolio"
+      slideData={slideData.portfolio}
+      animationTrigger={animationTrigger}
+      className={className}
+      titleClassName="text-indigo-600 dark:text-indigo-400"
+    />
   );
 };
 

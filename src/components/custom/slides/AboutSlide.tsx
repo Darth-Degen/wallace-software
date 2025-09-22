@@ -1,18 +1,24 @@
 import { FC } from "react";
-import { cn } from "@utils";
+import { slideData } from "@constants";
+import AnimatedSlide from "./AnimatedSlide";
 
 interface AboutSlideProps {
   className?: string;
+  animationTrigger?: "pageLoad" | "slideTransition";
 }
 
-const AboutSlide: FC<AboutSlideProps> = ({ className = "" }) => {
+const AboutSlide: FC<AboutSlideProps> = ({
+  className = "",
+  animationTrigger = "pageLoad",
+}) => {
   return (
-    <div
-      className={cn(
-        "w-full h-full flex items-center justify-center",
-        className
-      )}
-    ></div>
+    <AnimatedSlide
+      slideType="about"
+      slideData={slideData.about}
+      animationTrigger={animationTrigger}
+      className={className}
+      titleClassName="text-green-600 dark:text-green-400"
+    />
   );
 };
 

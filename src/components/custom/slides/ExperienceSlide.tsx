@@ -1,18 +1,24 @@
 import { FC } from "react";
-import { cn } from "@utils";
+import { slideData } from "@constants";
+import AnimatedSlide from "./AnimatedSlide";
 
 interface ExperienceSlideProps {
   className?: string;
+  animationTrigger?: "pageLoad" | "slideTransition";
 }
 
-const ExperienceSlide: FC<ExperienceSlideProps> = ({ className = "" }) => {
+const ExperienceSlide: FC<ExperienceSlideProps> = ({
+  className = "",
+  animationTrigger = "pageLoad",
+}) => {
   return (
-    <div
-      className={cn(
-        "w-full h-full flex items-center justify-center",
-        className
-      )}
-    ></div>
+    <AnimatedSlide
+      slideType="experience"
+      slideData={slideData.experience}
+      animationTrigger={animationTrigger}
+      className={className}
+      titleClassName="text-orange-600 dark:text-orange-400"
+    />
   );
 };
 

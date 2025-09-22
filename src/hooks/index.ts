@@ -1,8 +1,9 @@
 
-export * from "./useBrowserDetection"
-export * from "./useLocalStorage" 
-export * from "./useTheme"
-export * from "./useWindowSize"
-export * from "./useOutsideAlerter"
-export * from "./useLockBodyScroll"
-export * from "./useRouteActiveSection"
+export * from "./useBrowserDetection";
+export * from "./useLocalStorage";
+export * from "./useTheme";
+export * from "./useWindowSize";
+export * from "./useOutsideAlerter";
+export * from "./useLockBodyScroll";
+export * from "./useRouteActiveSection";
+export * from "./useSlideAnimations";
