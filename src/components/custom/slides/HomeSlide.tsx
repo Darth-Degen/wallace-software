@@ -22,13 +22,13 @@ const HomeSlide: FC<HomeSlideProps> = ({
       {/* Hero Content */}
       <div className="space-y-8">
         {/* Title & Description */}
-        <AnimatedChild delay={0}>
+        <AnimatedChild animation={"fade"}>
           <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
             Welcome to Wallace Software
           </h1>
         </AnimatedChild>
 
-        <AnimatedChild delay={0.1}>
+        <AnimatedChild animation={"fade"}>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
             Building innovative digital solutions with modern technologies and
             creative design
@@ -36,7 +36,7 @@ const HomeSlide: FC<HomeSlideProps> = ({
         </AnimatedChild>
 
         {/* Action Buttons */}
-        <AnimatedChild delay={0.2}>
+        <AnimatedChild animation={"fade"}>
           <div className="flex gap-4 justify-center">
             <button className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
               Get Started
@@ -48,7 +48,7 @@ const HomeSlide: FC<HomeSlideProps> = ({
         </AnimatedChild>
 
         {/* Feature Cards */}
-        <AnimatedChild delay={0.3}>
+        <AnimatedChild animation={"fade"}>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 max-w-3xl">
             <div className="p-6 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10">
               <div className="w-12 h-12 bg-blue-500 rounded-lg mb-4 mx-auto"></div>
