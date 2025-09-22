@@ -1,5 +1,6 @@
-import { FC, useState, useEffect } from "react";
+import { FC, useState, useEffect, useRef } from "react";
 import { AnimatePresence } from "framer-motion";
+import Router from "next/router";
 import { SlideType } from "@types";
 import {
   HomeSlide,
@@ -42,6 +43,7 @@ const SlideCarousel: FC = () => {
 
   const [previousSlide, setPreviousSlide] = useState<SlideType | undefined>();
   const [navigationDirection, setNavigationDirection] = useState<1 | -1>(1);
+  const prevIndexRef = useRef<number>(currentSlideIndex);
 
   const currentSlide = slideOrder[currentSlideIndex];
   const currentPageData = getCurrentPageData();
@@ -51,13 +53,32 @@ const SlideCarousel: FC = () => {
     previousSlide,
   });
 
-  // Sync with URL on mount and listen for hash changes
+  // Sync with URL on mount and listen for hash and route changes (logo click to '/')
   useEffect(() => {
     syncWithUrl();
+
     const handleHashChange = () => syncWithUrl();
+    const handleRouteChange = () => syncWithUrl();
+
     window.addEventListener("hashchange", handleHashChange);
-    return () => window.removeEventListener("hashchange", handleHashChange);
+    Router.events.on("routeChangeComplete", handleRouteChange);
+
+    return () => {
+      window.removeEventListener("hashchange", handleHashChange);
+      Router.events.off("routeChangeComplete", handleRouteChange);
+    };
   }, [syncWithUrl]);
+
+  // Derive previousSlide and navigationDirection for any index change (footer click, URL change, arrows)
+  useEffect(() => {
+    const prev = prevIndexRef.current;
+    if (prev !== currentSlideIndex) {
+      setPreviousSlide(slideOrder[prev]);
+      setNavigationDirection(currentSlideIndex > prev ? 1 : -1);
+      prevIndexRef.current = currentSlideIndex;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentSlideIndex]);
 
   // Sync color theme when slide changes
   useEffect(() => {

@@ -54,14 +54,14 @@ const AnimatedChild: FC<AnimatedChildProps> = ({
     animate: {
       ...childAnimationVariants[animation].animate,
       transition: {
-        duration: 0.6,
+        duration: 0.4,
         ease: [0.25, 0.1, 0.25, 1],
       },
     },
     exit: {
       ...childAnimationVariants[animation].exit,
       transition: {
-        duration: 0.3,
+        duration: 0.2,
         ease: [0.25, 0.1, 0.25, 1],
       },
     },
