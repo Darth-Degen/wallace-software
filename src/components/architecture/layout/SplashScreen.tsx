@@ -27,7 +27,7 @@ const SplashScreen: FC<Props> = ({
   assets = [],
   minDurationMs = 750,
   delayMs = 0,
-  label = "",
+  label = "Loading",
   children,
 }: Props) => {
   const { setShowView } = useViewStore();

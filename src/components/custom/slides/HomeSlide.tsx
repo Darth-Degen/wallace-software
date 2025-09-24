@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import { AnimatedSlide, AnimatedChild, SplashScreen } from "@components";
 import Image from "next/image";
-import introGraphic from "public/images/intro-graphic.jpg";
+import introGraphic from "public/images/intro-graphic-xl.jpg";
 
 interface HomeSlideProps {
   className?: string;
@@ -31,18 +31,14 @@ const HomeSlide: FC<HomeSlideProps> = ({
             layout="fill"
             objectFit="cover"
             onLoadingComplete={() => setBgLoaded(true)}
-            className=""
+            className="z-0"
           />
-          {/* <AnimatedChild animation={"fade"}>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 ">
-              Welcome to Wallace Software
-            </h1>
-          </AnimatedChild> */}
+          <div className="absolute inset-0 bg-black/40 z-[5]" />
         </AnimatedChild>
+        {animationTrigger === "pageLoad" && (
+          <SplashScreen assets={[bgLoaded]} minDurationMs={17500} />
+        )}
       </AnimatedSlide>
-      {animationTrigger === "pageLoad" && (
-        <SplashScreen assets={[bgLoaded]} minDurationMs={750} />
-      )}
     </>
   );
 };
