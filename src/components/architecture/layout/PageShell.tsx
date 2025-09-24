@@ -1,9 +1,8 @@
 "use client";
 import { useLayoutEffect, useRef, type CSSProperties, type FC } from "react";
-import { Footer, SeoHead } from "@components";
+import { Footer, SeoHead, SplashScreen } from "@components";
 import type { PageShellProps } from "@types";
-import { pageVariants } from "@constants";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { useLoadingStore } from "@stores";
 import { useRouter } from "next/router";
 
 const cx = (...xs: Array<string | false | null | undefined>) =>
@@ -25,8 +24,11 @@ const PageShell: FC<PageShellProps> = ({
 }) => {
   const shellRef = useRef<HTMLDivElement | null>(null);
   const footerBoxRef = useRef<HTMLDivElement | null>(null);
-  const prefersReducedMotion = useReducedMotion();
+
+  const { assets, areAllLoaded, resetKeys } = useLoadingStore();
   const router = useRouter();
+
+  const required = router.asPath === "/" ? ["home:bg"] : [];
 
   // Simplified layout effect - only measure once after initial render
   useLayoutEffect(() => {
@@ -83,6 +85,11 @@ const PageShell: FC<PageShellProps> = ({
           )}
         >
           {children}
+          <SplashScreen
+            assets={required.map((k) => !!assets[k])}
+            minDurationMs={1000}
+            padForHeader="top-16 md:top-20"
+          />
         </main>
 
         {/* Wrap footer so we can measure its box without modifying the Footer component */}

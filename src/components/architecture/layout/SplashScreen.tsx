@@ -10,17 +10,15 @@ import {
 } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useViewStore } from "src/stores";
+import { cn } from "@utils";
 
 interface Props {
   assets?: boolean[];
-  /** Minimum time (ms) the splash should remain visible, even if assets load instantly. */
-  minDurationMs?: number;
-  /** Extra time (ms) to wait after assets finish before hiding. */
-  delayMs?: number;
-  /** Accessible label text. */
-  label?: string;
-  /** Optional custom content to render inside the splash. */
-  children?: ReactNode;
+  minDurationMs?: number /** Minimum time (ms) the splash should remain visible, even if assets load instantly. */;
+  delayMs?: number /** Extra time (ms) to wait after assets finish before hiding. */;
+  label?: string /** Accessible label text. */;
+  padForHeader?: string;
+  children?: ReactNode /** Optional custom content to render inside the splash. */;
 }
 
 const SplashScreen: FC<Props> = ({
@@ -28,6 +26,7 @@ const SplashScreen: FC<Props> = ({
   minDurationMs = 750,
   delayMs = 0,
   label = "Loading",
+  padForHeader,
   children,
 }: Props) => {
   const { setShowView } = useViewStore();
@@ -90,7 +89,10 @@ const SplashScreen: FC<Props> = ({
     <AnimatePresence mode="wait">
       {visible && (
         <motion.div
-          className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-2xl bg-black/70"
+          className={cn(
+            "absolute inset-0 z-50 flex items-center justify-center backdrop-blur-2xl bg-black/70",
+            padForHeader
+          )}
           role="status"
           aria-live="polite"
           aria-busy={visible}
