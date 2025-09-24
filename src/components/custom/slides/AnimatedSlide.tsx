@@ -7,12 +7,14 @@ interface AnimatedSlideProps {
   direction?: 1 | -1; // 1 for right/next, -1 for left/previous
   className?: string;
   children: ReactNode;
+  ready?: boolean; //used to delay children if needed
 }
 
 const AnimatedSlide: FC<AnimatedSlideProps> = ({
   animationTrigger,
   direction = 1,
   className = "",
+  ready = true,
   children,
 }) => {
   // Simple page load animation - fade in
@@ -44,7 +46,7 @@ const AnimatedSlide: FC<AnimatedSlideProps> = ({
   const slideTransitionVariants = {
     initial: {
       opacity: 0,
-      x: direction > 0 ? 100 : -100, // Enter from right if going forward, left if going back
+      x: direction > 0 ? -100 : 100, // Enter from right if going forward, left if going back
     },
     animate: {
       opacity: 1,
@@ -59,7 +61,7 @@ const AnimatedSlide: FC<AnimatedSlideProps> = ({
     },
     exit: {
       opacity: 0,
-      x: direction > 0 ? -100 : 100, // Exit to left if going forward, right if going back
+      x: direction > 0 ? 100 : -100, // Exit to left if going forward, right if going back
       transition: {
         duration: 0.3,
         ease: [0.25, 0.1, 0.25, 1],
@@ -83,7 +85,7 @@ const AnimatedSlide: FC<AnimatedSlideProps> = ({
       )}
       variants={variants}
       initial="initial"
-      animate="animate"
+      animate={ready ? "animate" : "initial"}
       exit="exit"
     >
       {children}

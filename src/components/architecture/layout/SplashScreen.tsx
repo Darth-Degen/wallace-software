@@ -10,10 +10,15 @@ import {
 } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useViewStore } from "src/stores";
+import { useLoadingStore } from "@stores";
 import { cn } from "@utils";
 
 interface Props {
   assets?: boolean[];
+  /** If provided, SplashScreen will read these keys from the global loading store */
+  requiredKeys?: string[];
+  /** Direct loaded flag (e.g., from areAllLoaded). Overrides assets/requiredKeys if provided. */
+  loaded?: boolean;
   minDurationMs?: number /** Minimum time (ms) the splash should remain visible, even if assets load instantly. */;
   delayMs?: number /** Extra time (ms) to wait after assets finish before hiding. */;
   label?: string /** Accessible label text. */;
@@ -23,20 +28,36 @@ interface Props {
 
 const SplashScreen: FC<Props> = ({
   assets = [],
+  requiredKeys,
+  loaded,
   minDurationMs = 750,
   delayMs = 0,
-  label = "Loading",
+  label = "",
   padForHeader,
   children,
 }: Props) => {
   const { setShowView } = useViewStore();
+  const { assets: globalAssets, areAllLoaded } = useLoadingStore();
 
   // Track visibility and timings
   const [visible, setVisible] = useState<boolean>(true);
   const mountedAtRef = useRef<number>(Date.now());
   const hideTimerRef = useRef<number | null>(null);
 
-  const allLoaded = useMemo(() => assets.every(Boolean), [assets]);
+  // Prefer explicit loaded, then store keys, then local assets[]
+  const loadedFromStore = useMemo(() => {
+    if (!requiredKeys || requiredKeys.length === 0) return undefined;
+    // Depend on globalAssets so we re-evaluate when any key changes
+    // areAllLoaded reads from store's get() internally
+    return areAllLoaded(requiredKeys);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [requiredKeys, globalAssets]);
+
+  const allLoaded = useMemo(() => {
+    if (typeof loaded === "boolean") return loaded;
+    if (typeof loadedFromStore === "boolean") return loadedFromStore;
+    return assets.every(Boolean);
+  }, [loaded, loadedFromStore, assets]);
 
   // Hide only after assets are loaded and min duration has elapsed
   useEffect(() => {

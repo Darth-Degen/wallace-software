@@ -29,6 +29,7 @@ const PageShell: FC<PageShellProps> = ({
   const router = useRouter();
 
   const required = router.asPath === "/" ? ["home:bg"] : [];
+  const loaded = areAllLoaded(required);
 
   // Simplified layout effect - only measure once after initial render
   useLayoutEffect(() => {
@@ -86,7 +87,7 @@ const PageShell: FC<PageShellProps> = ({
         >
           {children}
           <SplashScreen
-            assets={required.map((k) => !!assets[k])}
+            loaded={loaded}
             minDurationMs={1000}
             padForHeader="top-16 md:top-20"
           />
