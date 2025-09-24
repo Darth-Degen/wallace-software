@@ -1,67 +1,109 @@
-import { FC, useCallback, useEffect, useState } from "react";
+"use client";
+
+import {
+  FC,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useViewStore } from "src/stores";
-import debounce from "lodash.debounce";
 
 interface Props {
   assets?: boolean[];
+  /** Minimum time (ms) the splash should remain visible, even if assets load instantly. */
+  minDurationMs?: number;
+  /** Extra time (ms) to wait after assets finish before hiding. */
+  delayMs?: number;
+  /** Accessible label text. */
+  label?: string;
+  /** Optional custom content to render inside the splash. */
+  children?: ReactNode;
 }
 
-const SplashScreen: FC<Props> = (props: Props) => {
-  const { assets = [] } = props;
+const SplashScreen: FC<Props> = ({
+  assets = [],
+  minDurationMs = 750,
+  delayMs = 0,
+  label = "",
+  children,
+}: Props) => {
   const { setShowView } = useViewStore();
-  //splash screen animation
-  const [showAnimation, setShowAnimation] = useState<boolean>(true); // shows/hides SplashScreen animation
-  const animationDelay = 750;
-  const animationTransition = 250;
 
-  const debouncer = debounce(
-    (value) => setShowAnimation(value),
-    animationDelay
-  );
+  // Track visibility and timings
+  const [visible, setVisible] = useState<boolean>(true);
+  const mountedAtRef = useRef<number>(Date.now());
+  const hideTimerRef = useRef<number | null>(null);
 
-  //checks if all assets are loaded
-  const checkLoadStatus = useCallback(() => {
-    const didLoad = assets.every((value) => value === true);
-    debouncer(!didLoad);
-  }, [assets, debouncer]);
+  const allLoaded = useMemo(() => assets.every(Boolean), [assets]);
 
+  // Hide only after assets are loaded and min duration has elapsed
   useEffect(() => {
-    checkLoadStatus();
-  }, [checkLoadStatus]);
-
-  useEffect(() => {
-    return () => {
-      debouncer.cancel();
+    const clearTimer = () => {
+      if (hideTimerRef.current) {
+        clearTimeout(hideTimerRef.current);
+        hideTimerRef.current = null;
+      }
     };
-  }, [debouncer]);
 
-  useEffect(() => {
-    setShowView(!showAnimation);
-  }, [setShowView, showAnimation]);
+    if (!allLoaded) {
+      // Ensure we remain visible while loading
+      clearTimer();
+      if (!visible) setVisible(true);
+      return () => clearTimer();
+    }
 
-  //stop page scroll (when modal or menu open)
+    const elapsed = Date.now() - mountedAtRef.current;
+    const wait = Math.max(minDurationMs - elapsed, 0) + Math.max(delayMs, 0);
+
+    clearTimer();
+    hideTimerRef.current = window.setTimeout(() => setVisible(false), wait);
+
+    return () => clearTimer();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [allLoaded, minDurationMs, delayMs]);
+
+  // Inform the view store when content should be shown
   useEffect(() => {
-    if (showAnimation) document.body.style.overflow = "hidden";
-    else document.body.style.overflow = "auto";
-  }, [showAnimation]);
+    setShowView(!visible);
+  }, [setShowView, visible]);
+
+  // Stop page scroll while visible
+  useEffect(() => {
+    const original = document.body.style.overflow;
+    if (visible) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = original || "auto";
+    return () => {
+      document.body.style.overflow = original || "auto";
+    };
+  }, [visible]);
+
+  const variants = {
+    initial: { opacity: 1 },
+    animate: { opacity: 1 },
+    exit: { opacity: 0 },
+  } as const;
 
   return (
     <AnimatePresence mode="wait">
-      {showAnimation && (
+      {visible && (
         <motion.div
-          className={`backdrop-blur-2xl bg-template-black flex items-center justify-center  ${
-            showAnimation ? "fixed z-50 inset-0" : "hidden -z-50"
-          }`}
-          initial={{ opacity: 1 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{
-            duration: animationTransition / 1000,
-            ease: "easeInOut",
-          }}
+          className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-2xl bg-black/70"
+          role="status"
+          aria-live="polite"
+          aria-busy={visible}
+          aria-label={label}
+          variants={variants}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          transition={{ duration: 0.25, ease: "easeInOut" }}
         >
-          Loading
+          {children ?? (
+            <div className="text-white/90 text-sm tracking-wider">{label}</div>
+          )}
         </motion.div>
       )}
     </AnimatePresence>

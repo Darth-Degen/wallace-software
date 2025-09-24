@@ -4,14 +4,25 @@ import { persist } from "zustand/middleware";
 
 export const accentColors = {
   orange: { hsl: '14 100% 68%', foreground: '0 0% 7%' },   // #FF805C - dark text for better contrast
-  yellow: { hsl: '43 100% 57%', foreground: '0 0% 7%' },   // Yellow - dark text
-  green: { hsl: '142 45% 54%', foreground: '0 0% 0%' },    // Green - black text
-  blue: { hsl: '220 78% 61%', foreground: '0 0% 7%' },     // Blue - dark text for better contrast
-  purple: { hsl: '265 72% 57%', foreground: '0 0% 7%' },   // Purple - dark text for better contrast
-  red: { hsl: '6 100% 47%', foreground: '0 0% 7%' },       // Red - dark text for better contrast  
-  pink: { hsl: '330 81% 60%', foreground: '0 0% 7%' },     // Pink - dark text for better contrast
-  teal: { hsl: '178 78% 57%', foreground: '0 0% 0%' },     // Teal - black text
+  yellow: { hsl: '14 100% 68%', foreground: '0 0% 7%' },   // Yellow - dark text
+  green: { hsl: '14 100% 68%', foreground: '0 0% 0%' },    // Green - black text
+  blue: { hsl: '14 100% 68%', foreground: '0 0% 7%' },     // Blue - dark text for better contrast
+  purple: { hsl: '14 100% 68%', foreground: '0 0% 7%' },   // Purple - dark text for better contrast
+  red: { hsl: '14 100% 68%', foreground: '0 0% 7%' },       // Red - dark text for better contrast
+  pink: { hsl: '14 100% 68%', foreground: '0 0% 7%' },     // Pink - dark text for better contrast
+  teal: { hsl: '14 100% 68%', foreground: '0 0% 0%' },     // Teal - black text
 } as const;
+
+// export const accentColors = {
+//   orange: { hsl: '14 100% 68%', foreground: '0 0% 7%' },   // #FF805C - dark text for better contrast
+//   yellow: { hsl: '43 100% 57%', foreground: '0 0% 7%' },   // Yellow - dark text
+//   green: { hsl: '142 45% 54%', foreground: '0 0% 0%' },    // Green - black text
+//   blue: { hsl: '220 78% 61%', foreground: '0 0% 7%' },     // Blue - dark text for better contrast
+//   purple: { hsl: '265 72% 57%', foreground: '0 0% 7%' },   // Purple - dark text for better contrast
+//   red: { hsl: '6 100% 47%', foreground: '0 0% 7%' },       // Red - dark text for better contrast  
+//   pink: { hsl: '330 81% 60%', foreground: '0 0% 7%' },     // Pink - dark text for better contrast
+//   teal: { hsl: '178 78% 57%', foreground: '0 0% 0%' },     // Teal - black text
+// } as const;
 
 export type AccentColor = keyof typeof accentColors;
 
@@ -29,9 +40,10 @@ const colorOrder: AccentColor[] = ['orange', 'yellow', 'green', 'blue', 'purple'
 
 /**
  * Apply accent color to DOM by updating CSS custom properties
+ * Safe for SSR - only runs on client side
  */
 const applyAccentToDOM = (color: AccentColor) => {
-  if (typeof window !== 'undefined') {
+  if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     const root = document.documentElement;
     const { hsl, foreground } = accentColors[color];
     
@@ -78,10 +90,13 @@ export const useColorTheme = create<ColorThemeState>()(
       }),
       // Rehydrate: apply the persisted color to DOM when store loads
       onRehydrateStorage: () => (state) => {
-        if (state?.currentAccent) {
+        // Only run on client side to avoid SSR issues
+        if (typeof window !== 'undefined' && state?.currentAccent) {
           applyAccentToDOM(state.currentAccent);
         }
       },
+      // Skip hydration during SSR
+      skipHydration: true,
     }
   )
 );
