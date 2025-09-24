@@ -78,7 +78,7 @@ const AnimatedSlide: FC<AnimatedSlideProps> = ({
   return (
     <motion.div
       className={cn(
-        "w-full h-full flex flex-col items-center justify-center text-center px-6",
+        "w-full h-full flex flex-col flex-grow items-center justify-center text-center",
         className
       )}
       variants={variants}

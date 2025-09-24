@@ -3,19 +3,19 @@ import { AccentColor } from "@stores";
 
 export const PAGES: NavPage[] = [
   {
-    name: "Home",
+    name: "About",
     path: "/",
     showInHeader: false,
     showInFooter: true,
     accentColor: "orange" as AccentColor,
   },
-  {
-    name: "About",
-    path: "/#about",
-    showInHeader: false,
-    showInFooter: true,
-    accentColor: "blue" as AccentColor,
-  },
+  // {
+  //   name: "About",
+  //   path: "/#about",
+  //   showInHeader: false,
+  //   showInFooter: true,
+  //   accentColor: "blue" as AccentColor,
+  // },
   {
     name: "Experience",
     path: "/#experience",

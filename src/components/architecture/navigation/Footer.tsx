@@ -1,6 +1,6 @@
 import { PAGES } from "@constants";
 import { useColorTheme, useCarousel, AccentColor } from "@stores";
-import { cn } from "@utils";
+import { cn, handleCopyEmail } from "@utils";
 import { FC } from "react";
 
 const Footer: FC = () => {
@@ -17,10 +17,10 @@ const Footer: FC = () => {
   };
 
   return (
-    <footer className="px-4 md:px-8 py-12 lg:py-6">
-      <div className="max-w-[1512px] mx-auto flex flex-col-reverse items-center justify-center gap-4 lg:gap-6">
+    <footer className="px-4 md:px-8 py-12 lg:py-4">
+      <div className="max-w-[1512px] mx-auto flex   items-center justify-between gap-4 lg:gap-3">
         {/* Left side */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 text-muted-foreground w-[160px]">
           <span className="text-sm">
             © {new Date().getFullYear()} Wallace Software
           </span>
@@ -46,6 +46,15 @@ const Footer: FC = () => {
             );
           })}
         </nav>
+
+        <div className="flex items-center justify-end gap-2 text-white/30 w-[160px]">
+          <p
+            className="lg:block hidden cursor-pointer ml-2 text-muted-foreground hover-text-accent text-sm"
+            onClick={handleCopyEmail}
+          >
+            info@wallace.software
+          </p>
+        </div>
       </div>
     </footer>
   );

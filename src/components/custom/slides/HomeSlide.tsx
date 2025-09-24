@@ -17,14 +17,14 @@ const HomeSlide: FC<HomeSlideProps> = ({
   const [bgLoaded, setBgLoaded] = useState(false);
 
   return (
-    <div className="w-full h-full">
+    <>
       <AnimatedSlide
         animationTrigger={animationTrigger}
         direction={direction}
         className={className}
       >
         {/* Hero Content */}
-        <div className="w-screen h-full flex flex-grow">
+        <AnimatedChild animation={"fade"}>
           <Image
             src={introGraphic}
             alt="Intro Graphic"
@@ -38,10 +38,12 @@ const HomeSlide: FC<HomeSlideProps> = ({
               Welcome to Wallace Software
             </h1>
           </AnimatedChild> */}
-        </div>
+        </AnimatedChild>
       </AnimatedSlide>
-      {/* <SplashScreen assets={[bgLoaded]} minDurationMs={750} /> */}
-    </div>
+      {animationTrigger === "pageLoad" && (
+        <SplashScreen assets={[bgLoaded]} minDurationMs={750} />
+      )}
+    </>
   );
 };
 

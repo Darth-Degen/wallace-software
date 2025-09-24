@@ -76,27 +76,13 @@ const PageShell: FC<PageShellProps> = ({
         <main
           id="page-main"
           className={cx(
-            // Simplified: use standard flexbox layout without dynamic calculations
-            "flex w-full h-full flex-1 flex-col overflow-x-clip bg-page",
-            // if header overlays content (absolute / animate), push content down
-            // Use responsive padding to match header h-16 md:h-20
+            "relative flex w-full h-full flex-1 flex-col overflow-x-clip bg-page",
             padForHeader && "pt-16 md:pt-20",
             className,
             mainClassName
           )}
         >
           {children}
-          {/* <AnimatePresence mode="wait">
-            <motion.div
-              key={router.asPath}
-              variants={pageVariants(prefersReducedMotion)}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-            >
-              {children}
-            </motion.div>
-          </AnimatePresence> */}
         </main>
 
         {/* Wrap footer so we can measure its box without modifying the Footer component */}

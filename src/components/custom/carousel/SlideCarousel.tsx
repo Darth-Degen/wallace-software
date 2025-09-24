@@ -105,7 +105,7 @@ const SlideCarousel: FC = () => {
   const CurrentSlideComponent = slideComponents[currentSlide];
 
   return (
-    <div className="w-full h-full flex flex-col">
+    <div className="relative w-full h-full flex flex-col flex-grow">
       {/* Navigation Controls */}
       <CarouselNavigationButton
         direction="left"
