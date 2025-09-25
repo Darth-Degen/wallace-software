@@ -3,7 +3,6 @@ import { AnimatePresence } from "framer-motion";
 import Router from "next/router";
 import { SlideType } from "@types";
 import {
-  HomeSlide,
   AboutSlide,
   ExperienceSlide,
   SkillsSlide,
@@ -14,7 +13,7 @@ import { useCarousel, useColorTheme, AccentColor } from "@stores";
 import { CarouselNavigationButton } from "@components";
 
 const slideComponents = {
-  // home: HomeSlide,
+  // home: AboutSlide,
   about: AboutSlide,
   experience: ExperienceSlide,
   skills: SkillsSlide,

@@ -21,19 +21,6 @@ const AboutSlide: FC<AboutSlideProps> = ({
 
   return (
     <>
-      {/* BG Graphic */}
-      <AnimatedChild animation={"fade"} className="z-0">
-        <Image
-          src={introGraphic}
-          alt="Intro Graphic"
-          layout="fill"
-          objectFit="cover"
-          onLoadingComplete={() => setAsset("home:bg", true)}
-          priority
-          className="z-0"
-        />
-        <div className="absolute inset-0 bg-black/40" />
-      </AnimatedChild>
       {/* Slide Content */}
       <AnimatedSlide
         animationTrigger={animationTrigger}
@@ -41,14 +28,28 @@ const AboutSlide: FC<AboutSlideProps> = ({
         className={className}
         ready={showView}
       >
+        {/* BG Graphic */}
+        <AnimatedChild animation={"fade"} className="z-0">
+          <Image
+            src={introGraphic}
+            alt="Intro Graphic"
+            layout="fill"
+            objectFit="cover"
+            onLoadingComplete={() => setAsset("home:bg", true)}
+            priority
+            className="z-0"
+          />
+          <div className="absolute inset-0 bg-black/40" />
+        </AnimatedChild>
         {/* Speech Bubble */}
         <AnimatedChild
           animation={"fade"}
+          delay={0.3}
           className="col-centered gap-6 relative z-10 w-[585px] aspect-[585/289] rounded-xl mb-[5%] bg-[#ff805c]/90 "
         >
           <AnimatedChild
             animation={"scale"}
-            delay={0.2}
+            delay={0.6}
             className="relative z-0"
           >
             <h1 className="text-4xl font-semibold text-white/80">
@@ -57,10 +58,10 @@ const AboutSlide: FC<AboutSlideProps> = ({
           </AnimatedChild>
           <AnimatedChild
             animation={"scale"}
-            delay={0.4}
+            delay={0.9}
             className="relative z-0  max-w-[400px]"
           >
-            <p className="text-lg md:text-xl text-white/80 max-w-xl">
+            <p className="text-lg md:text-xl text-white/70 max-w-xl">
               A front end developer who loves crafting unique digital
               experiences. I specialize in using Next.JS, Typescript, Tailwind,
               and Motion.
