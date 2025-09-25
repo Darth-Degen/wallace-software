@@ -37,19 +37,19 @@ const AboutSlide: FC<AboutSlideProps> = ({
             objectFit="cover"
             onLoadingComplete={() => setAsset("home:bg", true)}
             priority
-            className="z-0"
+            className="z-0 inset-x-0"
           />
           <div className="absolute inset-0 bg-black/40" />
         </AnimatedChild>
         {/* Speech Bubble */}
         <AnimatedChild
           animation={"fade"}
-          delay={0.3}
+          delay={0.2}
           className="col-centered gap-6 relative z-10 w-[585px] aspect-[585/289] rounded-xl mb-[5%] bg-[#ff805c]/90 "
         >
           <AnimatedChild
             animation={"scale"}
-            delay={0.6}
+            delay={0.4}
             className="relative z-0"
           >
             <h1 className="text-4xl font-semibold text-white/80">
@@ -58,7 +58,7 @@ const AboutSlide: FC<AboutSlideProps> = ({
           </AnimatedChild>
           <AnimatedChild
             animation={"scale"}
-            delay={0.9}
+            delay={0.6}
             className="relative z-0  max-w-[400px]"
           >
             <p className="text-lg md:text-xl text-white/70 max-w-xl">

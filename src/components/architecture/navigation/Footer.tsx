@@ -19,7 +19,7 @@ const Footer: FC = () => {
 
   return (
     <footer className="px-4 md:px-8 py-12 lg:py-4">
-      <div className="max-w-[1512px] mx-auto flex   items-center justify-between gap-4 lg:gap-3">
+      <div className="max-width mx-auto flex  items-center justify-between gap-4 lg:gap-3">
         {/* Left side */}
         <div className="flex items-center gap-2 text-muted-foreground w-[160px]">
           <span className="text-sm">

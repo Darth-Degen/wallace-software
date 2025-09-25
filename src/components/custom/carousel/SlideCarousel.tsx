@@ -109,13 +109,13 @@ const SlideCarousel: FC = () => {
       <CarouselNavigationButton
         direction="left"
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-10"
+        className="absolute top-1/2 -translate-y-1/2 z-10 left-[max(1rem,calc((100vw-1512px)/2+1rem))]"
       />
 
       <CarouselNavigationButton
         direction="right"
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-10"
+        className="absolute top-1/2 -translate-y-1/2 z-10 right-[max(1rem,calc((100vw-1512px)/2+1rem))]"
       />
 
       {/* Slide Content */}
