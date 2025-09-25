@@ -1,6 +1,6 @@
 import { Variants } from "framer-motion";
 
-export type SlideType = "home" | "about" | "experience" | "skills" | "portfolio";
+export type SlideType =   "about" | "experience" | "skills" | "portfolio";
 
 export interface SlideData {
   id: SlideType;

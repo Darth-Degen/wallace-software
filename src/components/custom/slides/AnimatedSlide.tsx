@@ -19,15 +19,16 @@ const AnimatedSlide: FC<AnimatedSlideProps> = ({
 }) => {
   // Simple page load animation - fade in
   const pageLoadVariants = {
-    initial: { opacity: 0 },
+    initial: { opacity: 0, scale: 0.9 },
     animate: {
+      scale: 1,
       opacity: 1,
       transition: {
         duration: 0.4,
         ease: [0.25, 0.1, 0.25, 1],
         when: "beforeChildren",
-        staggerChildren: 0.08,
-        delayChildren: 0.1,
+        staggerChildren: 0.2,
+        delayChildren: 0.2,
       },
     },
     exit: {
@@ -36,7 +37,7 @@ const AnimatedSlide: FC<AnimatedSlideProps> = ({
         duration: 0.3,
         ease: [0.25, 0.1, 0.25, 1],
         when: "afterChildren",
-        staggerChildren: 0.08,
+        staggerChildren: 0.2,
         staggerDirection: -1,
       },
     },
@@ -46,7 +47,7 @@ const AnimatedSlide: FC<AnimatedSlideProps> = ({
   const slideTransitionVariants = {
     initial: {
       opacity: 0,
-      x: direction > 0 ? -100 : 100, // Enter from right if going forward, left if going back
+      x: direction > 0 ? 100 : -100, // Enter from right if going forward, left if going back
     },
     animate: {
       opacity: 1,
@@ -55,18 +56,18 @@ const AnimatedSlide: FC<AnimatedSlideProps> = ({
         duration: 0.4,
         ease: [0.25, 0.1, 0.25, 1],
         when: "beforeChildren",
-        staggerChildren: 0.08,
-        delayChildren: 0.1,
+        staggerChildren: 0.2,
+        delayChildren: 0.2,
       },
     },
     exit: {
       opacity: 0,
-      x: direction > 0 ? 100 : -100, // Exit to left if going forward, right if going back
+      x: direction > 0 ? -100 : 100, // Exit to left if going forward, right if going back
       transition: {
         duration: 0.3,
         ease: [0.25, 0.1, 0.25, 1],
         when: "afterChildren",
-        staggerChildren: 0.08,
+        staggerChildren: 0.2,
         staggerDirection: -1,
       },
     },

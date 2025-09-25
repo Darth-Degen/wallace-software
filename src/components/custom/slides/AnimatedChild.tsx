@@ -31,7 +31,7 @@ const childAnimationVariants = {
     exit: { opacity: 0, x: 10 },
   },
   scale: {
-    initial: { opacity: 0, scale: 0.95 },
+    initial: { opacity: 0, scale: 0.9 },
     animate: { opacity: 1, scale: 1 },
     exit: { opacity: 0, scale: 0.98 },
   },
@@ -45,7 +45,6 @@ const childAnimationVariants = {
 const AnimatedChild: FC<AnimatedChildProps> = ({
   children,
   className = "",
-  // delay intentionally unused so parent can control staggering
   delay,
   animation = "scale",
 }) => {
@@ -56,6 +55,7 @@ const AnimatedChild: FC<AnimatedChildProps> = ({
       transition: {
         duration: 0.4,
         ease: [0.25, 0.1, 0.25, 1],
+        delay: delay || 0,
       },
     },
     exit: {

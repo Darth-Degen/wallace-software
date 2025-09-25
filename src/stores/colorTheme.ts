@@ -4,7 +4,7 @@ import { persist } from "zustand/middleware";
 
 export const accentColors = {
   orange: { hsl: '14 100% 68%', foreground: '0 0% 7%' },   // #FF805C - dark text for better contrast
-  yellow: { hsl: '14 100% 68%', foreground: '0 0% 7%' },   // Yellow - dark text
+  yellow: { hsl: '43 100% 63%', foreground: '0 0% 7%' },   // Yellow - dark text
   green: { hsl: '14 100% 68%', foreground: '0 0% 0%' },    // Green - black text
   blue: { hsl: '14 100% 68%', foreground: '0 0% 7%' },     // Blue - dark text for better contrast
   purple: { hsl: '14 100% 68%', foreground: '0 0% 7%' },   // Purple - dark text for better contrast

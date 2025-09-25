@@ -12,6 +12,7 @@ const Footer: FC = () => {
     if (page.accentColor) {
       setAccentColorAndSection(page.accentColor as AccentColor, page.path);
     }
+    console.log("Setting slide to index:", index);
     // Update carousel slide
     setSlide(index);
   };

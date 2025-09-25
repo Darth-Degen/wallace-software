@@ -2,26 +2,26 @@ import { NavPage } from "@types";
 import { AccentColor } from "@stores";
 
 export const PAGES: NavPage[] = [
+  // {
+  //   name: "About",
+  //   path: "/",
+  //   showInHeader: false,
+  //   showInFooter: true,
+  //   accentColor: "orange" as AccentColor,
+  // },
   {
     name: "About",
-    path: "/",
+    path: "/#about",
     showInHeader: false,
     showInFooter: true,
     accentColor: "orange" as AccentColor,
   },
-  // {
-  //   name: "About",
-  //   path: "/#about",
-  //   showInHeader: false,
-  //   showInFooter: true,
-  //   accentColor: "blue" as AccentColor,
-  // },
   {
     name: "Experience",
     path: "/#experience",
     showInHeader: false,
     showInFooter: true,
-    accentColor: "green" as AccentColor,
+    accentColor: "yellow" as AccentColor,
   },
   {
     name: "Skills",

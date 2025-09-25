@@ -25,6 +25,7 @@ export const useCarousel = create<CarouselState>()((set, get) => ({
   
   setSlide: (slideIndex: number, updateUrl = true) => {
     const totalSlides = PAGES.filter(p => p.showInFooter).length;
+    console.log("setSlide called with index:", slideIndex, "Total slides:", totalSlides);
     if (slideIndex >= 0 && slideIndex < totalSlides) {
       set({ currentSlide: slideIndex });
       

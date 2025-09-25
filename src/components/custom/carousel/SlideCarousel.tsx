@@ -14,7 +14,7 @@ import { useCarousel, useColorTheme, AccentColor } from "@stores";
 import { CarouselNavigationButton } from "@components";
 
 const slideComponents = {
-  home: HomeSlide,
+  // home: HomeSlide,
   about: AboutSlide,
   experience: ExperienceSlide,
   skills: SkillsSlide,
@@ -22,7 +22,7 @@ const slideComponents = {
 };
 
 const slideOrder: SlideType[] = [
-  "home",
+  // "home",
   "about",
   "experience",
   "skills",

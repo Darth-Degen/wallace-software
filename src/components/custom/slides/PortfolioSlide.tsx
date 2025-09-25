@@ -20,11 +20,12 @@ const PortfolioSlide: FC<PortfolioSlideProps> = ({
       className={className}
     >
       {/* Portfolio Content */}
-      <div className="space-y-8">
-        {/* Title & Description */}
-        <AnimatedChild>
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">Portfolio</h1>
-        </AnimatedChild>
+      <div className="bg-accent p-10 rounded-lg space-y-8">
+        <h1 className="text-4xl md:text-6xl font-bold mb-6">Portfolio</h1>{" "}
+        <p className="text-lg md:text-xl max-w-3xl">
+          Over the years, I&apos;ve had the privilege of working with a diverse
+          range of clients, from innovative startups to established enterprises{" "}
+        </p>
       </div>
     </AnimatedSlide>
   );

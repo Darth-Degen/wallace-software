@@ -1,6 +1,9 @@
 import { FC } from "react";
-import AnimatedSlide from "./AnimatedSlide";
-import AnimatedChild from "./AnimatedChild";
+import Image from "next/image";
+import { AnimatedSlide, AnimatedChild } from "@components";
+import { useLoadingStore, useViewStore } from "@stores";
+//graphics
+import introGraphic from "public/images/intro-graphic-xl.jpg";
 
 interface AboutSlideProps {
   className?: string;
@@ -13,25 +16,59 @@ const AboutSlide: FC<AboutSlideProps> = ({
   animationTrigger = "pageLoad",
   direction = 1,
 }) => {
-  return (
-    <AnimatedSlide
-      animationTrigger={animationTrigger}
-      direction={direction}
-      className={className}
-    >
-      {/* About Content */}
-      <div className="space-y-8">
-        {/* Title & Description */}
-        <AnimatedChild>
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">About Me</h1>
-        </AnimatedChild>
+  const { setAsset } = useLoadingStore();
+  const { showView } = useViewStore();
 
-        {/* CTA */}
-        <AnimatedChild delay={0.3}>
-          <button className="px-8 py-3">Let&apos;s Work Together</button>
+  return (
+    <>
+      {/* BG Graphic */}
+      <AnimatedChild animation={"fade"} className="z-0">
+        <Image
+          src={introGraphic}
+          alt="Intro Graphic"
+          layout="fill"
+          objectFit="cover"
+          onLoadingComplete={() => setAsset("home:bg", true)}
+          priority
+          className="z-0"
+        />
+        <div className="absolute inset-0 bg-black/40" />
+      </AnimatedChild>
+      {/* Slide Content */}
+      <AnimatedSlide
+        animationTrigger={animationTrigger}
+        direction={direction}
+        className={className}
+        ready={showView}
+      >
+        {/* Speech Bubble */}
+        <AnimatedChild
+          animation={"fade"}
+          className="col-centered gap-6 relative z-10 w-[585px] aspect-[585/289] rounded-xl mb-[5%] bg-[#ff805c]/90 "
+        >
+          <AnimatedChild
+            animation={"scale"}
+            delay={0.2}
+            className="relative z-0"
+          >
+            <h1 className="text-4xl font-semibold text-white/80">
+              Hi, I&apos;m Wallace
+            </h1>
+          </AnimatedChild>
+          <AnimatedChild
+            animation={"scale"}
+            delay={0.4}
+            className="relative z-0  max-w-[400px]"
+          >
+            <p className="text-lg md:text-xl text-white/80 max-w-xl">
+              A front end developer who loves crafting unique digital
+              experiences. I specialize in using Next.JS, Typescript, Tailwind,
+              and Motion.
+            </p>
+          </AnimatedChild>
         </AnimatedChild>
-      </div>
-    </AnimatedSlide>
+      </AnimatedSlide>
+    </>
   );
 };
 
