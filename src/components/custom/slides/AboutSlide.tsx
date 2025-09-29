@@ -2,8 +2,10 @@ import { FC } from "react";
 import Image from "next/image";
 import { AnimatedSlide, AnimatedChild } from "@components";
 import { useLoadingStore, useViewStore } from "@stores";
+import { useWindowSize } from "@hooks";
 //graphics
 import introGraphic from "public/images/intro-graphic-xl.jpg";
+import mobileIntroGraphic from "public/images/mobile-intro-graphic.jpg";
 
 interface AboutSlideProps {
   className?: string;
@@ -18,6 +20,7 @@ const AboutSlide: FC<AboutSlideProps> = ({
 }) => {
   const { setAsset } = useLoadingStore();
   const { showView } = useViewStore();
+  const [winWidth] = useWindowSize();
 
   return (
     <>
@@ -31,7 +34,7 @@ const AboutSlide: FC<AboutSlideProps> = ({
         {/* BG Graphic */}
         <AnimatedChild animation={"fade"} className="z-0">
           <Image
-            src={introGraphic}
+            src={winWidth > 1024 ? introGraphic : mobileIntroGraphic}
             alt="Intro Graphic"
             layout="fill"
             objectFit="cover"
@@ -45,23 +48,23 @@ const AboutSlide: FC<AboutSlideProps> = ({
         <AnimatedChild
           animation={"fade"}
           delay={0.2}
-          className="col-centered gap-6 relative z-10 w-[90%] h-[300px] md:w-[585px] md:aspect-[585/289] rounded-xl mb-[5%] bg-[#46658E]/80 md:bg-[#ff805c]/90 "
+          className="col-centered gap-6 relative z-10 w-[90%] h-auto md:h-[300px] md:w-[585px] md:aspect-[585/289] rounded-xl lg:mb-[5%] mt-10 bg-[#46658E]/80 md:bg-[#ff805c]/90 py-6 lg:py-0"
         >
           <AnimatedChild
             animation={"scale"}
             delay={0.4}
             className="relative z-0"
           >
-            <h1 className="text-4xl font-semibold text-white/80">
+            <h1 className="text-2xl md:text-4xl font-semibold text-white/80">
               Hi, I&apos;m Wallace
             </h1>
           </AnimatedChild>
           <AnimatedChild
             animation={"scale"}
             delay={0.6}
-            className="relative z-0  max-w-[400px]"
+            className="relative z-0 max-w-[400px] px-14 md:px-0"
           >
-            <p className="text-lg md:text-xl text-white/70 max-w-xl">
+            <p className="text-base md:text-xl text-white/70 max-w- xl">
               A front end developer who loves crafting unique digital
               experiences. I specialize in using Next.JS, Typescript, Tailwind,
               and Motion.

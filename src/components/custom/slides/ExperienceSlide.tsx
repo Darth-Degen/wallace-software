@@ -13,7 +13,7 @@ const ExperienceSlide: FC<ExperienceSlideProps> = ({
   direction = 1,
 }) => {
   return (
-    <AnimatedSlide animationTrigger="pageLoad" className="px-6">
+    <AnimatedSlide animationTrigger="pageLoad" className="px-6 py-10">
       <AnimatedChild animation="fade" className="z-0 max-w-6xl w-full">
         <div className="mx-auto text-center mb-10">
           <AnimatedChild animation={"fade"} delay={0.2}>
@@ -26,7 +26,7 @@ const ExperienceSlide: FC<ExperienceSlideProps> = ({
           </AnimatedChild>
         </div>
 
-        <div className="grid gap-6 md:gap-7 md:grid-cols-3">
+        <div className="grid gap-6 md:gap-7 lg:grid-cols-3 px-10 sm:px-16 md:px-32 lg:px-0">
           <ExperienceCard
             range="2022-Present"
             title="Co-Founder, Sandbox Studio"
