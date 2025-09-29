@@ -38,7 +38,7 @@ const CarouselNavigationButton: FC<CarouselNavigationButtonProps> = ({
         <path
           d="M0 36C0 16.1178 16.1178 0 36 0C55.8823 0 72 16.1178 72 36C72 55.8823 55.8823 72 36 72C16.1178 72 0 55.8823 0 36Z"
           fill="currentColor"
-          className="text-accent"
+          className="transition-colors duration-1000 delay-300 text-accent"
         />
         <g opacity="0.62" clipPath="url(#clip0_41_3855)">
           <path

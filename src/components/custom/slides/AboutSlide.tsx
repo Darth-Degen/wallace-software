@@ -35,7 +35,7 @@ const AboutSlide: FC<AboutSlideProps> = ({
             alt="Intro Graphic"
             layout="fill"
             objectFit="cover"
-            onLoadingComplete={() => setAsset("home:bg", true)}
+            onLoad={() => setAsset("home:bg", true)}
             priority
             className="z-0 inset-x-0"
           />

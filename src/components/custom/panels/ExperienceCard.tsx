@@ -38,18 +38,18 @@ export default function ExperienceCard({
           </MetaPill>
         }
         title={title}
-        toolbar={
-          <div className="flex items-center gap-2">
-            <ToolbarIcon label="GitHub" onClick={onGithub}>
-              <Github className="h-4 w-4" />
-            </ToolbarIcon>
-            <ToolbarIcon label="Share" onClick={onShare}>
-              <Share2 className="h-4 w-4" />
-            </ToolbarIcon>
-          </div>
-        }
+        // toolbar={
+        //   <div className="flex items-center gap-2">
+        //     <ToolbarIcon label="GitHub" onClick={onGithub}>
+        //       <Github className="h-4 w-4" />
+        //     </ToolbarIcon>
+        //     <ToolbarIcon label="Share" onClick={onShare}>
+        //       <Share2 className="h-4 w-4" />
+        //     </ToolbarIcon>
+        //   </div>
+        // }
       />
-      <PanelCardContent className="space-y-4">
+      <PanelCardContent className="flex flex-col flex-grow">
         {bullets.map((b, i) => (
           <BulletRow key={i} icon={<Play className="h-3.5 w-3.5" />}>
             {b}

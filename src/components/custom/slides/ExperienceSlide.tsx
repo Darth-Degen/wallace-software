@@ -28,7 +28,7 @@ const ExperienceSlide: FC<ExperienceSlideProps> = ({
 
         <div className="grid gap-6 md:gap-7 md:grid-cols-3">
           <ExperienceCard
-            range="2022–Present"
+            range="2022-Present"
             title="Co-Founder, Sandbox Studio"
             bullets={[
               "Crafted high-performance websites for Web2/Web3 clients using Next.js, React, Tailwind, and Framer Motion.",
@@ -46,7 +46,7 @@ const ExperienceSlide: FC<ExperienceSlideProps> = ({
             ]}
           />
           <ExperienceCard
-            range="2014–2021"
+            range="2014-2021"
             title="Mobile Developer, Streamline VRS"
             bullets={[
               "Shipped production React/React Native apps.",

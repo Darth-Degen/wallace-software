@@ -36,7 +36,7 @@ export const PanelCardRoot = ({
         // base
         "rounded-2xl border bg-card/60 text-card-foreground backdrop-blur",
         // match your screenshots: soft border + subtle inner glow
-        "border-white/10 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)]",
+        "shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)]",
         elevated && "shadow-xl",
         interactive && "hover:border-white/20",
         className
@@ -71,15 +71,11 @@ export function PanelCardHeader({
 }: PanelCardHeaderProps) {
   return (
     <CardHeader
-      className={cn(
-        "px-6 pt-5 pb-3 md:px-7 md:pt-6 md:pb-4",
-        "flex flex-col gap-3",
-        className
-      )}
+      className={cn("px-0 pt-3", "flex flex-col", className)}
       {...props}
     >
       {(meta || toolbar) && (
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between border-b border-border pb-3 w-full">
           {meta ? (
             <div className="flex items-center gap-2">{meta}</div>
           ) : (
@@ -90,9 +86,9 @@ export function PanelCardHeader({
       )}
 
       {(title || subtitle) && (
-        <div className="text-left">
+        <div className="text-left px-6 md:px-7 pt-6">
           {title && (
-            <div className="text-lg md:text-xl font-semibold leading-tight">
+            <div className="text-lg md:text-lg font-semibold leading-tight">
               {title}
             </div>
           )}
@@ -113,7 +109,7 @@ export function PanelCardContent(
   return (
     <CardContent
       {...props}
-      className={cn("px-6 pb-6 md:px-7 md:pb-7", props.className)}
+      className={cn("px-6 pb-6 md:px-7 md:pb-7 flex-grow", props.className)}
     />
   );
 }
@@ -138,8 +134,8 @@ export function MetaPill({
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-2 rounded-lg border bg-muted/40 px-3 py-1",
-        "text-xs md:text-sm text-muted-foreground border-white/10",
+        "inline-flex items-center gap-2 rounded-lg px-3 py-1",
+        "text-xs md:text-sm text-muted-foreground",
         className
       )}
     >
@@ -160,7 +156,7 @@ export function ToolbarIcon({
       onClick={onClick}
       className={cn(
         "inline-flex h-9 w-9 items-center justify-center",
-        "rounded-full border border-white/10 bg-background/40",
+        "rounded-full border",
         "hover:border-white/20 transition"
       )}
     >
@@ -183,7 +179,7 @@ export function BulletRow({
     <div
       className={cn("flex items-start gap-3 text-sm md:text-base", className)}
     >
-      <span className="mt-1 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-white/10">
+      <span className="mt-1 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md">
         {icon}
       </span>
       <div className="text-left text-muted-foreground">{children}</div>
