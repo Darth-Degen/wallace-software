@@ -45,7 +45,7 @@ const AboutSlide: FC<AboutSlideProps> = ({
         <AnimatedChild
           animation={"fade"}
           delay={0.2}
-          className="col-centered gap-6 relative z-10 w-[585px] aspect-[585/289] rounded-xl mb-[5%] bg-[#ff805c]/90 "
+          className="col-centered gap-6 relative z-10 w-[90%] h-[300px] md:w-[585px] md:aspect-[585/289] rounded-xl mb-[5%] bg-[#46658E]/80 md:bg-[#ff805c]/90 "
         >
           <AnimatedChild
             animation={"scale"}

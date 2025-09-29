@@ -4,7 +4,7 @@ import { GithubLink, LinkedinLink, Logo, MailLink } from "@components";
 
 const Header: FC = ({}) => {
   return (
-    <header className="fixed top-0 inset-x-0 z-50 border-b">
+    <header className="fixed top-0 inset-x-0 z-50 border-b bg-background">
       <div className="px-4 md:px-8 2xl:px-2 1512:px-0 mx-auto max-width h-16 md:h-20 flex items-center justify-between gap-4">
         {/* Logo */}
         <Logo />

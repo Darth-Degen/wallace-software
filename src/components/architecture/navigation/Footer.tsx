@@ -18,8 +18,8 @@ const Footer: FC = () => {
   };
 
   return (
-    <footer className="px-4 md:px-8 py-12 lg:py-4">
-      <div className="max-width mx-auto flex  items-center justify-between gap-4 lg:gap-3">
+    <footer className="px-4 md:px-8 py-4 lg:py-4">
+      <div className="max-width mx-auto flex flex-col-reverse lg:flex-row items-center justify-between gap-6 lg:gap-3">
         {/* Left side */}
         <div className="flex items-center gap-2 text-muted-foreground w-[160px]">
           <span className="text-sm">
@@ -28,7 +28,7 @@ const Footer: FC = () => {
         </div>
 
         {/* Middle: navigation links from config */}
-        <nav className="flex flex-wrap justify-center gap-4 lg:gap-6 text-sm lg:text-sm">
+        <nav className="lg:flex hidden flex-wrap justify-center gap-4 lg:gap-6 text-sm lg:text-sm">
           {PAGES.filter((p) => p.showInFooter).map((page, index) => {
             const isActive = currentSlide === index;
             return (
@@ -48,9 +48,9 @@ const Footer: FC = () => {
           })}
         </nav>
 
-        <div className="flex items-center justify-end gap-2 text-white/30 w-[160px]">
+        <div className="lg:flex hidden items-center justify-end gap-2 text-white/30 w-[160px]">
           <p
-            className="lg:block hidden cursor-pointer ml-2 text-muted-foreground hover-text-accent text-sm"
+            className="cursor-pointer ml-2 text-muted-foreground hover-text-accent text-sm"
             onClick={handleCopyEmail}
           >
             info@wallace.software

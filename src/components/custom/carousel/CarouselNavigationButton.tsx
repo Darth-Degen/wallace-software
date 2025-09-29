@@ -30,7 +30,10 @@ const CarouselNavigationButton: FC<CarouselNavigationButtonProps> = ({
         viewBox="0 0 72 72"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className={cn("", direction === "right" ? "rotate-180" : "")}
+        className={cn(
+          "size-[clamp(52px,8vw,72px)]", // smaller on mobile, up to 72px on large screens
+          direction === "right" ? "rotate-180" : ""
+        )}
       >
         <path
           d="M0 36C0 16.1178 16.1178 0 36 0C55.8823 0 72 16.1178 72 36C72 55.8823 55.8823 72 36 72C16.1178 72 0 55.8823 0 36Z"
