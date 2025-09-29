@@ -71,7 +71,7 @@ export function PanelCardHeader({
 }: PanelCardHeaderProps) {
   return (
     <CardHeader
-      className={cn("px-0 pt-3", "flex flex-col", className)}
+      className={cn("px-0 pt-3 pb-4", "flex flex-col", className)}
       {...props}
     >
       {(meta || toolbar) && (
@@ -86,7 +86,7 @@ export function PanelCardHeader({
       )}
 
       {(title || subtitle) && (
-        <div className="text-left px-6 md:px-7 pt-6">
+        <div className="text-left px-6 md:px-7 pt-4">
           {title && (
             <div className="text-lg md:text-lg font-semibold leading-tight">
               {title}
@@ -109,7 +109,10 @@ export function PanelCardContent(
   return (
     <CardContent
       {...props}
-      className={cn("px-6 pb-6 md:px-7 md:pb-7 flex-grow", props.className)}
+      className={cn(
+        "px-6 pb-6 md:px-7 md:pb-7 flex-grow min-h-[150px] lg:min-h-[250px]",
+        props.className
+      )}
     />
   );
 }
@@ -177,7 +180,10 @@ export function BulletRow({
 }) {
   return (
     <div
-      className={cn("flex items-start gap-3 text-sm md:text-base", className)}
+      className={cn(
+        "flex items-start gap-3 text-sm md:text-base py-0.5",
+        className
+      )}
     >
       <span className="mt-1 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md">
         {icon}
