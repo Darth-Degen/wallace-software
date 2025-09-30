@@ -3,7 +3,7 @@ import { useCarousel } from "@stores";
 import { FC } from "react";
 
 const Logo: FC = () => {
-  const { currentSlide, setSlide } = useCarousel();
+  const { setSlide } = useCarousel();
   return (
     <div
       className="my-0 flex items-center gap-2 cursor-pointer"

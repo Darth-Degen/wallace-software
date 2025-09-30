@@ -5,36 +5,57 @@ export const PAGES: NavPage[] = [
   {
     name: "Home",
     path: "/",
-    showInHeader: false,
-    showInFooter: false,
+    hideFromCarousel: true,
     accentColor: "orange" as AccentColor,
   },
   {
     name: "About",
     path: "/#about",
-    showInHeader: false,
     showInFooter: true,
     accentColor: "orange" as AccentColor,
   },
   {
     name: "Experience",
     path: "/#experience",
-    showInHeader: false,
     showInFooter: true,
     accentColor: "yellow" as AccentColor,
   },
   {
     name: "Skills",
     path: "/#skills",
-    showInHeader: false,
     showInFooter: true,
     accentColor: "blue" as AccentColor,
   },
+  //portfolio slides
   {
     name: "Portfolio",
-    path: "/#portfolio",
-    showInHeader: false,
+    path: "/#portfolio-scum",
     showInFooter: true,
-    accentColor: "pink" as AccentColor,
+    accentColor: "scum" as AccentColor,
+  },
+  {
+    name: "Portfolio",
+    path: "/#portfolio-somosaxolotl",
+    accentColor: "somos" as AccentColor,
+  },
+  {
+    name: "Portfolio",
+    path: "/#portfolio-sandbox",
+    accentColor: "sandbox" as AccentColor,
+  },
+  {
+    name: "Portfolio",
+    path: "/#portfolio-folio",
+    accentColor: "folio" as AccentColor,
+  },
+  {
+    name: "Portfolio",
+    path: "/#portfolio-cyberfrogs",
+    accentColor: "cyberfrogs" as AccentColor,
+  },
+  {
+    name: "Portfolio",
+    path: "/#portfolio-publique",
+    accentColor: "publique" as AccentColor,
   },
 ];

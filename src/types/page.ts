@@ -44,6 +44,7 @@ export type NavPage = {
   path: string;
   showInHeader?: boolean;
   showInFooter?: boolean;
+  hideFromCarousel?: boolean; // if true, this page is skipped when navigating with carousel controls
   accentColor?: string; // Optional accent color for this navigation item
 };
 
