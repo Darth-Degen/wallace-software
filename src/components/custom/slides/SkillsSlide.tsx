@@ -18,9 +18,7 @@ const SkillsSlide: FC<SkillsSlideProps> = ({
       <AnimatedChild animation="fade" className="z-0 max-w-6xl w-full">
         <div className="mx-auto text-center mb-10">
           <AnimatedChild animation={"fade"} delay={0.2}>
-            <h1 className="text-4xl md:text-6xl font-bold">
-              Skills & Technologies
-            </h1>
+            <h1 className="text-4xl md:text-6xl font-bold">Skills</h1>
           </AnimatedChild>
           <AnimatedChild animation={"fade"} delay={0.4}>
             <p className="text-lg md:text-xl text-muted-foreground mt-3">
@@ -34,6 +32,7 @@ const SkillsSlide: FC<SkillsSlideProps> = ({
           <SkillsCard
             icon={<Laptop className="h-4 w-4" />}
             header="Frontend Development"
+            className="xl:w-[340px]"
             skills={[
               {
                 category: "Core Frontend Stack",
@@ -58,6 +57,7 @@ const SkillsSlide: FC<SkillsSlideProps> = ({
           <SkillsCard
             icon={<ClipboardList className="h-4 w-4" />}
             header="Extended Skillset"
+            className="xl:w-[340px]"
             skills={[
               {
                 category: "Design & UI ",
@@ -65,7 +65,7 @@ const SkillsSlide: FC<SkillsSlideProps> = ({
                   { name: "UX/UI Collaboration", level: 5 },
                   { name: "Figma", level: 4 },
                   { name: "Design Principles", level: 3, learning: true },
-                  { name: "Webflow", level: 4, learning: true },
+                  { name: "Webflow", level: 3, learning: true },
                 ],
               },
               {

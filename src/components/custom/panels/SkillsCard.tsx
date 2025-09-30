@@ -6,6 +6,7 @@ import {
   PanelCardContent,
   MetaPill,
   ToolbarIcon,
+  RatingsRow,
 } from "@components";
 import { Github, Share2 } from "lucide-react";
 import { Skills } from "@types";
@@ -48,11 +49,18 @@ export default function ExperienceCard({
         }
       />
       <PanelCardContent className="flex flex-col flex-grow">
-        {/* {skills.map((b, i) => (
-          <BulletRow key={i} icon={<Play className="h-3.5 w-3.5" />}>
-            {b}
-          </BulletRow>
-        ))} */}
+        <p className="text-start py-2.5 font-semibold text-white/80">
+          {skills[0].category}
+        </p>
+        {skills[0].ratings.map((s, i) => (
+          <RatingsRow key={i} skill={s} />
+        ))}
+        <p className="text-start py-2.5 font-semibold text-white/80">
+          {skills[1].category}
+        </p>
+        {skills[1].ratings.map((s, i) => (
+          <RatingsRow key={i} skill={s} />
+        ))}
       </PanelCardContent>
     </PanelCardRoot>
   );

@@ -5,6 +5,8 @@ import { motion, HTMLMotionProps } from "framer-motion";
 import { Card, CardHeader, CardContent, CardFooter } from "@widgets";
 import { cn } from "@widgets";
 import { AnimatedChild } from "@components";
+import { SkillRating } from "@types";
+import { BookOpen, Star } from "lucide-react";
 
 type MotionDivProps = HTMLMotionProps<"div">;
 
@@ -69,7 +71,7 @@ export function PanelCardHeader({
 }: PanelCardHeaderProps) {
   return (
     <CardHeader
-      className={cn("px-0 pt-3 pb-4", "flex flex-col", className)}
+      className={cn("px-0 pt-3 pb-0", "flex flex-col", className)}
       {...props}
     >
       {(meta || toolbar) && (
@@ -86,7 +88,7 @@ export function PanelCardHeader({
       )}
 
       {(title || subtitle) && (
-        <div className="text-left px-6 md:px-7 pt-4">
+        <div className="text-left px-6 md:px-7 pt-4 pb-4">
           {title && (
             <div className="text-lg md:text-lg font-semibold leading-tight">
               {title}
@@ -189,6 +191,47 @@ export function BulletRow({
         {icon}
       </span>
       <div className="text-left text-muted-foreground">{children}</div>
+    </div>
+  );
+}
+/** A row displaying skill ratings with stars */
+export function RatingsRow({
+  skill,
+  className,
+}: {
+  skill: SkillRating;
+  className?: string;
+}) {
+  return (
+    <div
+      className={cn(
+        "flex items-start gap-3 text-sm md:text-base py-0.5 group",
+        className
+      )}
+    >
+      <div className="text-left text-muted-foreground/60">{skill.name}</div>
+      <div className="row-centered gap-0">
+        {Array.from({ length: skill.level }).map((_, i) => (
+          <span
+            key={i}
+            className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md"
+          >
+            <Star
+              className={cn(
+                "h-4 w-4 ",
+                i === 4
+                  ? "text-template-yellow"
+                  : "text-template-yellow/30 group-hover:text-template-yellow transition-colors duration-300"
+              )}
+            />
+          </span>
+        ))}
+        {skill.learning && (
+          <span className="mt-1 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md">
+            <BookOpen className="h-4 w-4 text-muted-foreground group-hover:text-white transition-colors duration-300" />
+          </span>
+        )}
+      </div>
     </div>
   );
 }

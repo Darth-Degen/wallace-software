@@ -49,6 +49,7 @@ module.exports = {
           700: "#6232b6",
           800: "#562c9f",
         },
+        "template-yellow": "#FFD041",
         "template-black": "#121212",
         "template-white": "#F3F1EA",
       },

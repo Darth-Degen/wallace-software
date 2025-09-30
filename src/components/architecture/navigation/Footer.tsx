@@ -38,7 +38,7 @@ const Footer: FC = () => {
                 className={cn(
                   "transition-300 hover:text-accent",
                   isActive
-                    ? "text-accent font-medium"
+                    ? "text-accent font-medium delay-300 transition-colors duration-1000"
                     : "text-muted-foreground hover:text-foreground"
                 )}
               >
