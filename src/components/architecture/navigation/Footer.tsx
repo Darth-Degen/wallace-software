@@ -1,40 +1,57 @@
 import { PAGES } from "@constants";
 import { useColorTheme, useCarousel, AccentColor } from "@stores";
-import { cn, handleCopyEmail } from "@utils";
-import { FC } from "react";
+import { cn } from "@utils";
+import { FC, useMemo } from "react";
 
 const Footer: FC = () => {
   const { setAccentColorAndSection } = useColorTheme();
-  const { currentSlide, setSlide } = useCarousel();
+  const {
+    currentSlide,
+    setFooterSlide,
+    footerToCarouselMap,
+    getCarouselPages,
+  } = useCarousel();
 
-  const handleNavClick = (page: (typeof PAGES)[0], index: number) => {
-    // Set both the accent color and active section for this page when clicked
+  // Footer pages (only those with showInFooter)
+  const footerPages = useMemo(() => PAGES.filter((p) => p.showInFooter), []);
+
+  // Current slide path (for portfolio grouping)
+  const currentPath = getCarouselPages()[currentSlide]?.path || "";
+  const portfolioActive = currentPath.includes("#portfolio-");
+
+  const handleNavClick = (
+    page: (typeof PAGES)[number],
+    footerIndex: number
+  ) => {
     if (page.accentColor) {
       setAccentColorAndSection(page.accentColor as AccentColor, page.path);
     }
-    console.log("Setting slide to index:", index);
-    // Update carousel slide
-    setSlide(index);
+    setFooterSlide(footerIndex);
   };
 
   return (
     <footer className="px-4 md:px-8 py-4 lg:py-4">
       <div className="max-width mx-auto flex flex-col-reverse lg:flex-row items-center justify-between gap-6 lg:gap-3">
-        {/* Left side */}
+        {/* Left */}
         <div className="flex items-center gap-2 text-muted-foreground w-[160px]">
           <span className="text-sm">
             © {new Date().getFullYear()} Wallace Software
           </span>
         </div>
 
-        {/* Middle: navigation links from config */}
-        <nav className="lg:flex hidden flex-wrap justify-center gap-4 lg:gap-6 text-sm lg:text-sm">
-          {PAGES.filter((p) => p.showInFooter).map((page, index) => {
-            const isActive = currentSlide === index;
+        {/* Center nav */}
+        <nav className="lg:flex hidden flex-wrap justify-center gap-4 lg:gap-6 text-sm">
+          {footerPages.map((p, i) => {
+            const carouselIndex = footerToCarouselMap[i];
+            const isPortfolioFooterItem = p.path.includes("#portfolio-");
+            const isActive =
+              carouselIndex === currentSlide ||
+              (isPortfolioFooterItem && portfolioActive);
+
             return (
               <button
-                key={page.path}
-                onClick={() => handleNavClick(page, index)}
+                key={p.path}
+                onClick={() => handleNavClick(p, i)}
                 className={cn(
                   "transition-300 hover:text-accent",
                   isActive
@@ -42,17 +59,15 @@ const Footer: FC = () => {
                     : "text-muted-foreground hover:text-foreground"
                 )}
               >
-                {page.name}
+                {p.name}
               </button>
             );
           })}
         </nav>
 
+        {/* Right (example contact) */}
         <div className="lg:flex hidden items-center justify-end gap-2 text-white/30 w-[160px]">
-          <p
-            className="cursor-pointer ml-2 text-muted-foreground hover-text-accent text-sm"
-            onClick={handleCopyEmail}
-          >
+          <p className="ml-2 text-sm text-muted-foreground">
             info@wallace.software
           </p>
         </div>
@@ -60,5 +75,4 @@ const Footer: FC = () => {
     </footer>
   );
 };
-
 export default Footer;

@@ -7,24 +7,13 @@ export const accentColors = {
   yellow: { hsl: '43 100% 63%', foreground: '0 0% 7%' },   // Yellow - dark text
   blue: { hsl: '225 100% 63%', foreground: '0 0% 7%' },     // Blue - dark text for better contrast 
   //portfolio colors
-  scum: { hsl: '14 100% 68%', foreground: '0 0% 7%' },  
-  somos: { hsl: '14 100% 68%', foreground: '0 0% 7%' },       
-  sandbox: { hsl: '14 100% 68%', foreground: '0 0% 7%' },   
-  folio: { hsl: '14 100% 68%', foreground: '0 0% 0%' },   
-  cyberfrogs: { hsl: '14 100% 68%', foreground: '0 0% 0%' },    
-  publique: { hsl: '14 100% 68%', foreground: '0 0% 0%' },      
+  scum:       { hsl: '155 51% 72%',  foreground: '0 0% 7%' },   // #93DCBE
+  somos:      { hsl: '42 87% 63%',   foreground: '0 0% 7%' },   // #F3C24F
+  sandbox:    { hsl: '51 64% 78%',   foreground: '0 0% 7%' },   // #EBE1A5
+  folio:      { hsl: '22 67% 64%',   foreground: '0 0% 7%' },   // #E19367
+  cyberfrogs: { hsl: '150 32% 18%',  foreground: '0 0% 98%' },  // #203E2F (dark -> light text)
+  publique:   { hsl: '78 60% 46%',   foreground: '0 0% 7%' },  
 } as const;
-
-// export const accentColors = {
-//   orange: { hsl: '14 100% 68%', foreground: '0 0% 7%' },   // #FF805C - dark text for better contrast
-//   yellow: { hsl: '43 100% 57%', foreground: '0 0% 7%' },   // Yellow - dark text
-//   green: { hsl: '142 45% 54%', foreground: '0 0% 0%' },    // Green - black text
-//   blue: { hsl: '220 78% 61%', foreground: '0 0% 7%' },     // Blue - dark text for better contrast
-//   purple: { hsl: '265 72% 57%', foreground: '0 0% 7%' },   // Purple - dark text for better contrast
-//   red: { hsl: '6 100% 47%', foreground: '0 0% 7%' },       // Red - dark text for better contrast  
-//   pink: { hsl: '330 81% 60%', foreground: '0 0% 7%' },     // Pink - dark text for better contrast
-//   teal: { hsl: '178 78% 57%', foreground: '0 0% 0%' },     // Teal - black text
-// } as const;
 
 export type AccentColor = keyof typeof accentColors;
 

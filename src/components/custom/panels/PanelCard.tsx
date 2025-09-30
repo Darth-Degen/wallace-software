@@ -162,7 +162,7 @@ export function ToolbarIcon({
       className={cn(
         "inline-flex h-9 w-9 items-center justify-center",
         "rounded-full border",
-        "hover:border-white/20 transition"
+        "hover:border-white/40 transition-300"
       )}
     >
       {children}

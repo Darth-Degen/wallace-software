@@ -1,6 +1,6 @@
 import { FC } from "react";
-import AnimatedSlide from "./AnimatedSlide";
-import AnimatedChild from "./AnimatedChild";
+import { Laptop, ClipboardList } from "lucide-react";
+import { SkillsCard, AnimatedChild, AnimatedSlide } from "@components";
 
 interface PortfolioSlideProps {
   className?: string;
@@ -14,19 +14,16 @@ const PortfolioSlide: FC<PortfolioSlideProps> = ({
   direction = 1,
 }) => {
   return (
-    <AnimatedSlide
-      animationTrigger={animationTrigger}
-      direction={direction}
-      className={className}
-    >
-      {/* Portfolio Content */}
-      <div className="bg-accent p-10 rounded-lg space-y-8">
-        <h1 className="text-4xl md:text-6xl font-bold mb-6">Portfolio</h1>{" "}
-        <p className="text-lg md:text-xl max-w-3xl">
-          Over the years, I&apos;ve had the privilege of working with a diverse
-          range of clients, from innovative startups to established enterprises{" "}
-        </p>
-      </div>
+    <AnimatedSlide animationTrigger="pageLoad" className="px-6 py-10">
+      <AnimatedChild animation="fade" className="z-0 max-w-6xl w-full">
+        <div className="mx-auto text-center mb-10">
+          <AnimatedChild animation={"fade"} delay={0.2}>
+            <h1 className="text-4xl md:text-6xl font-bold">Portfolio</h1>
+          </AnimatedChild>
+        </div>
+
+        <div className="flex flex-wrap items-center justify-center gap-6 px-10 sm:px-16 md:px-32 lg:px-0"></div>
+      </AnimatedChild>
     </AnimatedSlide>
   );
 };
