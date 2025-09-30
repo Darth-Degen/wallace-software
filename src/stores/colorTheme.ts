@@ -5,8 +5,8 @@ import { persist } from "zustand/middleware";
 export const accentColors = {
   orange: { hsl: '14 100% 68%', foreground: '0 0% 7%' },   // #FF805C - dark text for better contrast
   yellow: { hsl: '43 100% 63%', foreground: '0 0% 7%' },   // Yellow - dark text
+  blue: { hsl: '225 100% 63%', foreground: '0 0% 7%' },     // Blue - dark text for better contrast
   green: { hsl: '14 100% 68%', foreground: '0 0% 0%' },    // Green - black text
-  blue: { hsl: '14 100% 68%', foreground: '0 0% 7%' },     // Blue - dark text for better contrast
   purple: { hsl: '14 100% 68%', foreground: '0 0% 7%' },   // Purple - dark text for better contrast
   red: { hsl: '14 100% 68%', foreground: '0 0% 7%' },       // Red - dark text for better contrast
   pink: { hsl: '14 100% 68%', foreground: '0 0% 7%' },     // Pink - dark text for better contrast
@@ -36,7 +36,7 @@ interface ColorThemeState {
   applyAccentToDOM: (color: AccentColor) => void;
 }
 
-const colorOrder: AccentColor[] = ['orange', 'yellow', 'green', 'blue', 'purple', 'red', 'pink', 'teal'];
+const colorOrder: AccentColor[] = ['orange', 'yellow', 'blue', 'green',  'purple', 'red', 'pink', 'teal'];
 
 /**
  * Apply accent color to DOM by updating CSS custom properties

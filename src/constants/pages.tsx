@@ -28,7 +28,7 @@ export const PAGES: NavPage[] = [
     path: "/#skills",
     showInHeader: false,
     showInFooter: true,
-    accentColor: "purple" as AccentColor,
+    accentColor: "blue" as AccentColor,
   },
   {
     name: "Portfolio",

@@ -18,3 +18,15 @@ export type SlideMeta = {
   accent: "yellow" | "green" | "orange" | "red" | "purple" | "blue";
   component: React.ComponentType; // the actual slide component
 };
+
+//Skills  
+
+export type SkillRating = {
+  name: string;
+  level: 1 | 2 | 3 | 4 | 5;
+  learning?: boolean; // if true, indicates currently learning this skill
+};
+export type Skills = {
+  category: string;
+  ratings: SkillRating[]; 
+};

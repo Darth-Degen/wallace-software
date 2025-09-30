@@ -29,16 +29,14 @@ export const PanelCardRoot = ({
     <AnimatedChild
       animation={"scale"}
       delay={0.6}
-      // whileHover={interactive ? { y: -2 } : undefined}
-      // transition={{ type: "spring", stiffness: 300, damping: 24, mass: 0.6 }}
-      // {...motionProps}
       className={cn(
         // base
-        "rounded-2xl border bg-card/60 text-card-foreground backdrop-blur",
+        "rounded-2xl border bg-card/60 text-card-foreground backdrop-blur lg:max-w-[369px] min-w-[280px]",
         // match your screenshots: soft border + subtle inner glow
         "shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)]",
         elevated && "shadow-xl",
-        interactive && "hover:border-white/20",
+        interactive &&
+          "transition-colors duration-300 hover:border-white/20 group",
         className
       )}
     >
@@ -75,13 +73,15 @@ export function PanelCardHeader({
       {...props}
     >
       {(meta || toolbar) && (
-        <div className="flex items-center justify-between border-b border-border pb-3 w-full">
-          {meta ? (
-            <div className="flex items-center gap-2">{meta}</div>
-          ) : (
-            <span />
-          )}
-          {toolbar}
+        <div className="border-b pb-3 w-full transition-300 group-hover:border-white/20">
+          <div className="flex items-center justify-between px-3">
+            {meta ? (
+              <div className="flex items-center gap-2">{meta}</div>
+            ) : (
+              <span />
+            )}
+            {toolbar}
+          </div>
         </div>
       )}
 
@@ -137,7 +137,7 @@ export function MetaPill({
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-2 rounded-lg px-3 py-1",
+        "inline-flex items-center gap-2 rounded-lg px-0 py-1",
         "text-xs md:text-sm text-muted-foreground",
         className
       )}
