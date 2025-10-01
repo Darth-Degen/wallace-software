@@ -6,39 +6,39 @@ import {
   PanelCardContent,
   MetaPill,
   ToolbarIcon,
-  RatingsRow,
   VideoPlayer,
 } from "@components";
+import { PortfolioItem } from "@types";
 import { Github, Laptop, Share2 } from "lucide-react";
 
-type ExperienceCardProps = {
-  header: string;
-  onGithub?: () => void;
-  onShare?: () => void;
+type PortfolioCardProps = {
+  item: PortfolioItem;
   className?: string;
 };
 
-export default function ExperienceCard({
-  header,
-  onGithub,
-  onShare,
-  className,
-}: ExperienceCardProps) {
+export default function PortfolioCard({ item, className }: PortfolioCardProps) {
   return (
     <PanelCardRoot className={className} elevated>
       <PanelCardHeader
         meta={
           <MetaPill>
             <Laptop className="h-4 w-4" />
-            {header}
+            {item.title}
           </MetaPill>
         }
         toolbar={
           <div className="flex items-center gap-2">
-            <ToolbarIcon label="GitHub" onClick={onGithub}>
+            <ToolbarIcon
+              label="GitHub"
+              onClick={() => window.open(item.githubUrl, "_blank")}
+            >
               <Github className="h-4 w-4" />
             </ToolbarIcon>
-            <ToolbarIcon label="Share" onClick={onShare}>
+
+            <ToolbarIcon
+              label="Share"
+              onClick={() => window.open(item.projectUrl, "_blank")}
+            >
               <Share2 className="h-4 w-4" />
             </ToolbarIcon>
           </div>
