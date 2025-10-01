@@ -7,6 +7,7 @@ interface AnimatedChildProps {
   className?: string;
   delay?: number; // kept for backward compatibility; parent stagger controls timing
   animation?: "up" | "down" | "left" | "right" | "scale" | "fade";
+  disableAnimation?: boolean;
 }
 
 const childAnimationVariants = {
@@ -47,6 +48,7 @@ const AnimatedChild: FC<AnimatedChildProps> = ({
   className = "",
   delay,
   animation = "scale",
+  disableAnimation = false,
 }) => {
   const variants: Variants = {
     initial: childAnimationVariants[animation].initial,
@@ -66,6 +68,10 @@ const AnimatedChild: FC<AnimatedChildProps> = ({
       },
     },
   };
+
+  if (disableAnimation) {
+    return <div className={cn(className)}>{children}</div>;
+  }
 
   return (
     <motion.div className={cn(className)} variants={variants}>
