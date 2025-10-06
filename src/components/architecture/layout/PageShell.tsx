@@ -80,7 +80,7 @@ const PageShell: FC<PageShellProps> = ({
           id="page-main"
           className={cx(
             "relative flex w-full h-full flex-1 flex-col items-center overflow-x-clip bg-background",
-            padForHeader && "pt-16 md:pt-20",
+            padForHeader && "py-16 md:py-20",
             className,
             mainClassName
           )}
