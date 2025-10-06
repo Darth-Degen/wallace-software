@@ -26,14 +26,14 @@ const ExperienceSlide: FC<ExperienceSlideProps> = ({
           </AnimatedChild>
         </div>
 
-        <div className="grid gap-6 md:gap-7 lg:grid-cols-3 px-10 sm:px-16 md:px-32 lg:px-0">
+        <div className="grid gap-6 md:gap-7 lg:grid-cols-3 justify-center px-10 sm:px-16 md:px-32 lg:px-0">
           <ExperienceCard
             range="2022-Present"
             title="Co-Founder, Sandbox Studio"
             bullets={[
-              "Crafted high-performance websites for Web2/Web3 clients using Next.js, React, Tailwind, and Framer Motion.",
-              "Led frontend architecture and component libraries for multiple brands.",
-              "Partnered with stakeholders to scope features and deliver on tight timelines.",
+              "Co-founded a boutique development studio focused on crafting custom websites for startups & web3 clients",
+              "Built exceptionally unique frontend experiences with Next.js, React, Framer Motion, and Tailwind CSS.",
+              "Partnered with founders, startups, and designers from concept to launch, delivering fast-loading, mobile-responsive, and scalable web products",
             ]}
           />
           <ExperienceCard

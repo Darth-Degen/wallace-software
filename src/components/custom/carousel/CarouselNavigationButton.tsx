@@ -19,7 +19,7 @@ const CarouselNavigationButton: FC<CarouselNavigationButtonProps> = ({
       onClick={onClick}
       disabled={disabled}
       className={cn(
-        "transition-all duration-200 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100",
+        "transition-200 hover:lg:scale-110 active:scale-75 active:lg:scale-90 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 h-min",
         className
       )}
       aria-label={`${direction === "left" ? "Previous" : "Next"} slide`}
@@ -31,7 +31,7 @@ const CarouselNavigationButton: FC<CarouselNavigationButtonProps> = ({
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className={cn(
-          "size-[clamp(52px,8vw,72px)]", // smaller on mobile, up to 72px on large screens
+          "size-[clamp(64px,8vw,72px)]", // smaller on mobile, up to 72px on large screens
           direction === "right" ? "rotate-180" : ""
         )}
       >

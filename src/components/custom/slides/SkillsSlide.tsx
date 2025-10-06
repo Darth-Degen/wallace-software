@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { SkillsCard, AnimatedChild, AnimatedSlide } from "@components";
 import { Laptop, ClipboardList } from "lucide-react";
 
@@ -13,6 +13,12 @@ const SkillsSlide: FC<SkillsSlideProps> = ({
   animationTrigger = "pageLoad",
   direction = 1,
 }) => {
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" }); // or "smooth"
+    }
+  }, []); // runs once when slide mounts
+
   return (
     <AnimatedSlide animationTrigger="pageLoad" className="px-6 py-10">
       <AnimatedChild animation="fade" className="z-0 max-w-6xl w-full">

@@ -49,7 +49,7 @@ const AboutSlide: FC<AboutSlideProps> = ({
           animation={"fade"}
           // hover={true}
           delay={0.2}
-          className="flex flex-col justify-center gap-6 relative z-10 w-[90%] h-auto md:max-w-[500px]  rounded-xl lg:mb-[5%] mt-10 bg-[#46658E]/80 md:bg-[#ff805c]/90 py-6 lg:pt-10 lg:pb-16 px-14 md:px-8"
+          className="flex flex-col justify-center gap-6 relative z-10 w-[90%] h-auto md:max-w-[500px]  rounded-xl lg:mb-[5%] mt-10 bg-[#ff805c]/85 md:bg-[#ff805c]/90 py-6 lg:pt-10 lg:pb-16 px-4 md:px-8"
         >
           <AnimatedChild animation={"scale"} delay={0.4}>
             <h1 className="text-2xl md:text-4xl font-semibold text-white/90 text-center">
