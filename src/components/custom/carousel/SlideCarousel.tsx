@@ -119,13 +119,13 @@ const SlideCarousel: FC = () => {
       <CarouselNavigationButton
         direction="left"
         onClick={prevSlide}
-        className="fixed top-1/2 -translate-y-1/2 z-10 left-8 2xl:left-[max(1rem,calc((100vw-1512px)/2+1rem))]"
+        className="fixed top-1/2 -translate-y-1/2 z-10 left-3 md:left-8 2xl:left-[max(1rem,calc((100vw-1512px)/2+1rem))]"
       />
 
       <CarouselNavigationButton
         direction="right"
         onClick={nextSlide}
-        className="fixed top-1/2 -translate-y-1/2 z-10 right-8 2xl:right-[max(1rem,calc((100vw-1512px)/2+1rem))]"
+        className="fixed top-1/2 -translate-y-1/2 z-10 right-3 md:right-8 2xl:right-[max(1rem,calc((100vw-1512px)/2+1rem))]"
       />
 
       {/* Slide Content */}
