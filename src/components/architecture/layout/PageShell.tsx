@@ -1,6 +1,6 @@
 "use client";
 import { useLayoutEffect, useRef, type CSSProperties, type FC } from "react";
-import { Footer, SeoHead, SplashScreen } from "@components";
+import { SeoHead, SplashScreen } from "@components";
 import type { PageShellProps } from "@types";
 import { useLoadingStore } from "@stores";
 import { useRouter } from "next/router";
@@ -37,26 +37,29 @@ const PageShell: FC<PageShellProps> = ({
     if (!shell) return;
 
     const header = document.getElementById("site-header");
-    const footerBox = footerBoxRef.current;
+    const footerEl = document.getElementById("site-footer");
 
-    // Single measurement after initial render, avoiding multiple recalculations
-    const measureAndApply = () => {
+    const setVars = () => {
       const headerH = header?.getBoundingClientRect().height ?? 0;
-      const footerH = footerBox?.getBoundingClientRect().height ?? 0;
-
+      const footerH = footerEl?.getBoundingClientRect().height ?? 0; // 53px < md, 52px ≥ md (border diff) will be measured
       shell.style.setProperty("--header-h", `${Math.round(headerH)}px`);
       shell.style.setProperty("--footer-h", `${Math.round(footerH)}px`);
       shell.style.setProperty(
-        "--header-pad",
-        padForHeader ? `${Math.round(headerH)}px` : "0px"
+        "--app-h",
+        `calc(100dvh - ${Math.round(headerH)}px - ${Math.round(footerH)}px)`
       );
     };
 
-    // Delay measurement to after fonts/images load, but only once
-    const timer = setTimeout(measureAndApply, 100);
+    setVars();
+
+    const ro = new ResizeObserver(setVars);
+    header && ro.observe(header);
+    footerEl && ro.observe(footerEl);
+    window.addEventListener("resize", setVars);
 
     return () => {
-      clearTimeout(timer);
+      ro.disconnect();
+      window.removeEventListener("resize", setVars);
     };
   }, [padForHeader, footer]);
 
@@ -68,19 +71,20 @@ const PageShell: FC<PageShellProps> = ({
         ref={shellRef}
         style={
           {
-            // stable defaults to prevent layout shifts - match header h-16 md:h-20
-            "--header-h": "64px",
-            "--footer-h": "120px",
-            "--header-pad": "64px",
+            "--header-h": "64px", // defaults: header h-16
+            "--footer-h": "53px", // mobile footer (with border)
+            "--app-h": "calc(100dvh - 64px - 53px)",
+            "--header-pad": padForHeader ? "64px" : "0px",
           } as VarStyle
         }
-        className="w-full min-h-screen flex flex-col"
+        className="w-full flex flex-col"
       >
         <main
           id="page-main"
           className={cx(
-            "relative flex w-full h-full flex-1 flex-col items-center overflow-x-clip bg-background",
-            padForHeader && "py-16 md:py-20",
+            "relative flex w-full flex-1 flex-col items-center overflow-x-clip bg-background",
+            padForHeader && "pt-16 md:pt-20 pb-14 md:pb-[57px]",
+            "min-h-[var(--app-h)]",
             className,
             mainClassName
           )}
@@ -94,7 +98,7 @@ const PageShell: FC<PageShellProps> = ({
         </main>
 
         {/* Wrap footer so we can measure its box without modifying the Footer component */}
-        <div ref={footerBoxRef}>{footer !== false && <Footer />}</div>
+        {/* <div ref={footerBoxRef}>{footer !== false && <Footer />}</div> */}
       </div>
     </>
   );

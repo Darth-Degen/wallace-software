@@ -1,5 +1,5 @@
 import { FC, ReactNode } from "react";
-import { motion, Variants } from "framer-motion";
+import { hover, motion, Variants } from "framer-motion";
 import { cn } from "@utils";
 
 interface AnimatedChildProps {
@@ -8,40 +8,8 @@ interface AnimatedChildProps {
   delay?: number; // kept for backward compatibility; parent stagger controls timing
   animation?: "up" | "down" | "left" | "right" | "scale" | "fade";
   disableAnimation?: boolean;
+  hover?: boolean; // slight scale on hover
 }
-
-const childAnimationVariants = {
-  up: {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: -10 },
-  },
-  down: {
-    initial: { opacity: 0, y: -20 },
-    animate: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: 10 },
-  },
-  left: {
-    initial: { opacity: 0, x: 20 },
-    animate: { opacity: 1, x: 0 },
-    exit: { opacity: 0, x: -10 },
-  },
-  right: {
-    initial: { opacity: 0, x: -20 },
-    animate: { opacity: 1, x: 0 },
-    exit: { opacity: 0, x: 10 },
-  },
-  scale: {
-    initial: { opacity: 0, scale: 0.9 },
-    animate: { opacity: 1, scale: 1 },
-    exit: { opacity: 0, scale: 0.98 },
-  },
-  fade: {
-    initial: { opacity: 0 },
-    animate: { opacity: 1 },
-    exit: { opacity: 0 },
-  },
-} as const;
 
 const AnimatedChild: FC<AnimatedChildProps> = ({
   children,
@@ -49,7 +17,41 @@ const AnimatedChild: FC<AnimatedChildProps> = ({
   delay,
   animation = "scale",
   disableAnimation = false,
+  hover = false,
 }) => {
+  const hoverEffect = hover ? { scale: 1.2 } : {};
+  const childAnimationVariants = {
+    up: {
+      initial: { opacity: 0, y: 20 },
+      animate: { opacity: 1, y: 0, hover: hoverEffect },
+      exit: { opacity: 0, y: -10 },
+    },
+    down: {
+      initial: { opacity: 0, y: -20 },
+      animate: { opacity: 1, y: 0, hover: hoverEffect },
+      exit: { opacity: 0, y: 10 },
+    },
+    left: {
+      initial: { opacity: 0, x: 20 },
+      animate: { opacity: 1, x: 0, hover: hoverEffect },
+      exit: { opacity: 0, x: -10 },
+    },
+    right: {
+      initial: { opacity: 0, x: -20 },
+      animate: { opacity: 1, x: 0, hover: hoverEffect },
+      exit: { opacity: 0, x: 10 },
+    },
+    scale: {
+      initial: { opacity: 0, scale: 0.9 },
+      animate: { opacity: 1, scale: 1, hover: hoverEffect },
+      exit: { opacity: 0, scale: 0.98 },
+    },
+    fade: {
+      initial: { opacity: 0 },
+      animate: { opacity: 1, hover: hoverEffect },
+      exit: { opacity: 0 },
+    },
+  } as const;
   const variants: Variants = {
     initial: childAnimationVariants[animation].initial,
     animate: {

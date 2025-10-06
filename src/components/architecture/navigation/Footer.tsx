@@ -30,7 +30,7 @@ const Footer: FC = () => {
   };
 
   return (
-    <footer className="px-4 md:px-8 py-4 lg:py-4 fixed bottom-0 bg-background w-full border-t border-border z-50">
+    <footer className="px-4 md:px-8 py-4 h-14 fixed bottom-0 border-t border-border md:border-none bg-background w-full  z-50">
       <div className="max-width mx-auto flex flex-col-reverse lg:flex-row items-center justify-between gap-6 lg:gap-3">
         {/* Left */}
         <div className="lg:flex hidden items-center gap-2 text-muted-foreground w-[160px]">

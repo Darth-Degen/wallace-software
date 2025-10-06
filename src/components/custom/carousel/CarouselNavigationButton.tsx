@@ -31,7 +31,7 @@ const CarouselNavigationButton: FC<CarouselNavigationButtonProps> = ({
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className={cn(
-          "size-[clamp(46px,8vw,72px)]", // smaller on mobile, up to 72px on large screens
+          "size-[clamp(52px,8vw,72px)]", // smaller on mobile, up to 72px on large screens
           direction === "right" ? "rotate-180" : ""
         )}
       >

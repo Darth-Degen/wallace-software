@@ -47,6 +47,7 @@ const AboutSlide: FC<AboutSlideProps> = ({
         {/* Speech Bubble */}
         <AnimatedChild
           animation={"fade"}
+          // hover={true}
           delay={0.2}
           className="flex flex-col justify-center gap-6 relative z-10 w-[90%] h-auto md:max-w-[500px]  rounded-xl lg:mb-[5%] mt-10 bg-[#46658E]/80 md:bg-[#ff805c]/90 py-6 lg:pt-10 lg:pb-16 px-14 md:px-8"
         >
@@ -68,7 +69,7 @@ const AboutSlide: FC<AboutSlideProps> = ({
             <p className="text-base md:text-lg text-white/80 max-w-xl">
               A frontend developer who loves bringing elegant designs to life. I
               specialize in building fast, responsive websites with Next.js,
-              TypeScript, Tailwind, and more. Click the arrows to explore my
+              TypeScript, Tailwind, and more. Click the arrows to navigate my
               work and skills.
             </p>
           </AnimatedChild>

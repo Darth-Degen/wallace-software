@@ -2,7 +2,7 @@ import "tailwindcss/tailwind.css";
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { Toaster } from "react-hot-toast";
-import { Header } from "@components";
+import { Footer, Header } from "@components";
 import { NextPageWithOptions } from "@types";
 import { useRouter } from "next/router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -23,6 +23,7 @@ export default function App({ Component, pageProps }: AppPropsWithOptions) {
       <>
         <Header />
         <Component key={router.asPath} {...pageProps} />
+        <Footer />
       </>
       <Toaster
         position="bottom-right"
