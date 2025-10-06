@@ -1,6 +1,6 @@
 import { PAGES } from "@constants";
 import { useColorTheme, useCarousel, AccentColor } from "@stores";
-import { cn } from "@utils";
+import { cn, handleCopyEmail } from "@utils";
 import { FC, useMemo } from "react";
 
 const Footer: FC = () => {
@@ -67,7 +67,10 @@ const Footer: FC = () => {
 
         {/* Right (example contact) */}
         <div className="lg:flex hidden items-center justify-end gap-2 text-white/30 w-[160px]">
-          <p className="ml-2 text-sm text-muted-foreground">
+          <p
+            className="ml-2 text-sm text-muted-foreground cursor-pointer hover:text-accent transition-300"
+            onClick={() => handleCopyEmail()}
+          >
             info@wallace.software
           </p>
         </div>

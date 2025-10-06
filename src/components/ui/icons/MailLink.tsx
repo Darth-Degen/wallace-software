@@ -14,7 +14,7 @@ type MailLinkProps = {
 };
 
 const MailLink: React.FC<MailLinkProps> = ({
-  href = "mailto:info@wallacesoftware.com",
+  href = "mailto:info@wallace.software",
   label = "Email",
   variant = "icon",
   size = "icon",

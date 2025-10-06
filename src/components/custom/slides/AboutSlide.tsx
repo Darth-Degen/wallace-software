@@ -48,26 +48,28 @@ const AboutSlide: FC<AboutSlideProps> = ({
         <AnimatedChild
           animation={"fade"}
           delay={0.2}
-          className="col-centered gap-6 relative z-10 w-[90%] h-auto md:h-[300px] md:w-[585px] md:aspect-[585/289] rounded-xl lg:mb-[5%] mt-10 bg-[#46658E]/80 md:bg-[#ff805c]/90 py-6 lg:py-0"
+          className="flex flex-col justify-center gap-6 relative z-10 w-[90%] h-auto md:max-w-[500px]  rounded-xl lg:mb-[5%] mt-10 bg-[#46658E]/80 md:bg-[#ff805c]/90 py-6 lg:pt-10 lg:pb-16 px-14 md:px-8"
         >
-          <AnimatedChild
-            animation={"scale"}
-            delay={0.4}
-            className="relative z-0"
-          >
-            <h1 className="text-2xl md:text-4xl font-semibold text-white/80">
+          <AnimatedChild animation={"scale"} delay={0.4}>
+            <h1 className="text-2xl md:text-4xl font-semibold text-white/90 text-center">
               Hi, I&apos;m Wallace
             </h1>
           </AnimatedChild>
           <AnimatedChild
             animation={"scale"}
             delay={0.6}
-            className="relative z-0 max-w-[400px] px-14 md:px-0"
+            className="text-center space-y-4"
           >
-            <p className="text-base md:text-xl text-white/70 max-w- xl">
+            {/* <p className="text-base md:text-xl text-white/70 max-w- xl">
               A front end developer who loves crafting unique digital
               experiences. I specialize in using Next.JS, Typescript, Tailwind,
               and Motion.
+            </p> */}
+            <p className="text-base md:text-lg text-white/80 max-w-xl">
+              A frontend developer who loves bringing elegant designs to life. I
+              specialize in building fast, responsive websites with Next.js,
+              TypeScript, Tailwind, and more. Click the arrows to explore my
+              work and skills.
             </p>
           </AnimatedChild>
         </AnimatedChild>

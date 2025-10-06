@@ -28,11 +28,8 @@ const IconLink: React.FC<IconLinkProps> = ({
   className,
   iconClassName,
 }) => {
-  const isExternal =
-    newTab ??
-    (/^(https?:)?\/\//.test(href) ||
-      href.startsWith("mailto:") ||
-      href.startsWith("tel:"));
+  const isHttpExternal = /^(https?:)?\/\//.test(href);
+  const openInNewTab = newTab ?? isHttpExternal;
 
   return (
     <Button
@@ -45,8 +42,8 @@ const IconLink: React.FC<IconLinkProps> = ({
     >
       <Link
         href={href}
-        target={isExternal ? "_blank" : undefined}
-        rel={isExternal ? "noopener noreferrer" : undefined}
+        target={openInNewTab ? "_blank" : undefined}
+        rel={openInNewTab ? "noopener noreferrer" : undefined}
         aria-label={label}
       >
         <span className="sr-only">{label}</span>
