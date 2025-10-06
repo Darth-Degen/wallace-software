@@ -8,6 +8,7 @@ import {
   ToolbarIcon,
   VideoPlayer,
 } from "@components";
+import { useWindowSize } from "@hooks";
 import { PortfolioItem } from "@types";
 import { Github, Laptop, Share2 } from "lucide-react";
 
@@ -17,6 +18,7 @@ type PortfolioCardProps = {
 };
 
 export default function PortfolioCard({ item, className }: PortfolioCardProps) {
+  const [width, height, isMobile] = useWindowSize();
   return (
     <PanelCardRoot className={className} elevated>
       <PanelCardHeader
@@ -49,6 +51,7 @@ export default function PortfolioCard({ item, className }: PortfolioCardProps) {
           autoPlay
           muted
           loop
+          controls={isMobile}
           parentClassName="rounded-b-2xl overflow-hidden"
           className="rounded-b-2xl overflow-hidden"
         />

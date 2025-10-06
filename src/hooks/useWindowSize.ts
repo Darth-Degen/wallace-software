@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
 
-export const useWindowSize = () => {
-  const [size, setSize] = useState<number[]>([0, 0]);
+export type UseWindowSizeReturn = [width: number, height: number, isMobile: boolean ];
+
+export const useWindowSize = (): UseWindowSizeReturn => {
+  const [size, setSize] = useState<UseWindowSizeReturn>([0, 0, false]);
 
   useEffect(() => {
     const updateSize = () => {
-      setSize([window.innerWidth, window.innerHeight]);
+     const w = window.innerWidth;
+      const h = window.innerHeight;
+      setSize([w, h, w <= 1024]);
     };
 
     window.addEventListener("resize", updateSize);

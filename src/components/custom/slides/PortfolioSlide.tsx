@@ -36,12 +36,12 @@ const PortfolioSlide: FC<PortfolioSlideProps> = ({
     <AnimatedSlide animationTrigger="pageLoad" className="px-6 py-10">
       <AnimatedChild
         animation="fade"
-        className="z-0 max-w-6xl w-full flex flex-wrap items-center justify-center gap-6 px-10 sm:px-16 md:px-32 lg:px-0"
+        className="z-0 max-w-6xl w-full flex flex-wrap items-center justify-center gap-6 sm:px-16 md:px-32 lg:px-0"
       >
         {portfolioIndex !== -1 && (
           <PortfolioCard
             item={PORTFOLIO_ITEMS[portfolioIndex]}
-            className="!max-w-[1000px] w-[800px]"
+            className="lg:max-w-none w-[95svw] xl:w-[900px] 2xl:w-[1200px]"
           />
         )}
       </AnimatedChild>
