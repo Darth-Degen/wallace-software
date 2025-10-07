@@ -9,6 +9,7 @@ import {
   ToolbarIcon,
   BulletRow,
 } from "@components";
+import { cn } from "@utils";
 
 type ExperienceCardProps = {
   range: string;
@@ -28,7 +29,10 @@ export default function ExperienceCard({
   className,
 }: ExperienceCardProps) {
   return (
-    <PanelCardRoot className={className} elevated>
+    <PanelCardRoot
+      className={cn("md:max-w-2xl xl:max-w-[369px]", className)}
+      elevated
+    >
       <PanelCardHeader
         meta={
           <MetaPill>

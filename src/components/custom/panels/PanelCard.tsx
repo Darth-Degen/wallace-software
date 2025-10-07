@@ -33,7 +33,7 @@ export const PanelCardRoot = ({
       delay={0.6}
       className={cn(
         // base
-        "rounded-2xl border bg-card/60 text-card-foreground backdrop-blur md:max-w-2xl xl:max-w-[369px] min-w-[280px]",
+        "rounded-2xl border bg-card/60 text-card-foreground backdrop-blur min-w-64",
         // match your screenshots: soft border + subtle inner glow
         "shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)]",
         elevated && "shadow-xl",

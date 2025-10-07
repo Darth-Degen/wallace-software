@@ -25,13 +25,10 @@ const PortfolioSlide: FC<PortfolioSlideProps> = ({
   const currentPath = getCarouselPages()[currentSlide]?.path || "";
   const portfolioActive = currentPath.includes("#portfolio-");
 
-  console.log("currentSlide", currentSlide);
-  console.log("currentPath", currentPath);
-
   const portfolioIndex = PORTFOLIO_ITEMS.findIndex((item) =>
     currentPath.includes(item.title.toLowerCase().replace(" ", ""))
   );
-  console.log("portfolioIndex", portfolioIndex);
+
   return (
     <AnimatedSlide animationTrigger="pageLoad" className="px-6 py-10">
       <AnimatedChild
@@ -41,7 +38,7 @@ const PortfolioSlide: FC<PortfolioSlideProps> = ({
         {portfolioIndex !== -1 && (
           <PortfolioCard
             item={PORTFOLIO_ITEMS[portfolioIndex]}
-            className="lg:max-w-none w-[95svw] xl:w-[900px] 2xl:w-[1200px]"
+            className="!w-[900px] 2xl:!w-[1200px]"
           />
         )}
       </AnimatedChild>

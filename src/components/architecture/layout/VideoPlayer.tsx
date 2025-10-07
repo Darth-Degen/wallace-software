@@ -1,8 +1,9 @@
+"use client";
 import { useEffect, useRef } from "react";
 import { cn } from "@utils";
 import "video.js/dist/video-js.css";
 import "videojs-contrib-quality-levels";
-import Player from "video.js/dist/types/player";
+// Removed runtime import of types
 
 interface CloudflareVideoPlayerProps
   extends React.VideoHTMLAttributes<HTMLVideoElement> {
@@ -30,35 +31,24 @@ const CloudflareVideoPlayer = ({
   ...rest
 }: CloudflareVideoPlayerProps) => {
   const videoNodeRef = useRef<HTMLVideoElement | null>(null);
-  const playerRef = useRef<Player | null>(null);
+  const playerRef = useRef<any>(null);
 
+  // One-time init
   useEffect(() => {
     let cancelled = false;
-    const init = async () => {
+    (async () => {
       if (!videoNodeRef.current) return;
-      if (playerRef.current) {
-        playerRef.current.dispose();
-        playerRef.current = null;
-      }
-
-      const { default: videojsLib } = await import("video.js");
-
+      const { default: videojs } = await import("video.js");
       if (cancelled || !videoNodeRef.current) return;
 
-      const player = videojsLib(videoNodeRef.current, {
+      playerRef.current = videojs(videoNodeRef.current, {
         autoplay,
         muted,
         loop,
-        controls,
+        controls, // initial state
         playsinline: playsInline,
         preload: "auto",
-        responsive: false,
-        fluid: false,
-        html5: {
-          vhs: {
-            overrideNative: true,
-          },
-        },
+        html5: { vhs: { overrideNative: true } },
         sources: [
           {
             src: `https://videodelivery.net/${videoId}/manifest/video.m3u8`,
@@ -67,35 +57,48 @@ const CloudflareVideoPlayer = ({
         ],
       });
 
-      // Quality selection
-      player.ready(() => {
-        const qualityLevels = (player as any).qualityLevels?.();
-        if (qualityLevels) {
+      // Quality filter
+      playerRef.current.ready(() => {
+        const qualityLevels = playerRef.current?.qualityLevels?.();
+        if (qualityLevels && quality) {
           qualityLevels.on("addqualitylevel", () => {
             for (let i = 0; i < qualityLevels.length; i++) {
               const level = qualityLevels[i];
-              // Enable only target (or keep all if no quality prop)
-              level.enabled = !quality || level.height === quality;
+              level.enabled = level.height === quality;
             }
           });
         }
       });
-
-      playerRef.current = player;
-    };
-
-    init();
+    })();
 
     return () => {
       cancelled = true;
       if (playerRef.current) {
         try {
           playerRef.current.dispose();
-        } catch (_e) {}
+        } catch {}
         playerRef.current = null;
       }
     };
-  }, [videoId, autoplay, muted, loop, controls, playsInline, quality]);
+    // Only initialize once per videoId
+  }, [videoId, quality, autoplay]);
+
+  // Sync mutable props without full reinit
+  useEffect(() => {
+    const p = playerRef.current;
+    if (!p) return;
+    p.muted(muted);
+    p.loop(loop);
+    p.controls(controls);
+    // playsInline is an attribute on the video element
+    // if (videoNodeRef.current) {
+    //   if (playsInline) videoNodeRef.current.setAttribute("playsinline", "");
+    //   else videoNodeRef.current.removeAttribute("playsinline");
+    // }
+  }, [muted, loop, controls, playsInline]);
+
+  // Fallback: If you want native only when controls true (skip video.js):
+  // if (controls) return <video controls ... />
 
   return (
     <div data-vjs-player className={cn("w-full h-full", parentClassName)}>
@@ -105,11 +108,11 @@ const CloudflareVideoPlayer = ({
           "video-js vjs-default-skin w-full h-full aspect-video",
           className
         )}
-        playsInline={playsInline}
-        // These attrs help autoplay policies
+        // Keep basic attrs (video.js will enhance)
         muted={muted}
         loop={loop}
-        controls={controls}
+        // Leave controls attr off; video.js manages it (will add/remove via p.controls())
+        playsInline={playsInline}
         {...rest}
       />
     </div>
