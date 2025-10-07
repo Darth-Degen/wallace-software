@@ -8,7 +8,7 @@ import {
   ToolbarIcon,
   RatingsRow,
 } from "@components";
-import { Github, Globe, Share2 } from "lucide-react";
+import { Github, Globe } from "lucide-react";
 import { Skills } from "@types";
 
 type ExperienceCardProps = {
@@ -58,7 +58,7 @@ export default function ExperienceCard({
           </div>
         }
       />
-      <PanelCardContent className="flex flex-col flex-grow">
+      <PanelCardContent className="flex flex-col flex-grow h-full">
         <p className="text-start py-2.5 font-semibold text-white/80">
           {skills[0].category}
         </p>

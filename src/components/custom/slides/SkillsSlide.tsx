@@ -34,11 +34,11 @@ const SkillsSlide: FC<SkillsSlideProps> = ({
           </AnimatedChild>
         </div>
 
-        <div className="flex flex-wrap items-center justify-center gap-6 px-10 sm:px-16 md:px-32 lg:px-0">
+        <div className="flex flex-wrap items-center justify-center gap-6 px-0 md:px-32 lg:px-0 pb-6 md:pb-0">
           <SkillsCard
             icon={<Laptop className="h-4 w-4" />}
             header="Frontend Development"
-            className="xl:w-[340px]"
+            className="w-full sm:w-[340px]  min-h-[395px]"
             skills={[
               {
                 category: "Core Frontend Stack",
@@ -63,7 +63,7 @@ const SkillsSlide: FC<SkillsSlideProps> = ({
           <SkillsCard
             icon={<ClipboardList className="h-4 w-4" />}
             header="Extended Skillset"
-            className="xl:w-[340px]"
+            className="w-full sm:w-[340px] max-w-[340px] h-full min-h-[395px]"
             skills={[
               {
                 category: "Design & UI ",
@@ -71,7 +71,7 @@ const SkillsSlide: FC<SkillsSlideProps> = ({
                   { name: "UX/UI Collaboration", level: 5 },
                   { name: "Figma", level: 4 },
                   { name: "Design Principles", level: 3, learning: true },
-                  { name: "Webflow", level: 3, learning: true },
+                  { name: "Webflow", level: 2, learning: true },
                 ],
               },
               {
@@ -79,8 +79,8 @@ const SkillsSlide: FC<SkillsSlideProps> = ({
                 ratings: [
                   { name: "API Integration", level: 5 },
                   { name: "Web3 Frontend Integration", level: 3 },
-                  { name: "Node.js ", level: 2, learning: true },
-                  { name: "Supabase ", level: 1, learning: true },
+                  { name: "SQL ", level: 3 },
+                  // { name: "Supabase ", level: 1, learning: true },
                 ],
               },
             ]}
