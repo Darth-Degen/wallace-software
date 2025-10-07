@@ -33,7 +33,7 @@ export const PanelCardRoot = ({
       delay={0.6}
       className={cn(
         // base
-        "rounded-2xl border bg-card/60 text-card-foreground backdrop-blur lg:max-w-[369px] min-w-[280px]",
+        "rounded-2xl border bg-card/60 text-card-foreground backdrop-blur md:max-w-2xl xl:max-w-[369px] min-w-[280px]",
         // match your screenshots: soft border + subtle inner glow
         "shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)]",
         elevated && "shadow-xl",
@@ -44,7 +44,7 @@ export const PanelCardRoot = ({
     >
       <Card
         className={cn(
-          "rounded-2xl border-0 bg-transparent",
+          "rounded-2xl border-0 bg-transparent h-full",
           bleed && "px-0 py-0"
         )}
       >
@@ -111,10 +111,7 @@ export function PanelCardContent(
   return (
     <CardContent
       {...props}
-      className={cn(
-        "px-6 pb-6 md:px-7 md:pb-7 flex-grow min-h-[150px] lg:min-h-[250px]",
-        props.className
-      )}
+      className={cn("px-6 pb-6 md:px-7 md:pb-7 flex-grow", props.className)}
     />
   );
 }
@@ -160,9 +157,9 @@ export function ToolbarIcon({
       aria-label={label}
       onClick={onClick}
       className={cn(
-        "inline-flex h-9 w-9 items-center justify-center",
-        "rounded-full border",
-        "hover:border-white/40 transition-300"
+        "inline-flex h-8 md:h-9 w-8 md:w-9 items-center justify-center",
+        "rounded-full border border-white/30",
+        "hover:border-white/80 text-white/30 hover:text-white/80 transition-300"
       )}
     >
       {children}
@@ -209,7 +206,9 @@ export function RatingsRow({
         className
       )}
     >
-      <div className="text-left text-muted-foreground/60">{skill.name}</div>
+      <div className="text-left text-muted-foreground/60 group-hover:text-muted-foreground transition-colors duration-300">
+        {skill.name}
+      </div>
       <div className="row-centered gap-0">
         {Array.from({ length: skill.level }).map((_, i) => (
           <span

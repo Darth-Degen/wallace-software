@@ -26,32 +26,33 @@ const ExperienceSlide: FC<ExperienceSlideProps> = ({
           </AnimatedChild>
         </div>
 
-        <div className="grid gap-6 md:gap-7 lg:grid-cols-3 justify-center px-10 sm:px-16 md:px-32 lg:px-0">
+        <div className="grid gap-6 md:gap-7 xl:grid-cols-3 justify-center px-10 sm:px-16 md:px-32 lg:px-0">
           <ExperienceCard
             range="2022-Present"
             title="Co-Founder, Sandbox Studio"
             bullets={[
-              "Co-founded a boutique development studio focused on crafting custom websites for startups & web3 clients",
-              "Built exceptionally unique frontend experiences with Next.js, React, Framer Motion, and Tailwind CSS.",
-              "Partnered with founders, startups, and designers from concept to launch, delivering fast-loading, mobile-responsive, and scalable web products",
+              "Build fast, clean, and modern websites for forward-thinking Web2 and Web3 brands, focusing on performance, usability, and responsive design",
+              "Deliver custom React and Next.js frontends that blend visual polish with seamless user experience across all devices",
+              "Collaborate closely with clients as creative partners, crafting purposeful digital experiences with flexible CMS integrations and smooth, animated interfaces.",
             ]}
+            website="https://sandboxstud.io"
           />
           <ExperienceCard
             range="2022"
             title="Senior Frontend Developer, De Labs"
             bullets={[
-              "Built performant UI flows and internal tools.",
-              "Collaborated on design systems and accessibility.",
-              "Improved bundle size and rendering performance.",
+              "Led frontend development for high-traffic Web3 applications, delivering responsive and performant user interfaces in a fast-paced startup setting",
+              "Built sleek, production-ready Next.js and TypeScript frontends, balancing speed, precision, and visual detail across devices",
+              "Collaborated with cross-functional teams to iterate rapidly, enhance UX, and strengthen frontend architecture and best practices",
             ]}
           />
           <ExperienceCard
             range="2014-2021"
             title="Mobile Developer, Streamline VRS"
             bullets={[
-              "Shipped production React/React Native apps.",
-              "Integrated complex APIs and auth flows.",
-              "Owned CI/CD and release automation.",
+              "Led end-to-end React Native development, delivering cross-platform mobile apps used by thousands of vacation rental clients.",
+              "Managed project timelines and collaborated across teams to align technical delivery with business goals.",
+              "Integrated PHP and PostgreSQL backend systems, strengthening data performance and reliability in production environments",
             ]}
           />
         </div>

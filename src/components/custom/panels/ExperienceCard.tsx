@@ -1,6 +1,6 @@
 "use client";
 
-import { Calendar, Play } from "lucide-react";
+import { Calendar, Github, Globe, Play, Share2 } from "lucide-react";
 import {
   PanelCardRoot,
   PanelCardHeader,
@@ -14,8 +14,8 @@ type ExperienceCardProps = {
   range: string;
   title: string;
   bullets: string[];
-  onGithub?: () => void;
-  onShare?: () => void;
+  github?: string;
+  website?: string;
   className?: string;
 };
 
@@ -23,8 +23,8 @@ export default function ExperienceCard({
   range,
   title,
   bullets,
-  onGithub,
-  onShare,
+  github,
+  website,
   className,
 }: ExperienceCardProps) {
   return (
@@ -37,8 +37,28 @@ export default function ExperienceCard({
           </MetaPill>
         }
         title={title}
+        toolbar={
+          <div className="flex items-center gap-2 h-4">
+            {github && (
+              <ToolbarIcon
+                label="GitHub"
+                onClick={() => window.open(github, "_blank")}
+              >
+                <Github className="h-4 w-4" />
+              </ToolbarIcon>
+            )}
+            {website && (
+              <ToolbarIcon
+                label="Website"
+                onClick={() => window.open(website, "_blank")}
+              >
+                <Globe className="h-4 w-4" />
+              </ToolbarIcon>
+            )}
+          </div>
+        }
       />
-      <PanelCardContent className="flex flex-col flex-grow">
+      <PanelCardContent className="space-y-0.5">
         {bullets.map((b, i) => (
           <BulletRow key={i} icon={<Play className="h-3.5 w-3.5" />}>
             {b}

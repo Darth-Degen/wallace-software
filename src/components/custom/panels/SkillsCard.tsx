@@ -8,14 +8,14 @@ import {
   ToolbarIcon,
   RatingsRow,
 } from "@components";
-import { Github, Share2 } from "lucide-react";
+import { Github, Globe, Share2 } from "lucide-react";
 import { Skills } from "@types";
 
 type ExperienceCardProps = {
   header: string; // “2022–Present”
   skills: Skills[];
-  onGithub?: () => void;
-  onShare?: () => void;
+  github?: string;
+  website?: string;
   className?: string;
   icon: React.ReactNode;
 };
@@ -23,8 +23,8 @@ type ExperienceCardProps = {
 export default function ExperienceCard({
   header,
   skills,
-  onGithub,
-  onShare,
+  github,
+  website,
   className,
   icon,
 }: ExperienceCardProps) {
@@ -39,12 +39,22 @@ export default function ExperienceCard({
         }
         toolbar={
           <div className="flex items-center gap-2">
-            <ToolbarIcon label="GitHub" onClick={onGithub}>
-              <Github className="h-4 w-4" />
-            </ToolbarIcon>
-            <ToolbarIcon label="Share" onClick={onShare}>
-              <Share2 className="h-4 w-4" />
-            </ToolbarIcon>
+            {github && (
+              <ToolbarIcon
+                label="GitHub"
+                onClick={() => window.open(github, "_blank")}
+              >
+                <Github className="h-4 w-4" />
+              </ToolbarIcon>
+            )}
+            {website && (
+              <ToolbarIcon
+                label="Website"
+                onClick={() => window.open(website, "_blank")}
+              >
+                <Globe className="h-4 w-4" />
+              </ToolbarIcon>
+            )}
           </div>
         }
       />
