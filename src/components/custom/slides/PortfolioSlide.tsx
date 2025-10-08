@@ -30,7 +30,7 @@ const PortfolioSlide: FC<PortfolioSlideProps> = ({
   );
 
   return (
-    <AnimatedSlide animationTrigger="pageLoad" className="px-6 py-10">
+    <AnimatedSlide animationTrigger="pageLoad" className="px-6 py-10 lg:py-2">
       <AnimatedChild
         animation="fade"
         className="z-0 max-w-6xl w-full flex flex-wrap items-center justify-center gap-6 sm:px-16 md:px-32 lg:px-0"

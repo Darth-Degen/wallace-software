@@ -8,6 +8,7 @@ interface AnimatedSlideProps {
   className?: string;
   children: ReactNode;
   ready?: boolean; //used to delay children if needed
+  noExit?: boolean; // skip exit animation
 }
 
 const AnimatedSlide: FC<AnimatedSlideProps> = ({
@@ -16,6 +17,7 @@ const AnimatedSlide: FC<AnimatedSlideProps> = ({
   className = "",
   ready = true,
   children,
+  noExit = false,
 }) => {
   // Simple page load animation - fade in
   const pageLoadVariants = {
@@ -87,7 +89,7 @@ const AnimatedSlide: FC<AnimatedSlideProps> = ({
       variants={variants}
       initial="initial"
       animate={ready ? "animate" : "initial"}
-      exit="exit"
+      exit={noExit ? undefined : "exit"}
     >
       {children}
     </motion.div>
