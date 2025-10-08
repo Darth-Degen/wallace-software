@@ -7,7 +7,7 @@ export type SlideType =
   | "skills"
   | "portfolio-scum"
   | "portfolio-somosaxolotl"
-  | "portfolio-sandbox"
+  // | "portfolio-sandbox"
   | "portfolio-folio"
   | "portfolio-cyberfrogs"
   | "portfolio-publique";

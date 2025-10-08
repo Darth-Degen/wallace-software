@@ -61,16 +61,11 @@ const AboutSlide: FC<AboutSlideProps> = ({
             delay={0.6}
             className="text-center space-y-4"
           >
-            {/* <p className="text-base md:text-xl text-white/70 max-w- xl">
-              A front end developer who loves crafting unique digital
-              experiences. I specialize in using Next.JS, Typescript, Tailwind,
-              and Motion.
-            </p> */}
             <p className="text-base md:text-lg text-white/80 max-w-xl">
               A frontend developer who loves bringing elegant designs to life. I
               specialize in building fast, responsive websites with Next.js,
-              TypeScript, Tailwind, and more. Click the arrows to navigate my
-              work and skills.
+              TypeScript, and Tailwind. Click the arrows to navigate my work and
+              skills.
             </p>
           </AnimatedChild>
         </AnimatedChild>

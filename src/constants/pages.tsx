@@ -29,24 +29,9 @@ export const PAGES: NavPage[] = [
   //portfolio slides
   {
     name: "Portfolio",
-    path: "/#portfolio-scum",
-    showInFooter: true,
-    accentColor: "scum" as AccentColor,
-  },
-  {
-    name: "Portfolio",
     path: "/#portfolio-somosaxolotl",
     accentColor: "somos" as AccentColor,
-  },
-  {
-    name: "Portfolio",
-    path: "/#portfolio-sandbox",
-    accentColor: "sandbox" as AccentColor,
-  },
-  {
-    name: "Portfolio",
-    path: "/#portfolio-folio",
-    accentColor: "folio" as AccentColor,
+    showInFooter: true,
   },
   {
     name: "Portfolio",
@@ -55,7 +40,22 @@ export const PAGES: NavPage[] = [
   },
   {
     name: "Portfolio",
+    path: "/#portfolio-scum",
+    accentColor: "scum" as AccentColor,
+  },
+  {
+    name: "Portfolio",
+    path: "/#portfolio-folio",
+    accentColor: "folio" as AccentColor,
+  },
+  {
+    name: "Portfolio",
     path: "/#portfolio-publique",
     accentColor: "publique" as AccentColor,
   },
+  // {
+  //   name: "Portfolio",
+  //   path: "/#portfolio-sandbox",
+  //   accentColor: "sandbox" as AccentColor,
+  // },
 ];

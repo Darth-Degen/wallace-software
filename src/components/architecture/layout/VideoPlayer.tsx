@@ -104,10 +104,7 @@ const CloudflareVideoPlayer = ({
     <div data-vjs-player className={cn("w-full h-full", parentClassName)}>
       <video
         ref={videoNodeRef}
-        className={cn(
-          "video-js vjs-default-skin w-full h-full aspect-video",
-          className
-        )}
+        className={cn("video-js vjs-default-skin w-full h-full", className)}
         // Keep basic attrs (video.js will enhance)
         muted={muted}
         loop={loop}

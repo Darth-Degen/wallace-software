@@ -3,45 +3,43 @@ import { PortfolioItem } from "@types";
 
 export const PORTFOLIO_ITEMS: PortfolioItem[] = [
   {
-    title: " Scum",
-    videoId: "dd20e765bdeb6307d8b0c1a1399c8b83", // Replace with actual video ID
-    projectUrl: "https://scum.art",
-    githubUrl: "https://github.com/portfolio-scum",
-    skills: ["React", "TypeScript", "CSS"],
-  },
-  {
     title: "Somos Axolotl",
-    videoId: "dd20e765bdeb6307d8b0c1a1399c8b83", // Replace with actual video ID
-    projectUrl: "",
-    githubUrl: "",
-    skills: ["React", "TypeScript", "CSS"],
-  },
-  {
-    title: "Sandbox",
-    videoId: "dd20e765bdeb6307d8b0c1a1399c8b83", // Replace with actual video ID
-    projectUrl: "",
-    githubUrl: "",
-    skills: ["React", "TypeScript", "CSS"],
-  },
-  {
-    title: "Folio",
-    videoId: "dd20e765bdeb6307d8b0c1a1399c8b83", // Replace with actual video ID
-    projectUrl: "",
-    githubUrl: "",
-    skills: ["React", "TypeScript", "CSS"],
+    videoId: "78c4e3cea052a87c04fc351b7176b54b", 
+    githubUrl: "https://github.com/ExpStud/somos-axolotl",
+    projectUrl: "https://somosaxolotl.com",
+    skills: ["React", "TypeScript", "Tailwind CSS"],
   },
   {
     title: "Cyber Frogs",
-    videoId: "dd20e765bdeb6307d8b0c1a1399c8b83", // Replace with actual video ID
-    projectUrl: "",
-    githubUrl: "",
-    skills: ["React", "TypeScript", "CSS"],
+    videoId: "29e74d04be9dba9182182da9479d3606", 
+    githubUrl: "https://github.com/ExpStud/cyberfrogs-frontend",
+    projectUrl: "https://cyberfrogs.io/",
+    skills: ["React", "TypeScript", "Tailwind CSS"],
   },
   {
     title: "Publique",
-    videoId: "dd20e765bdeb6307d8b0c1a1399c8b83", // Replace with actual video ID
-    projectUrl: "",
-    githubUrl: "",
-    skills: ["React", "TypeScript", "CSS"],
+    videoId: "dd20e765bdeb6307d8b0c1a1399c8b83", 
+    projectUrl: "https://",
+    skills: ["React", "TypeScript", "Tailwind CSS"],
   },
+  {
+    title: "Scum",
+    videoId: "a44d16d7c0531e88917898c71806a97c", 
+    githubUrl: "https://github.com/ExpStud/scum",
+    projectUrl: "https://scum.art",
+    skills: ["React", "TypeScript", "Tailwind CSS"],
+  },
+  {
+    title: "Folio",
+    videoId: "9ba91d28c6ea0d89dfd6cc4b2076ecec", 
+    projectUrl: "https://folio-ten-coral.vercel.app/",
+    skills: ["React", "TypeScript", "Tailwind CSS"],
+  },
+  // {
+  //   title: "Sandbox",
+  //   videoId: "dd20e765bdeb6307d8b0c1a1399c8b83", 
+  //   githubUrl: "https://github.com/ExpStud/",
+  //   projectUrl: "https://",
+  //   skills: ["React", "TypeScript", "Tailwind CSS"],
+  // },
 ];

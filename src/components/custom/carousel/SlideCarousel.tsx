@@ -17,12 +17,12 @@ const slideComponents = {
   about: AboutSlide,
   experience: ExperienceSlide,
   skills: SkillsSlide,
-  "portfolio-scum": PortfolioSlide,
   "portfolio-somosaxolotl": PortfolioSlide,
-  "portfolio-sandbox": PortfolioSlide,
+  "portfolio-scum": PortfolioSlide,
   "portfolio-folio": PortfolioSlide,
   "portfolio-cyberfrogs": PortfolioSlide,
   "portfolio-publique": PortfolioSlide,
+  // "portfolio-sandbox": PortfolioSlide,
 };
 
 const slideOrder: SlideType[] = [
@@ -30,12 +30,12 @@ const slideOrder: SlideType[] = [
   "about",
   "experience",
   "skills",
-  "portfolio-scum",
   "portfolio-somosaxolotl",
-  "portfolio-sandbox",
-  "portfolio-folio",
   "portfolio-cyberfrogs",
+  "portfolio-scum",
+  "portfolio-folio",
   "portfolio-publique",
+  // "portfolio-sandbox",
 ];
 
 const SlideCarousel: FC = () => {

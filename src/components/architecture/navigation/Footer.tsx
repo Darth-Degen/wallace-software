@@ -19,6 +19,8 @@ const Footer: FC = () => {
   const currentPath = getCarouselPages()[currentSlide]?.path || "";
   const portfolioActive = currentPath.includes("#portfolio-");
 
+  console.log("footerPages : ", footerPages);
+
   const handleNavClick = (
     page: (typeof PAGES)[number],
     footerIndex: number

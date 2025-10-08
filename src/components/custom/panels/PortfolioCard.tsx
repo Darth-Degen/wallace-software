@@ -15,16 +15,9 @@ import { Github, Globe, Laptop, Share2 } from "lucide-react";
 type PortfolioCardProps = {
   item: PortfolioItem;
   className?: string;
-  github?: string;
-  website?: string;
 };
 
-export default function PortfolioCard({
-  item,
-  className,
-  github,
-  website,
-}: PortfolioCardProps) {
+export default function PortfolioCard({ item, className }: PortfolioCardProps) {
   const [width, height, isMobile] = useWindowSize();
   return (
     <PanelCardRoot className={className} elevated>
@@ -37,18 +30,18 @@ export default function PortfolioCard({
         }
         toolbar={
           <div className="flex items-center gap-2">
-            {github && (
+            {item.githubUrl && (
               <ToolbarIcon
                 label="GitHub"
-                onClick={() => window.open(github, "_blank")}
+                onClick={() => window.open(item.githubUrl, "_blank")}
               >
                 <Github className="h-4 w-4" />
               </ToolbarIcon>
             )}
-            {website && (
+            {item.projectUrl && (
               <ToolbarIcon
-                label="Website"
-                onClick={() => window.open(website, "_blank")}
+                label="projectUrl"
+                onClick={() => window.open(item.projectUrl, "_blank")}
               >
                 <Globe className="h-4 w-4" />
               </ToolbarIcon>
@@ -58,12 +51,13 @@ export default function PortfolioCard({
       />
       <PanelCardContent className="flex flex-col flex-grow !p-0">
         <VideoPlayer
+          videoId={item.videoId}
           autoPlay={!isMobile}
           muted
           loop
           controls={isMobile}
-          parentClassName="rounded-b-2xl overflow-hidden"
-          className="rounded-b-2xl overflow-hidden"
+          parentClassName="rounded-b-2xl overflow-hidden w-full aspect-[1654/1080]"
+          className="rounded-b-2xl overflow-hidden aspect-[1654/1080]"
         />
       </PanelCardContent>
     </PanelCardRoot>
