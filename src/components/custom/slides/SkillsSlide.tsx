@@ -80,7 +80,7 @@ const SkillsSlide: FC<SkillsSlideProps> = ({
                   { name: "API Integration", level: 5 },
                   { name: "Web3 Frontend Integration", level: 3 },
                   { name: "SQL ", level: 3 },
-                  // { name: "Supabase ", level: 1, learning: true },
+                  { name: "Node & Express", level: 2, learning: true },
                 ],
               },
             ]}

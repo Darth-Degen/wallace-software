@@ -18,7 +18,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
   },
   {
     title: "Publique",
-    videoId: "dd20e765bdeb6307d8b0c1a1399c8b83", 
+    videoId: "276a691481e1e26430da05469f1f489e", 
     projectUrl: "https://publique.world",
     skills: ["React", "TypeScript", "Tailwind CSS"],
   },

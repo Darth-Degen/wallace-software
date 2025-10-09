@@ -62,7 +62,7 @@ export default function ExperienceCard({
           </div>
         }
       />
-      <PanelCardContent className="space-y-0.5">
+      <PanelCardContent className="space-y-0.5 xl:!pl-6 xl:!pr-5">
         {bullets.map((b, i) => (
           <BulletRow key={i} icon={<Play className="h-3.5 w-3.5" />}>
             {b}

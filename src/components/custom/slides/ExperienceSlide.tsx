@@ -31,9 +31,10 @@ const ExperienceSlide: FC<ExperienceSlideProps> = ({
             range="2022-Present"
             title="Co-Founder, Sandbox Studio"
             bullets={[
-              "Build fast, clean, and modern websites for forward-thinking Web2 and Web3 brands, focusing on performance, usability, and responsive design",
-              "Deliver custom React and Next.js frontends that blend visual polish with seamless user experience across all devices",
-              "Collaborate closely with clients as creative partners, crafting purposeful digital experiences with flexible CMS integrations and smooth, animated interfaces.",
+              "Bring elegant designs to life through pixel-perfect frontend craftsmanship.",
+              "Engineer component-driven websites that load quickly, scale easily, and deliver a memorable online experience.",
+              "Collaborate closely with designers and founders to turn creative direction into high functioning products.",
+              "Leverage blockchain technologies to create unique, interactive experiences for NFT holders and Web3 communities.",
             ]}
             website="https://sandboxstud.io"
           />
@@ -41,18 +42,22 @@ const ExperienceSlide: FC<ExperienceSlideProps> = ({
             range="2022"
             title="Senior Frontend Developer, De Labs"
             bullets={[
-              "Led frontend development for high-traffic Web3 applications, delivering responsive and performant user interfaces in a fast-paced startup setting",
-              "Built sleek, production-ready Next.js and TypeScript frontends, balancing speed, precision, and visual detail across devices",
-              "Collaborated with cross-functional teams to iterate rapidly, enhance UX, and strengthen frontend architecture and best practices",
+              "Led the development of multiple Web3 products from NFT staking platforms to minting sites, turning ambitious creative direction into live, interactive products.",
+              "Translated constantly evolving designs into responsive, production-ready builds, optimizing every pixel, animation, and load time.",
+              "Entered as a mobile developer and left a true frontend specialist, refined through tight deadlines, constant pivots, and nonstop creative pressure.",
             ]}
           />
           <ExperienceCard
             range="2014-2021"
             title="Mobile Developer, Streamline VRS"
             bullets={[
-              "Led end-to-end React Native development, delivering cross-platform mobile apps used by thousands of vacation rental clients.",
-              "Managed project timelines and collaborated across teams to align technical delivery with business goals.",
-              "Integrated PHP and PostgreSQL backend systems, strengthening data performance and reliability in production environments",
+              "Led the development of multiple mobile apps supporting property managers, homeowners, and guests within a complex vacation rental ecosystem.",
+              "Worked directly with users and clients through the feedback loop, diagnosing issues, shipping fixes, and continuously improving UX.",
+              "Built and maintained PHP + PostgreSQL APIs to support mobile app functionality and improve data performance.",
+              //"Learned to self-direct and problem-solve without mentorship, developing the independence and technical resourcefulness that define my work today.",
+              //Evolved from a solo contributor to team lead, mentoring junior developers and collaborating with QA to maintain product stability.
+              //
+              //
             ]}
           />
         </div>

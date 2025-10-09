@@ -226,7 +226,7 @@ export function RatingsRow({
           </span>
         ))}
         {skill.learning && (
-          <span className="mt-1 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md">
+          <span className="ml-0.5 mt-1 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md">
             <BookOpen className="h-4 w-4 text-muted-foreground group-hover:text-white transition-colors duration-300" />
           </span>
         )}

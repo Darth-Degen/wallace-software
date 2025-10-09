@@ -49,7 +49,7 @@ const AboutSlide: FC<AboutSlideProps> = ({
           animation={"fade"}
           // hover={true}
           delay={0.2}
-          className="flex flex-col justify-center gap-6 relative z-10 w-[90%] h-auto md:max-w-[500px]  rounded-xl lg:mb-[5%] mt-10 bg-[#ff805c]/85 md:bg-[#ff805c]/90 py-6 lg:pt-10 lg:pb-16 px-4 md:px-8"
+          className="flex flex-col justify-center gap-6 relative z-10 w-[90%] h-auto md:max-w-[500px]  rounded-xl lg:mb-[5%] mt-10 bg-[#ff805c]/85 md:bg-[#ff805c]/90 py-6 lg:pt-10 lg:pb-16 px-4 md:px-6"
         >
           <AnimatedChild animation={"scale"} delay={0.4}>
             <h1 className="text-2xl md:text-4xl font-semibold text-white/90 text-center">
@@ -64,8 +64,10 @@ const AboutSlide: FC<AboutSlideProps> = ({
             <p className="text-base md:text-lg text-white/80 max-w-xl">
               A frontend developer who loves bringing elegant designs to life. I
               specialize in building fast, responsive websites with Next.js,
-              TypeScript, and Tailwind. Click the arrows to navigate my work and
-              skills.
+              TypeScript, and Tailwind.
+            </p>
+            <p className="text-base md:text-lg text-white/80 max-w-xl">
+              Click the arrows to find out more
             </p>
           </AnimatedChild>
         </AnimatedChild>
