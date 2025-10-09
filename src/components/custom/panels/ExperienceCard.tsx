@@ -10,6 +10,7 @@ import {
   BulletRow,
 } from "@components";
 import { cn } from "@utils";
+import { FiLinkedin } from "react-icons/fi";
 
 type ExperienceCardProps = {
   range: string;
@@ -17,6 +18,7 @@ type ExperienceCardProps = {
   bullets: string[];
   github?: string;
   website?: string;
+  linkedin?: string;
   className?: string;
 };
 
@@ -26,6 +28,7 @@ export default function ExperienceCard({
   bullets,
   github,
   website,
+  linkedin,
   className,
 }: ExperienceCardProps) {
   return (
@@ -57,6 +60,14 @@ export default function ExperienceCard({
                 onClick={() => window.open(website, "_blank")}
               >
                 <Globe className="h-4 w-4" />
+              </ToolbarIcon>
+            )}
+            {linkedin && (
+              <ToolbarIcon
+                label="LinkedIn"
+                onClick={() => window.open(linkedin, "_blank")}
+              >
+                <FiLinkedin className="" size={16} />
               </ToolbarIcon>
             )}
           </div>

@@ -31,7 +31,7 @@ const ExperienceSlide: FC<ExperienceSlideProps> = ({
             range="2022-Present"
             title="Co-Founder, Sandbox Studio"
             bullets={[
-              "Bring elegant designs to life through pixel-perfect frontend craftsmanship.",
+              "Bring elegant designs to life through pixel-perfect frontend development.",
               "Engineer component-driven websites that load quickly, scale easily, and deliver a memorable online experience.",
               "Collaborate closely with designers and founders to turn creative direction into high functioning products.",
               "Leverage blockchain technologies to create unique, interactive experiences for NFT holders and Web3 communities.",
@@ -46,6 +46,7 @@ const ExperienceSlide: FC<ExperienceSlideProps> = ({
               "Translated constantly evolving designs into responsive, production-ready builds, optimizing every pixel, animation, and load time.",
               "Entered as a mobile developer and left a true frontend specialist, refined through tight deadlines, constant pivots, and nonstop creative pressure.",
             ]}
+            linkedin="https://www.linkedin.com/company/delabsxyz/"
           />
           <ExperienceCard
             range="2014-2021"
@@ -59,6 +60,7 @@ const ExperienceSlide: FC<ExperienceSlideProps> = ({
               //
               //
             ]}
+            linkedin="https://www.linkedin.com/company/streamline-property-management-software"
           />
         </div>
       </AnimatedChild>
