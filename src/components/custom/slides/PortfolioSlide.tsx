@@ -38,7 +38,7 @@ const PortfolioSlide: FC<PortfolioSlideProps> = ({
         {portfolioIndex !== -1 && (
           <PortfolioCard
             item={PORTFOLIO_ITEMS[portfolioIndex]}
-            className="!w-[900px] 2xl:!w-[1200px]"
+            className="!w-[900px] 2xl:!w-[1000px] 3xl:w-[1280px]"
           />
         )}
       </AnimatedChild>

@@ -11,7 +11,7 @@ export const accentColors = {
   somos:      { hsl: '42 87% 63%',   foreground: '0 0% 7%' },   // #F3C24F
   sandbox:    { hsl: '51 64% 78%',   foreground: '0 0% 7%' },   // #EBE1A5
   folio:      { hsl: '22 67% 64%',   foreground: '0 0% 7%' },   // #E19367
-  cyberfrogs: { hsl: '150 32% 18%',  foreground: '0 0% 98%' },  // #203E2F (dark -> light text)
+  cyberfrogs: { hsl: '160 35% 42%',   foreground: '0 0% 7%' },  // #203E2F (dark -> light text)
   publique:   { hsl: '78 60% 46%',   foreground: '0 0% 7%' },  
 } as const;
 

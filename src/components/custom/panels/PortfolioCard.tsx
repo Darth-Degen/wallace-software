@@ -49,7 +49,7 @@ export default function PortfolioCard({ item, className }: PortfolioCardProps) {
           </div>
         }
       />
-      <PanelCardContent className="flex flex-col flex-grow !p-0">
+      <PanelCardContent className="flex flex-col flex-grow !p-0 w-[900px] 2xl:!w-[1000px] 3xl:w-[1280px] aspect-[1654/1080]">
         <VideoPlayer
           videoId={item.videoId}
           autoPlay={!isMobile}
