@@ -9,14 +9,14 @@ type SeoHeadProps = {
 };
 
 // TODO: Replace with your actual root domain
-const rootDomain = "https://addurl.xyz";
+const rootDomain = "https://wallace.software";
 
 export default function SeoHead({
-  title = "Sandbox - Living Portfolio",
-  description = "A living portfolio of digital art, collaborations, and experiments.",
+  title = "Wallace Software | React & Next.js Frontend Engineer",
+  description = "Building fast, accessible web apps with React, Next.js, and Tailwind. Explore projects, skills, and contact.",
   url = rootDomain,
   image = "/meta.png",
-  twitter = "twitterhandle",
+  twitter = "darthdegen",
 }: SeoHeadProps) {
   return (
     <Head>
