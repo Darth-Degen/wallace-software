@@ -34,7 +34,7 @@ const SkillsSlide: FC<SkillsSlideProps> = ({
           </AnimatedChild>
         </div>
 
-        <div className="flex flex-wrap items-center justify-center gap-6 px-0 md:px-32 lg:px-0 pb-6 md:pb-0">
+        <div className="flex flex-wrap items-center justify-center gap-6 px-0 md:px-32 lg:px-0 pb-8 md:pb-0">
           <SkillsCard
             icon={<Laptop className="h-4 w-4" />}
             header="Frontend Development"

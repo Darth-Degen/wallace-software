@@ -26,7 +26,7 @@ const ExperienceSlide: FC<ExperienceSlideProps> = ({
           </AnimatedChild>
         </div>
 
-        <div className="grid gap-6 md:gap-7 xl:grid-cols-3 justify-center px-10 sm:px-16 md:px-32 lg:px-0">
+        <div className="grid gap-6 md:gap-7 xl:grid-cols-3 justify-center px-0 md:px-32 lg:px-0 pb-8 md:pb-0">
           <ExperienceCard
             range="2022-Present"
             title="Co-Founder, Sandbox Studio"

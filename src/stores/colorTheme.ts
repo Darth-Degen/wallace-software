@@ -12,7 +12,7 @@ export const accentColors = {
   sandbox:    { hsl: '51 64% 78%',   foreground: '0 0% 7%' },   // #EBE1A5
   folio:      { hsl: '22 67% 64%',   foreground: '0 0% 7%' },   // #E19367
   cyberfrogs: { hsl: '160 35% 42%',   foreground: '0 0% 7%' },  // #203E2F (dark -> light text)
-  publique:   { hsl: '78 60% 46%',   foreground: '0 0% 7%' },  
+  publique:   { hsl: '43 100% 63%', foreground: '0 0% 7%' },  
 } as const;
 
 export type AccentColor = keyof typeof accentColors;

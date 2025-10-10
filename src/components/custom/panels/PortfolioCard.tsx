@@ -11,6 +11,7 @@ import {
 import { useWindowSize } from "@hooks";
 import { PortfolioItem } from "@types";
 import { Github, Globe, Laptop, Share2 } from "lucide-react";
+import { isMobile } from "react-device-detect";
 
 type PortfolioCardProps = {
   item: PortfolioItem;
@@ -18,7 +19,7 @@ type PortfolioCardProps = {
 };
 
 export default function PortfolioCard({ item, className }: PortfolioCardProps) {
-  const [width, height, isMobile] = useWindowSize();
+  // const [width, height, isMobile] = useWindowSize();
   return (
     <PanelCardRoot className={className} elevated>
       <PanelCardHeader
@@ -49,7 +50,7 @@ export default function PortfolioCard({ item, className }: PortfolioCardProps) {
           </div>
         }
       />
-      <PanelCardContent className="flex flex-col flex-grow !p-0 w-[900px] 2xl:!w-[1000px] 3xl:w-[1280px] aspect-[1654/1080]">
+      <PanelCardContent className="flex flex-col flex-grow !p-0 w-full aspect-[1654/1080]">
         <VideoPlayer
           videoId={item.videoId}
           autoPlay={!isMobile}
