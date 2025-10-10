@@ -53,10 +53,11 @@ export default function PortfolioCard({ item, className }: PortfolioCardProps) {
       <PanelCardContent className="flex flex-col flex-grow !p-0 w-full aspect-[1654/1080]">
         <VideoPlayer
           videoId={item.videoId}
-          autoPlay={!isMobile}
+          autoPlay={true}
           muted
           loop
-          controls={isMobile}
+          controls={false}
+          playsInline
           parentClassName="rounded-b-2xl overflow-hidden w-full aspect-[1654/1080]"
           className="rounded-b-2xl overflow-hidden aspect-[1654/1080]"
         />
