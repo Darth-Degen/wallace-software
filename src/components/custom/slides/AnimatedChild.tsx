@@ -5,7 +5,7 @@ import { cn } from "@utils";
 interface AnimatedChildProps {
   children: ReactNode;
   className?: string;
-  delay?: number; // kept for backward compatibility; parent stagger controls timing
+  delay?: number;
   animation?: "up" | "down" | "left" | "right" | "scale" | "fade";
   disableAnimation?: boolean;
   hover?: boolean; // slight scale on hover
@@ -52,12 +52,13 @@ const AnimatedChild: FC<AnimatedChildProps> = ({
       exit: { opacity: 0 },
     },
   } as const;
+
   const variants: Variants = {
     initial: childAnimationVariants[animation].initial,
     animate: {
       ...childAnimationVariants[animation].animate,
       transition: {
-        duration: 0.4,
+        duration: 0.8,
         ease: [0.25, 0.1, 0.25, 1],
         delay: delay || 0,
       },
