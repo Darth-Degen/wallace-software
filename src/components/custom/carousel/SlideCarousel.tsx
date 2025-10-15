@@ -120,7 +120,9 @@ const SlideCarousel: FC = () => {
   // First-time visibility per button: 2s delay + 1s duration on first show, 0.75s afterwards
   const leftNavVisible = (!isMobile || isPortfolioSlide) && showView;
   const rightNavVisible =
-    (!isMobile || (isPortfolioSlide && !isLastPortfolio)) && showView;
+    ((!isMobile && !isLastPortfolio) ||
+      (isPortfolioSlide && !isLastPortfolio)) &&
+    showView;
 
   const hasShownLeftRef = useRef(false);
   const hasShownRightRef = useRef(false);
@@ -140,12 +142,12 @@ const SlideCarousel: FC = () => {
   const leftTransition =
     !hasShownLeftRef.current && leftNavVisible
       ? { duration: 1, delay: 2 }
-      : { duration: 0.75 };
+      : { duration: 0.5 };
 
   const rightTransition =
     !hasShownRightRef.current && rightNavVisible
       ? { duration: 1, delay: 2 }
-      : { duration: 0.75 };
+      : { duration: 0.5 };
   return (
     <div className="relative w-full h-full flex flex-col flex-grow">
       {/* Navigation Controls */}
