@@ -59,7 +59,7 @@ const AboutSlide: FC<AboutSlideProps> = ({ className = "", direction = 1 }) => {
             onLoad={() => setAsset("home:bg", true)}
             priority
           />
-          <div className="fixed inset-0 bg-black/10 md:bg-black/30" />
+          <div className="fixed inset-0 bg-black/10 md:bg-black/10" />
         </AnimatedChild>
         {/* Content */}
         <section

@@ -1,5 +1,5 @@
 import { FC, useState, useEffect, useRef, useMemo } from "react";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Router from "next/router";
 import { SlideType } from "@types";
 import {
@@ -9,7 +9,7 @@ import {
   PortfolioSlide,
 } from "../slides";
 import { useSlideAnimations, useWindowSize } from "@hooks";
-import { useCarousel, useColorTheme, AccentColor } from "@stores";
+import { useCarousel, useColorTheme, AccentColor, useViewStore } from "@stores";
 import { CarouselNavigationButton } from "@components";
 
 const slideComponents = {
@@ -39,6 +39,7 @@ const slideOrder: SlideType[] = [
 ];
 
 const SlideCarousel: FC = () => {
+  const { showView } = useViewStore();
   // Use carousel store for state management
   const {
     currentSlide: currentSlideIndex,
@@ -114,38 +115,46 @@ const SlideCarousel: FC = () => {
     }
   }, [currentSlideIndex, currentPageData, setAccentColorAndSection]);
 
-  const nextSlide = () => {
-    setPreviousSlide(slideOrder[currentSlideIndex]);
-    setNavigationDirection(1);
-    carouselNextSlide(); // Use carousel store nextSlide
-  };
-
-  const prevSlide = () => {
-    setPreviousSlide(slideOrder[currentSlideIndex]);
-    setNavigationDirection(-1);
-    carouselPrevSlide(); // Use carousel store prevSlide
-  };
-
   const CurrentSlideComponent = slideComponents[currentSlide];
 
   return (
     <div className="relative w-full h-full flex flex-col flex-grow">
       {/* Navigation Controls */}
-      {(!isMobile || isPortfolioSlide) && (
-        <CarouselNavigationButton
-          direction="left"
-          onClick={carouselPrevSlide}
-          className="fixed bottom-10 md:top-1/2 -translate-y-1/2 z-10 left-8 2xl:left-[max(1rem,calc((100vw-1512px)/2+1rem))]"
-        />
-      )}
+      <AnimatePresence>
+        {(!isMobile || isPortfolioSlide) && showView && (
+          <motion.div
+            key="nav-left"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.75 }}
+            className="fixed bottom-10 md:top-1/2 -translate-y-1/2 z-10 left-8 2xl:left-[max(1rem,calc((100vw-1512px)/2+1rem))] h-min"
+          >
+            <CarouselNavigationButton
+              direction="left"
+              onClick={carouselPrevSlide}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-      {(!isMobile || (isPortfolioSlide && !isLastPortfolio)) && (
-        <CarouselNavigationButton
-          direction="right"
-          onClick={carouselNextSlide}
-          className="fixed bottom-10 md:top-1/2 -translate-y-1/2 z-10 right-8 2xl:right-[max(1rem,calc((100vw-1512px)/2+1rem))]"
-        />
-      )}
+      <AnimatePresence>
+        {(!isMobile || (isPortfolioSlide && !isLastPortfolio)) && showView && (
+          <motion.div
+            key="nav-right"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.75 }}
+            className="fixed bottom-10 md:top-1/2 -translate-y-1/2 z-10 right-8 2xl:right-[max(1rem,calc((100vw-1512px)/2+1rem))] h-min"
+          >
+            <CarouselNavigationButton
+              direction="right"
+              onClick={carouselNextSlide}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Slide Content */}
       <AnimatePresence mode="wait">

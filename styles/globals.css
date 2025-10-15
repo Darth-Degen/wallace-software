@@ -141,6 +141,7 @@ a { color: inherit; text-decoration: none; }
 /* Motion utilities (keep) */
 .transition-1000 { @apply transition-all duration-1000; }
 .transition-500  { @apply transition-all duration-500; }
+.transition-400  { @apply transition-all duration-[400]; }
 .transition-300  { @apply transition-all duration-300; }
 .transition-200  { @apply transition-all duration-200; }
 .transition-100  { @apply transition-all duration-100; }

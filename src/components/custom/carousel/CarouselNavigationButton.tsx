@@ -19,7 +19,7 @@ const CarouselNavigationButton: FC<CarouselNavigationButtonProps> = ({
       onClick={onClick}
       disabled={disabled}
       className={cn(
-        "transition-200 hover:lg:scale-110 active:scale-75 active:lg:scale-90 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 h-min",
+        "transition-all duration-500 lg:duration-300 hover:lg:scale-110 active:scale-75 active:lg:scale-90 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 h-min",
         className
       )}
       aria-label={`${direction === "left" ? "Previous" : "Next"} slide`}
