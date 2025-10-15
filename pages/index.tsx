@@ -9,9 +9,9 @@ export default withPageShell(
   /* pageOptions */ {
     header: "sticky",
     seo: {
-      title: "Wallace Software | React & Next.js Frontend Engineer",
+      title: "Wallace | Senior Frontend Developer",
       description:
-        "Building fast, accessible web apps with React, Next.js, and Tailwind. Explore projects, skills, and contact.",
+        "I work with Next.js, TypeScript, and Tailwind CSS to write clean, maintainable code that turns thoughtful designs into seamless user experiences.",
       url: "https://wallace.software",
     },
   }

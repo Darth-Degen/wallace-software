@@ -1,5 +1,5 @@
-import { FC, useState, useEffect, useRef } from "react";
-import { AnimatePresence } from "framer-motion";
+import { FC, useState, useEffect, useRef, useMemo } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import Router from "next/router";
 import { SlideType } from "@types";
 import {
@@ -8,8 +8,8 @@ import {
   SkillsSlide,
   PortfolioSlide,
 } from "../slides";
-import { useSlideAnimations } from "@hooks";
-import { useCarousel, useColorTheme, AccentColor } from "@stores";
+import { useSlideAnimations, useWindowSize } from "@hooks";
+import { useCarousel, useColorTheme, AccentColor, useViewStore } from "@stores";
 import { CarouselNavigationButton } from "@components";
 
 const slideComponents = {
@@ -39,16 +39,18 @@ const slideOrder: SlideType[] = [
 ];
 
 const SlideCarousel: FC = () => {
+  const { showView } = useViewStore();
   // Use carousel store for state management
   const {
     currentSlide: currentSlideIndex,
     nextSlide: carouselNextSlide,
     prevSlide: carouselPrevSlide,
-    setSlide,
+    getCarouselPages,
     getCurrentPageData,
     syncWithUrl,
   } = useCarousel();
   const { setAccentColorAndSection } = useColorTheme();
+  const [winWidth, winHeight, isMobile, isTablet] = useWindowSize();
 
   const [previousSlide, setPreviousSlide] = useState<SlideType | undefined>();
   const [navigationDirection, setNavigationDirection] = useState<1 | -1>(1);
@@ -78,6 +80,20 @@ const SlideCarousel: FC = () => {
     };
   }, [syncWithUrl]);
 
+  // Portfolio state
+  const pages = getCarouselPages();
+  const currentPath = pages[currentSlideIndex]?.path ?? "";
+  const isPortfolioSlide = /portfolio/i.test(currentPath);
+  const lastPortfolioIndex = useMemo(() => {
+    const indexes = pages
+      .map((page, index) => ({ page, index }))
+      .filter(({ page }) => /portfolio/i.test(page.path))
+      .map(({ index }) => index);
+    return indexes.length ? Math.max(...indexes) : -1;
+  }, [pages]);
+  const isLastPortfolio =
+    isPortfolioSlide && currentSlideIndex === lastPortfolioIndex;
+
   // Derive previousSlide and navigationDirection for any index change (footer click, URL change, arrows)
   useEffect(() => {
     const prev = prevIndexRef.current;
@@ -99,34 +115,77 @@ const SlideCarousel: FC = () => {
     }
   }, [currentSlideIndex, currentPageData, setAccentColorAndSection]);
 
-  const nextSlide = () => {
-    setPreviousSlide(slideOrder[currentSlideIndex]);
-    setNavigationDirection(1);
-    carouselNextSlide(); // Use carousel store nextSlide
-  };
-
-  const prevSlide = () => {
-    setPreviousSlide(slideOrder[currentSlideIndex]);
-    setNavigationDirection(-1);
-    carouselPrevSlide(); // Use carousel store prevSlide
-  };
-
   const CurrentSlideComponent = slideComponents[currentSlide];
 
+  // First-time visibility per button: 2s delay + 1s duration on first show, 0.75s afterwards
+  const leftNavVisible = (!isMobile || isPortfolioSlide) && showView;
+  const rightNavVisible =
+    ((!isMobile && !isLastPortfolio) ||
+      (isPortfolioSlide && !isLastPortfolio)) &&
+    showView;
+
+  const hasShownLeftRef = useRef(false);
+  const hasShownRightRef = useRef(false);
+
+  useEffect(() => {
+    if (leftNavVisible && !hasShownLeftRef.current) {
+      hasShownLeftRef.current = true;
+    }
+  }, [leftNavVisible]);
+
+  useEffect(() => {
+    if (rightNavVisible && !hasShownRightRef.current) {
+      hasShownRightRef.current = true;
+    }
+  }, [rightNavVisible]);
+
+  const leftTransition =
+    !hasShownLeftRef.current && leftNavVisible
+      ? { duration: 0.6, delay: 2 }
+      : { duration: 0.5 };
+
+  const rightTransition =
+    !hasShownRightRef.current && rightNavVisible
+      ? { duration: 0.6, delay: 2 }
+      : { duration: 0.6 };
   return (
     <div className="relative w-full h-full flex flex-col flex-grow">
       {/* Navigation Controls */}
-      <CarouselNavigationButton
-        direction="left"
-        onClick={prevSlide}
-        className="fixed bottom-10 md:top-1/2 -translate-y-1/2 z-10 left-3 md:left-8 2xl:left-[max(1rem,calc((100vw-1512px)/2+1rem))]"
-      />
+      <AnimatePresence>
+        {leftNavVisible && (
+          <motion.div
+            key="nav-left"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={leftTransition}
+            className="fixed bottom-10 md:top-1/2 -translate-y-1/2 z-10 left-8 2xl:left-[max(1rem,calc((100vw-1512px)/2+1rem))] h-min"
+          >
+            <CarouselNavigationButton
+              direction="left"
+              onClick={carouselPrevSlide}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-      <CarouselNavigationButton
-        direction="right"
-        onClick={nextSlide}
-        className="fixed bottom-10 md:top-1/2 -translate-y-1/2 z-10 right-3 md:right-8 2xl:right-[max(1rem,calc((100vw-1512px)/2+1rem))]"
-      />
+      <AnimatePresence>
+        {rightNavVisible && (
+          <motion.div
+            key="nav-right"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={rightTransition}
+            className="fixed bottom-10 md:top-1/2 -translate-y-1/2 z-10 right-8 2xl:right-[max(1rem,calc((100vw-1512px)/2+1rem))] h-min"
+          >
+            <CarouselNavigationButton
+              direction="right"
+              onClick={carouselNextSlide}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Slide Content */}
       <AnimatePresence mode="wait">

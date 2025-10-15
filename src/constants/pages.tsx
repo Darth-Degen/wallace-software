@@ -40,13 +40,13 @@ export const PAGES: NavPage[] = [
   },
   {
     name: "Portfolio",
-    path: "/#portfolio-publique",
-    accentColor: "publique" as AccentColor,
+    path: "/#portfolio-scum",
+    accentColor: "scum" as AccentColor,
   },
   {
     name: "Portfolio",
-    path: "/#portfolio-scum",
-    accentColor: "scum" as AccentColor,
+    path: "/#portfolio-publique",
+    accentColor: "publique" as AccentColor,
   },
   {
     name: "Portfolio",

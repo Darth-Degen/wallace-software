@@ -1,9 +1,11 @@
 import { PAGES } from "@constants";
-import { useColorTheme, useCarousel, AccentColor } from "@stores";
+import { useColorTheme, useCarousel, AccentColor, useViewStore } from "@stores";
 import { cn, handleCopyEmail } from "@utils";
+import { motion } from "framer-motion";
 import { FC, useMemo } from "react";
 
 const Footer: FC = () => {
+  const { showView } = useViewStore();
   const { setAccentColorAndSection } = useColorTheme();
   const {
     currentSlide,
@@ -30,7 +32,13 @@ const Footer: FC = () => {
   };
 
   return (
-    <footer className="px-4 md:px-8 py-4 h-14 fixed bottom-0 border-t border-border md:border-none bg-background w-full  z-50">
+    <motion.footer
+      initial={{ y: 56 }}
+      animate={{ y: showView ? 0 : 56 }}
+      exit={{ y: 56 }}
+      transition={{ duration: 0.6, ease: "easeOut", delay: 2 }}
+      className="px-4 md:px-8 py-4 h-14 fixed bottom-0 border-t border-border md:border-none bg-background w-full  z-50"
+    >
       <div className="max-width mx-auto flex flex-col-reverse lg:flex-row items-center justify-between gap-6 lg:gap-3">
         {/* Left */}
         <div className="lg:flex hidden items-center gap-2 text-muted-foreground w-[160px]">
@@ -75,7 +83,7 @@ const Footer: FC = () => {
           </p>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   );
 };
 export default Footer;

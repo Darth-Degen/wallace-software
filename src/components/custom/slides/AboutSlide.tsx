@@ -1,6 +1,5 @@
 import { FC } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { AnimatedSlide, AnimatedChild } from "@components";
 import { useLoadingStore, useViewStore } from "@stores";
 import { useWindowSize } from "@hooks";
@@ -10,15 +9,10 @@ import { handleCopyEmail } from "@utils";
 
 interface AboutSlideProps {
   className?: string;
-  animationTrigger?: "pageLoad" | "slideTransition";
   direction?: 1 | -1;
 }
 
-const AboutSlide: FC<AboutSlideProps> = ({
-  className = "",
-  animationTrigger = "pageLoad",
-  direction = 1,
-}) => {
+const AboutSlide: FC<AboutSlideProps> = ({ className = "", direction = 1 }) => {
   const { setAsset } = useLoadingStore();
   const { showView } = useViewStore();
   const [winWidth] = useWindowSize();
@@ -33,24 +27,21 @@ const AboutSlide: FC<AboutSlideProps> = ({
       ready={showView}
     >
       {/* Background */}
-      <AnimatedChild animation="fade" className="z-0">
-        <div className="absolute inset-0">
-          <Image
-            src={winWidth > 1024 ? introGraphic : mobileIntroGraphic}
-            alt="Studio backdrop"
-            fill
-            className="object-cover"
-            onLoad={() => setAsset("home:bg", true)}
-            priority
-          />
-        </div>
-        <div className="absolute inset-0 bg-black/50" />
+      <AnimatedChild animation="fade" className="fixed inset-0 z-0">
+        <Image
+          src={winWidth > 1024 ? introGraphic : mobileIntroGraphic}
+          alt="Studio backdrop"
+          fill
+          className="object-cover"
+          onLoad={() => setAsset("home:bg", true)}
+          priority
+        />
+        <div className="fixed inset-0 bg-black/10 md:bg-black/10" />
       </AnimatedChild>
-
       {/* Content */}
       <section
         id="intro"
-        className="relative z-10 mx-auto px-6 md:px-8 max-w-6xl  text-start"
+        className="relative z-10 mx-auto px-6 md:px-8 py-10 max-w-6xl text-start"
         aria-labelledby="hero-title"
       >
         {/* SEO/accessible H1 (hidden visually) */}
@@ -69,8 +60,8 @@ const AboutSlide: FC<AboutSlideProps> = ({
             animation="scale"
             delay={delay}
             className="
-              flex flex-col gap-8
-              rounded-3xl bg-white/65 backdrop-blur
+              flex flex-col gap-8  
+              rounded-3xl bg-white/55 md:bg-white/65 backdrop-blur
               shadow-lg ring-1 ring-black/5
               text-gray-800 p-7 md:p-9
             "
@@ -82,16 +73,15 @@ const AboutSlide: FC<AboutSlideProps> = ({
               Hi, I&apos;m Wallace
             </h2>
 
-            <p className="mt-4 text-base md:text-xl text-gray-700 max-w-prose leading-relaxed font-medium">
-              A senior frontend developer who specializes in building websites
-              that are responsive, fast, and crafted with exceptional attention
-              to detail. I work primarily with
+            <p className="text-base md:text-xl text-gray-700 max-w-prose leading-relaxed font-medium">
+              A senior frontend developer who builds fast and responsive
+              websites with exceptional attention to detail. I work with{" "}
               <span className="font-semibold"> Next.js, TypeScript,</span> and
-              <span className="font-semibold"> Tailwind CSS</span>, focusing on
+              <span className="font-semibold"> Tailwind CSS</span> to write
               clean, maintainable code that turns thoughtful designs into
-              smooth, user-friendly experiences.
+              seamless user experiences.
             </p>
-            <div className="space-y-1 text-base md:text-lg">
+            <div className="space-y-1 mt-2 text-base md:text-lg">
               <p className="text-gray-700 max-w-prose leading-relaxed font-medium">
                 Check out my{" "}
                 <a
@@ -135,8 +125,8 @@ const AboutSlide: FC<AboutSlideProps> = ({
                 With over ten years of development experience, I&apos;ve worked
                 across startups, Web3 companies, and creative brands to deliver
                 high-quality frontend solutions. My background spans mobile and
-                web, which gives me a strong sense for performance, usability,
-                and how to craft interfaces that connect with users.
+                web, which has sharpened my focus on performance, usability, and
+                building interfaces that feel intuitive.
               </p>
 
               <p className="text-xs uppercase tracking-wider text-gray-500 pt-3">
@@ -155,9 +145,10 @@ const AboutSlide: FC<AboutSlideProps> = ({
                 <button
                   onClick={() => handleCopyEmail()}
                   className="
-                    rounded-full px-5 py-2 text-sm font-medium
-                    bg-gray-900 text-white hover:bg-gray-800
+                    rounded-full px-5 py-2 text-sm font-medium 
+                    bg-gray-900/70 text-white hover:bg-gray-900/80
                     focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-gray-900
+                    transition-200 hover:scale-105 active:scale-95
                   "
                   aria-label="Copy my email address"
                 >
@@ -167,8 +158,9 @@ const AboutSlide: FC<AboutSlideProps> = ({
                   href="mailto:info@wallace.software"
                   className="
                     rounded-full px-5 py-2 text-sm font-medium
-                    bg-white text-gray-900 ring-1 ring-gray-300 hover:bg-gray-50
+                    bg-white/70 hover:bg-white/80 text-gray-900 ring-1 ring-gray-300  
                     focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-gray-900
+                    transition-200 hover:scale-105 active:scale-95
                   "
                 >
                   Email Me
@@ -176,44 +168,6 @@ const AboutSlide: FC<AboutSlideProps> = ({
               </div>
             </div>
           </AnimatedChild>
-
-          {/* Quick links */}
-          {/* <AnimatedChild
-            animation="scale"
-            delay={delay * 3}
-            className="
-              lg:col-span-2
-              rounded-3xl bg-white/85 backdrop-blur
-              shadow-lg ring-1 ring-black/5 text-gray-800 p-5
-            "
-          >
-            <nav aria-label="Quick links" className="flex flex-wrap gap-4">
-              <Link
-                href="/#about"
-                className="underline underline-offset-2 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
-              >
-                About
-              </Link>
-              <Link
-                href="/#experience"
-                className="underline underline-offset-2 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
-              >
-                Experience
-              </Link>
-              <Link
-                href="/#skills"
-                className="underline underline-offset-2 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
-              >
-                Skills
-              </Link>
-              <Link
-                href="/#portfolio-somosaxolotl"
-                className="underline underline-offset-2 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
-              >
-                Portfolio
-              </Link>
-            </nav>
-          </AnimatedChild> */}
         </div>
       </section>
     </AnimatedSlide>

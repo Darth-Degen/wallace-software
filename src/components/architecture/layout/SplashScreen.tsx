@@ -12,6 +12,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useViewStore } from "src/stores";
 import { useLoadingStore } from "@stores";
 import { cn } from "@utils";
+import { Logo } from "@components";
+import { exitAnimation } from "@constants";
 
 interface Props {
   assets?: boolean[];
@@ -101,7 +103,7 @@ const SplashScreen: FC<Props> = ({
   }, [visible]);
 
   const variants = {
-    initial: { opacity: 1 },
+    initial: { opacity: 0 },
     animate: { opacity: 1 },
     exit: { opacity: 0 },
   } as const;
@@ -111,7 +113,7 @@ const SplashScreen: FC<Props> = ({
       {visible && (
         <motion.div
           className={cn(
-            "absolute inset-0 z-50 flex items-center justify-center backdrop-blur-2xl bg-black/70",
+            "fixed inset-0 z-50 flex items-center justify-center backdrop-blur-2xl bg-background",
             padForHeader
           )}
           role="status"
@@ -122,10 +124,15 @@ const SplashScreen: FC<Props> = ({
           initial="initial"
           animate="animate"
           exit="exit"
-          transition={{ duration: 0.25, ease: "easeInOut" }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
         >
           {children ?? (
-            <div className="text-white/90 text-sm tracking-wider">{label}</div>
+            <motion.p
+              className="hover-text-accent font-calistoga text-3xl md:text-4xl"
+              // {...exitAnimation}
+            >
+              Welcome
+            </motion.p>
           )}
         </motion.div>
       )}

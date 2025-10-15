@@ -21,12 +21,11 @@ const AnimatedSlide: FC<AnimatedSlideProps> = ({
 }) => {
   // Simple page load animation - fade in
   const pageLoadVariants = {
-    initial: { opacity: 0, scale: 0.9 },
+    initial: { opacity: 0, scale: 1 },
     animate: {
-      scale: 1,
       opacity: 1,
       transition: {
-        duration: 0.4,
+        duration: 0.2,
         ease: [0.25, 0.1, 0.25, 1],
         when: "beforeChildren",
         staggerChildren: 0.2,
@@ -36,7 +35,7 @@ const AnimatedSlide: FC<AnimatedSlideProps> = ({
     exit: {
       opacity: 0,
       transition: {
-        duration: 0.1,
+        duration: 0,
         ease: [0.25, 0.1, 0.25, 1],
         when: "afterChildren",
         staggerChildren: 0.1,

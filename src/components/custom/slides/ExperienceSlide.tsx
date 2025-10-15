@@ -7,11 +7,7 @@ interface ExperienceSlideProps {
   direction?: 1 | -1;
 }
 
-const ExperienceSlide: FC<ExperienceSlideProps> = ({
-  className = "",
-  animationTrigger = "pageLoad",
-  direction = 1,
-}) => {
+const ExperienceSlide: FC<ExperienceSlideProps> = () => {
   return (
     <AnimatedSlide animationTrigger="pageLoad" className="px-6 py-10">
       <AnimatedChild animation="fade" className="z-0 max-w-6xl w-full">
