@@ -21,9 +21,8 @@ const AnimatedSlide: FC<AnimatedSlideProps> = ({
 }) => {
   // Simple page load animation - fade in
   const pageLoadVariants = {
-    initial: { opacity: 0, scale: 0.9 },
+    initial: { opacity: 0, scale: 1 },
     animate: {
-      scale: 1,
       opacity: 1,
       transition: {
         duration: 0.4,

@@ -15,7 +15,7 @@ const AnimatedChild: FC<AnimatedChildProps> = ({
   children,
   className = "",
   delay,
-  animation = "scale",
+  animation = "fade",
   disableAnimation = false,
   hover = false,
 }) => {

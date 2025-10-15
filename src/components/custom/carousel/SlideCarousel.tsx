@@ -1,4 +1,4 @@
-import { FC, useState, useEffect, useRef } from "react";
+import { FC, useState, useEffect, useRef, useMemo } from "react";
 import { AnimatePresence } from "framer-motion";
 import Router from "next/router";
 import { SlideType } from "@types";
@@ -8,7 +8,7 @@ import {
   SkillsSlide,
   PortfolioSlide,
 } from "../slides";
-import { useSlideAnimations } from "@hooks";
+import { useSlideAnimations, useWindowSize } from "@hooks";
 import { useCarousel, useColorTheme, AccentColor } from "@stores";
 import { CarouselNavigationButton } from "@components";
 
@@ -44,11 +44,12 @@ const SlideCarousel: FC = () => {
     currentSlide: currentSlideIndex,
     nextSlide: carouselNextSlide,
     prevSlide: carouselPrevSlide,
-    setSlide,
+    getCarouselPages,
     getCurrentPageData,
     syncWithUrl,
   } = useCarousel();
   const { setAccentColorAndSection } = useColorTheme();
+  const [winWidth, winHeight, isMobile, isTablet] = useWindowSize();
 
   const [previousSlide, setPreviousSlide] = useState<SlideType | undefined>();
   const [navigationDirection, setNavigationDirection] = useState<1 | -1>(1);
@@ -77,6 +78,20 @@ const SlideCarousel: FC = () => {
       Router.events.off("routeChangeComplete", handleRouteChange);
     };
   }, [syncWithUrl]);
+
+  // Portfolio state
+  const pages = getCarouselPages();
+  const currentPath = pages[currentSlideIndex]?.path ?? "";
+  const isPortfolioSlide = /portfolio/i.test(currentPath);
+  const lastPortfolioIndex = useMemo(() => {
+    const indexes = pages
+      .map((page, index) => ({ page, index }))
+      .filter(({ page }) => /portfolio/i.test(page.path))
+      .map(({ index }) => index);
+    return indexes.length ? Math.max(...indexes) : -1;
+  }, [pages]);
+  const isLastPortfolio =
+    isPortfolioSlide && currentSlideIndex === lastPortfolioIndex;
 
   // Derive previousSlide and navigationDirection for any index change (footer click, URL change, arrows)
   useEffect(() => {
@@ -116,17 +131,21 @@ const SlideCarousel: FC = () => {
   return (
     <div className="relative w-full h-full flex flex-col flex-grow">
       {/* Navigation Controls */}
-      <CarouselNavigationButton
-        direction="left"
-        onClick={prevSlide}
-        className="fixed bottom-10 md:top-1/2 -translate-y-1/2 z-10 left-3 md:left-8 2xl:left-[max(1rem,calc((100vw-1512px)/2+1rem))]"
-      />
+      {(!isMobile || isPortfolioSlide) && (
+        <CarouselNavigationButton
+          direction="left"
+          onClick={carouselPrevSlide}
+          className="fixed bottom-10 md:top-1/2 -translate-y-1/2 z-10 left-8 2xl:left-[max(1rem,calc((100vw-1512px)/2+1rem))]"
+        />
+      )}
 
-      <CarouselNavigationButton
-        direction="right"
-        onClick={nextSlide}
-        className="fixed bottom-10 md:top-1/2 -translate-y-1/2 z-10 right-3 md:right-8 2xl:right-[max(1rem,calc((100vw-1512px)/2+1rem))]"
-      />
+      {(!isMobile || (isPortfolioSlide && !isLastPortfolio)) && (
+        <CarouselNavigationButton
+          direction="right"
+          onClick={carouselNextSlide}
+          className="fixed bottom-10 md:top-1/2 -translate-y-1/2 z-10 right-8 2xl:right-[max(1rem,calc((100vw-1512px)/2+1rem))]"
+        />
+      )}
 
       {/* Slide Content */}
       <AnimatePresence mode="wait">
