@@ -169,9 +169,10 @@ const AboutSlide: FC<AboutSlideProps> = ({ className = "", direction = 1 }) => {
                   <button
                     onClick={() => handleCopyEmail()}
                     className="
-                    rounded-full px-5 py-2 text-sm font-medium
-                    bg-gray-900 text-white hover:bg-gray-800
+                    rounded-full px-5 py-2 text-sm font-medium 
+                    bg-gray-900/70 text-white hover:bg-gray-900/80
                     focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-gray-900
+                    transition-200 hover:scale-105 active:scale-95
                   "
                     aria-label="Copy my email address"
                   >
@@ -181,8 +182,9 @@ const AboutSlide: FC<AboutSlideProps> = ({ className = "", direction = 1 }) => {
                     href="mailto:info@wallace.software"
                     className="
                     rounded-full px-5 py-2 text-sm font-medium
-                    bg-white text-gray-900 ring-1 ring-gray-300 hover:bg-gray-50
+                    bg-white/70 hover:bg-white/80 text-gray-900 ring-1 ring-gray-300  
                     focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-gray-900
+                    transition-200 hover:scale-105 active:scale-95
                   "
                   >
                     Email Me
