@@ -1,5 +1,5 @@
 import { FC, ReactNode } from "react";
-import { hover, motion, Variants } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { cn } from "@utils";
 
 interface AnimatedChildProps {

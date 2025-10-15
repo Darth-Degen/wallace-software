@@ -6,7 +6,6 @@ import { useWindowSize } from "@hooks";
 import introGraphic from "public/images/intro-graphic-xl.jpg";
 import mobileIntroGraphic from "public/images/mobile-intro-graphic.jpg";
 import { handleCopyEmail } from "@utils";
-import { motion } from "framer-motion";
 
 interface AboutSlideProps {
   className?: string;
@@ -22,34 +21,13 @@ const AboutSlide: FC<AboutSlideProps> = ({ className = "", direction = 1 }) => {
 
   return (
     <>
-      {/* Background */}
-      {/* <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{
-          opacity: 0,
-          transition: { duration: 0.2, ease: "easeInOut" },
-        }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="fixed inset-0 z-0"
-      >
-        <Image
-          src={winWidth > 1024 ? introGraphic : mobileIntroGraphic}
-          alt="Studio backdrop"
-          fill
-          className="object-cover"
-          onLoad={() => setAsset("home:bg", true)}
-          priority
-        />
-        <div className="fixed inset-0 bg-black/10 md:bg-black/10" />
-      </motion.div> */}
-      {/* Content */}
       <AnimatedSlide
         animationTrigger="pageLoad"
         direction={direction}
         className={className}
         ready={showView}
       >
+        {/* Background */}
         <AnimatedChild animation="fade" className="fixed inset-0 z-0">
           <Image
             src={winWidth > 1024 ? introGraphic : mobileIntroGraphic}

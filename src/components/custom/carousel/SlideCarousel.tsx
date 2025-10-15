@@ -117,17 +117,46 @@ const SlideCarousel: FC = () => {
 
   const CurrentSlideComponent = slideComponents[currentSlide];
 
+  // First-time visibility per button: 2s delay + 1s duration on first show, 0.75s afterwards
+  const leftNavVisible = (!isMobile || isPortfolioSlide) && showView;
+  const rightNavVisible =
+    (!isMobile || (isPortfolioSlide && !isLastPortfolio)) && showView;
+
+  const hasShownLeftRef = useRef(false);
+  const hasShownRightRef = useRef(false);
+
+  useEffect(() => {
+    if (leftNavVisible && !hasShownLeftRef.current) {
+      hasShownLeftRef.current = true;
+    }
+  }, [leftNavVisible]);
+
+  useEffect(() => {
+    if (rightNavVisible && !hasShownRightRef.current) {
+      hasShownRightRef.current = true;
+    }
+  }, [rightNavVisible]);
+
+  const leftTransition =
+    !hasShownLeftRef.current && leftNavVisible
+      ? { duration: 1, delay: 2 }
+      : { duration: 0.75 };
+
+  const rightTransition =
+    !hasShownRightRef.current && rightNavVisible
+      ? { duration: 1, delay: 2 }
+      : { duration: 0.75 };
   return (
     <div className="relative w-full h-full flex flex-col flex-grow">
       {/* Navigation Controls */}
       <AnimatePresence>
-        {(!isMobile || isPortfolioSlide) && showView && (
+        {leftNavVisible && (
           <motion.div
             key="nav-left"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.75 }}
+            transition={leftTransition}
             className="fixed bottom-10 md:top-1/2 -translate-y-1/2 z-10 left-8 2xl:left-[max(1rem,calc((100vw-1512px)/2+1rem))] h-min"
           >
             <CarouselNavigationButton
@@ -139,13 +168,13 @@ const SlideCarousel: FC = () => {
       </AnimatePresence>
 
       <AnimatePresence>
-        {(!isMobile || (isPortfolioSlide && !isLastPortfolio)) && showView && (
+        {rightNavVisible && (
           <motion.div
             key="nav-right"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.75 }}
+            transition={rightTransition}
             className="fixed bottom-10 md:top-1/2 -translate-y-1/2 z-10 right-8 2xl:right-[max(1rem,calc((100vw-1512px)/2+1rem))] h-min"
           >
             <CarouselNavigationButton
