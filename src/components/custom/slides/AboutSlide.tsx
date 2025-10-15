@@ -78,8 +78,8 @@ const AboutSlide: FC<AboutSlideProps> = ({ className = "", direction = 1 }) => {
               websites with exceptional attention to detail. I work with{" "}
               <span className="font-semibold"> Next.js, TypeScript,</span> and
               <span className="font-semibold"> Tailwind CSS</span> to write
-              clean, maintainable code that turns thoughtful designs into
-              seamless user experiences.
+              clean, maintainable code that turns thoughtful designs into a
+              seamless user experience.
             </p>
             <div className="space-y-1 mt-2 text-base md:text-lg">
               <p className="text-gray-700 max-w-prose leading-relaxed font-medium">
