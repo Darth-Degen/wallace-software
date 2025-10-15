@@ -58,7 +58,7 @@ const AnimatedChild: FC<AnimatedChildProps> = ({
     animate: {
       ...childAnimationVariants[animation].animate,
       transition: {
-        duration: 0.8,
+        duration: 1,
         ease: [0.25, 0.1, 0.25, 1],
         delay: delay || 0,
       },
@@ -66,7 +66,7 @@ const AnimatedChild: FC<AnimatedChildProps> = ({
     exit: {
       ...childAnimationVariants[animation].exit,
       transition: {
-        duration: 0.2,
+        duration: 0.4,
         ease: [0.25, 0.1, 0.25, 1],
       },
     },
