@@ -11,7 +11,7 @@ export default withPageShell(
     seo: {
       title: "Wallace | Senior Frontend Developer",
       description:
-        "I work with Next.js, TypeScript, and Tailwind CSS to write clean, maintainable code that turns thoughtful designs into seamless user experiences.",
+        "I work with Next.js, TypeScript, and Tailwind CSS to write clean, maintainable code that turns thoughtful designs into a seamless user experience.",
       url: "https://wallace.software",
     },
   }

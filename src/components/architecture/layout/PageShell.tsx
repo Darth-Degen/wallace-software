@@ -90,7 +90,7 @@ const PageShell: FC<PageShellProps> = ({
           )}
         >
           {children}
-          <SplashScreen loaded={loaded} minDurationMs={2000} />
+          <SplashScreen loaded={loaded} minDurationMs={1500} />
         </main>
 
         {/* Wrap footer so we can measure its box without modifying the Footer component */}
