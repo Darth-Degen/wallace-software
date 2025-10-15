@@ -141,13 +141,13 @@ const SlideCarousel: FC = () => {
 
   const leftTransition =
     !hasShownLeftRef.current && leftNavVisible
-      ? { duration: 1, delay: 2 }
+      ? { duration: 0.6, delay: 2 }
       : { duration: 0.5 };
 
   const rightTransition =
     !hasShownRightRef.current && rightNavVisible
-      ? { duration: 1, delay: 2 }
-      : { duration: 0.5 };
+      ? { duration: 0.6, delay: 2 }
+      : { duration: 0.6 };
   return (
     <div className="relative w-full h-full flex flex-col flex-grow">
       {/* Navigation Controls */}
