@@ -155,7 +155,7 @@ const AboutSlide: FC<AboutSlideProps> = ({ className = "", direction = 1 }) => {
                   Copy Email
                 </button>
                 <a
-                  href="mailto:info@wallace.software"
+                  href="mailto:wallace@wallace.software"
                   className="
                     rounded-full px-5 py-2 text-sm font-medium
                     bg-white/70 hover:bg-white/80 text-gray-900 ring-1 ring-gray-300  

@@ -79,7 +79,7 @@ const Footer: FC = () => {
             className="ml-2 text-sm text-muted-foreground cursor-pointer hover:text-accent transition-300"
             onClick={() => handleCopyEmail()}
           >
-            info@wallace.software
+            wallace@wallace.software
           </p>
         </div>
       </div>
