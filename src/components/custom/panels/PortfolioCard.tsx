@@ -8,10 +8,14 @@ import {
   ToolbarIcon,
   VideoPlayer,
 } from "@components";
-import { useWindowSize } from "@hooks";
 import { PortfolioItem } from "@types";
-import { Github, Globe, Laptop, Share2 } from "lucide-react";
-import { isMobile } from "react-device-detect";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@widgets";
+import { Github, Globe, InfoIcon } from "lucide-react";
 
 type PortfolioCardProps = {
   item: PortfolioItem;
@@ -19,14 +23,40 @@ type PortfolioCardProps = {
 };
 
 export default function PortfolioCard({ item, className }: PortfolioCardProps) {
-  // const [width, height, isMobile] = useWindowSize();
   return (
     <PanelCardRoot className={className} elevated>
       <PanelCardHeader
         meta={
           <MetaPill>
-            <Laptop className="h-4 w-4" />
-            {item.title}
+            {/* <Laptop className="h-4 w-4" /> */}
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <button
+                    type="button"
+                    aria-label="More info"
+                    className="inline-flex items-center text-muted-foreground hover:text-foreground transition-300"
+                  >
+                    <InfoIcon className="h-[18px] w-[18px]" />
+                  </button>
+                </TooltipTrigger>
+                <TooltipContent
+                  side="bottom"
+                  align="start"
+                  className="bg-card-foreground mt-2 max-w-[300px] sm:max-w-[400px] opacity-80 backdrop-blur text-[13px]"
+                >
+                  <p>
+                    {item.description}
+                    {" Built with "}
+                    {item.skills.map((s, i) => {
+                      if (i + 1 < item.skills.length) return `${s}, `;
+                      else return `and ${s}.`;
+                    })}
+                  </p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+            My Portfolio - {item.title}
           </MetaPill>
         }
         toolbar={
@@ -51,6 +81,7 @@ export default function PortfolioCard({ item, className }: PortfolioCardProps) {
         }
       />
       <PanelCardContent className="flex flex-col flex-grow !p-0 w-full aspect-[1654/1080]">
+        <p></p>
         <VideoPlayer
           videoId={item.videoId}
           autoPlay={true}
