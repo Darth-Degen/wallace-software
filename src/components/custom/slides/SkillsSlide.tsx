@@ -38,7 +38,6 @@ const SkillsSlide: FC<SkillsSlideProps> = ({
           <SkillsCard
             icon={<Laptop className="h-4 w-4" />}
             header="Frontend Development"
-            className="w-full sm:w-[340px]  min-h-[395px]"
             skills={[
               {
                 category: "Core Frontend Stack",
@@ -63,7 +62,6 @@ const SkillsSlide: FC<SkillsSlideProps> = ({
           <SkillsCard
             icon={<ClipboardList className="h-4 w-4" />}
             header="Extended Skillset"
-            className="w-full sm:w-[340px] max-w-[340px] h-full min-h-[395px]"
             skills={[
               {
                 category: "Design & UI ",

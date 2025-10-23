@@ -10,8 +10,9 @@ import {
 } from "@components";
 import { Github, Globe } from "lucide-react";
 import { Skills } from "@types";
+import { cn } from "@utils";
 
-type ExperienceCardProps = {
+type SkillsCardProps = {
   header: string; // “2022–Present”
   skills: Skills[];
   github?: string;
@@ -20,16 +21,22 @@ type ExperienceCardProps = {
   icon: React.ReactNode;
 };
 
-export default function ExperienceCard({
+export default function SkillsCard({
   header,
   skills,
   github,
   website,
   className,
   icon,
-}: ExperienceCardProps) {
+}: SkillsCardProps) {
   return (
-    <PanelCardRoot className={className} elevated>
+    <PanelCardRoot
+      className={cn(
+        "w-full sm:w-[340px] min-h-[395px] max-w-[340px]",
+        className
+      )}
+      elevated
+    >
       <PanelCardHeader
         meta={
           <MetaPill>
@@ -58,7 +65,7 @@ export default function ExperienceCard({
           </div>
         }
       />
-      <PanelCardContent className="flex flex-col flex-grow h-full">
+      <PanelCardContent className="flex flex-col flex-grow h-full w-full">
         <p className="text-start py-2.5 font-semibold text-white/80">
           {skills[0].category}
         </p>
