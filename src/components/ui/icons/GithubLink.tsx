@@ -14,7 +14,7 @@ type GithubLinkProps = {
 };
 
 const GithubLink: React.FC<GithubLinkProps> = ({
-  href = "https://github.com/Darth-Degen",
+  href = "https://github.com/wallace-software",
   label = "GitHub",
   variant = "icon",
   size = "icon",

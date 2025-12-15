@@ -96,7 +96,7 @@ const AboutSlide: FC<AboutSlideProps> = ({ className = "", direction = 1 }) => {
               <p className="text-gray-700 max-w-prose leading-relaxed font-medium">
                 Or my work on{" "}
                 <a
-                  href="https://github.com/Darth-Degen"
+                  href="https://github.com/wallace-software"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="underline underline-offset-2"
