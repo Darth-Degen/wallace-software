@@ -14,7 +14,7 @@ type LinkedinLinkProps = {
 };
 
 const LinkedinLink: React.FC<LinkedinLinkProps> = ({
-  href = "https://www.linkedin.com/in/wallace-palmer-4b93473a",
+  href = "https://www.linkedin.com/in/wallace-palmer",
   label = "LinkedIn",
   variant = "icon",
   size = "icon",
