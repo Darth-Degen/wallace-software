@@ -60,11 +60,11 @@ const AboutSlide: FC<AboutSlideProps> = ({ className = "", direction = 1 }) => {
             animation="scale"
             delay={delay}
             className="
-              flex flex-col gap-8  
-              rounded-3xl bg-white/55 md:bg-white/65 backdrop-blur
-              shadow-lg ring-1 ring-black/5
-              text-gray-800 p-7 md:p-9
-            "
+    flex flex-col gap-8  
+    rounded-3xl bg-white/55 md:bg-white/65 backdrop-blur
+    shadow-lg ring-1 ring-black/5
+    text-gray-800 p-7 md:p-9
+  "
           >
             <h2
               id="hero-title"
@@ -74,13 +74,19 @@ const AboutSlide: FC<AboutSlideProps> = ({ className = "", direction = 1 }) => {
             </h2>
 
             <p className="text-base md:text-xl text-gray-700 max-w-prose leading-relaxed font-medium">
-              A senior frontend developer who builds fast and responsive
-              websites with exceptional attention to detail. I work with{" "}
-              <span className="font-semibold"> Next.js, TypeScript,</span> and
-              <span className="font-semibold"> Tailwind CSS</span> to write
-              clean, maintainable code that turns thoughtful designs into a
-              seamless user experience.
+              A senior frontend developer who enjoys taking ownership of his
+              work and translating designs into thoughtful, well-crafted
+              experiences.
             </p>
+
+            <p className="text-base md:text-xl text-gray-700 max-w-prose leading-relaxed font-medium">
+              My go-to stack is{" "}
+              <span className="font-bold">Next.js, TypeScript,</span> and{" "}
+              <span className="font-bold">Tailwind CSS</span>. It&apos;s where
+              I&apos;ve spent most of my time building production websites, many
+              of which you can find in the portfolio tab in the footer.
+            </p>
+
             <div className="space-y-1 mt-2 text-base md:text-lg">
               <p className="text-gray-700 max-w-prose leading-relaxed font-medium">
                 Check out my{" "}
@@ -112,32 +118,37 @@ const AboutSlide: FC<AboutSlideProps> = ({ className = "", direction = 1 }) => {
             animation="scale"
             delay={delay * 2}
             className="
-              rounded-3xl bg-white/55 backdrop-blur
-              shadow-lg ring-1 ring-black/5
-              text-gray-800 p-7 md:p-9
-            "
+    rounded-3xl bg-white/55 backdrop-blur
+    shadow-lg ring-1 ring-black/5
+    text-gray-800 p-7 md:p-9
+  "
           >
             <div className="space-y-2 text-gray-700 leading-relaxed max-w-prose">
               <p className="text-xs uppercase tracking-wider text-gray-500">
                 Experience
               </p>
               <p>
-                With over ten years of development experience, I&apos;ve worked
-                across startups, Web3 companies, and creative brands to deliver
-                high-quality frontend solutions. My background spans mobile and
-                web, which has sharpened my focus on performance, usability, and
-                building interfaces that feel intuitive.
+                I&apos;ve spent over ten years building interfaces across
+                startups and small teams. Working on both early products and
+                mature systems has shaped how I approach frontend challenges,
+                knowing when to move fast or slow down and refine the details.
+              </p>
+              <p>
+                My background spans both mobile and web, sharpening my intuition
+                around responsiveness and performance.
               </p>
 
               <p className="text-xs uppercase tracking-wider text-gray-500 pt-3">
                 Beyond Work
               </p>
               <p>
-                A fun fact about me is that I lived in six countries before
-                turning eighteen. Those experiences taught me to adapt quickly,
-                stay curious, and appreciate the uniqueness in everyday life.
-                It&apos;s a mindset I bring to my work, where I&apos;m always
-                learning, experimenting, and finding creative solutions.
+                I lived in six different countries growing up which taught me
+                how to adapt quickly and communicate well with others.
+              </p>
+              <p>
+                Outside of work, I like to challenge both my body and mind. I
+                stay active in the gym, spend time outdoors, and enjoy exploring
+                new hobbies like yoga and pickleball.
               </p>
 
               {/* CTA row */}
@@ -145,11 +156,11 @@ const AboutSlide: FC<AboutSlideProps> = ({ className = "", direction = 1 }) => {
                 <button
                   onClick={() => handleCopyEmail()}
                   className="
-                    rounded-full px-5 py-2 text-sm font-medium 
-                    bg-gray-900/70 text-white hover:bg-gray-900/80
-                    focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-gray-900
-                    transition-200 hover:scale-105 active:scale-95
-                  "
+          rounded-full px-5 py-2 text-sm font-medium 
+          bg-gray-900/70 text-white hover:bg-gray-900/80
+          focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-gray-900
+          transition-200 hover:scale-105 active:scale-95
+        "
                   aria-label="Copy my email address"
                 >
                   Copy Email
@@ -157,13 +168,13 @@ const AboutSlide: FC<AboutSlideProps> = ({ className = "", direction = 1 }) => {
                 <a
                   href="mailto:wallace@wallace.software"
                   className="
-                    rounded-full px-5 py-2 text-sm font-medium
-                    bg-white/70 hover:bg-white/80 text-gray-900 ring-1 ring-gray-300  
-                    focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-gray-900
-                    transition-200 hover:scale-105 active:scale-95
-                  "
+          rounded-full px-5 py-2 text-sm font-medium
+          bg-white/70 hover:bg-white/80 text-gray-900 ring-1 ring-gray-300  
+          focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-gray-900
+          transition-200 hover:scale-105 active:scale-95
+        "
                 >
-                  Email Me
+                  Get in Touch
                 </a>
               </div>
             </div>
